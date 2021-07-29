@@ -9,24 +9,23 @@ NodeJS implementation of the Vista API.
 
 ## Prerequisites
 
-You'll need to get a Vista API key from the Vista Dashboard.
+You'll need to create a Vista API key from the Vista Dashboard.
 
 ## Usage
 
 Install the dependency:
 
 ```
-npm install vista-api-client;
+npm install @vista.io/vista-api-client;
 ```
 
 Then in your Node application:
 
 ```js
-import { VistaClient } from 'vista-api-client';
+import { VistaClient } from '@vista.io/vista-api-client';
 
-const client = new VistaClient(
-  '<insert your apiKey here>',
-);
+const VISTA_API_KEY = ''; // create in Vista Dashboard
+const client = new VistaClient(VISTA_API_KEY);
 ```
 
 After that you are good to go!
