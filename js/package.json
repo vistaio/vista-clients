@@ -1,0 +1,16 @@
+{
+  "name": "vista-api-client",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://www.app.govista.io/",
+  "type": "module",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "npm": "^7.17.0",
+    "underscore": "^1.13.1"
+  },
+  "scripts": {
+    "deploy": "",
+    "test": ""
+  }
+}
