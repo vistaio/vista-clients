@@ -1,9 +1,9 @@
 {
-  "name": "vista-api-client",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@vista.io/vista-api-client",
+  "version": "0.1.1",
   "homepage": "https://www.app.govista.io/",
   "type": "module",
+  "main": "./src/index.js",
   "dependencies": {
     "axios": "^0.21.1",
     "npm": "^7.17.0",
@@ -12,5 +12,23 @@
   "scripts": {
     "deploy": "",
     "test": ""
+  },
+  "description": "NodeJS implementation of the Vista API.",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddhantdange/vista-clients.git"
+  },
+  "keywords": [
+    "vista",
+    "authz",
+    "permissions",
+    "vista-authz",
+    "vistaio"
+  ],
+  "author": "Sid Dange",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siddhantdange/vista-clients/issues"
   }
 }
