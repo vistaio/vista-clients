@@ -12,7 +12,7 @@ class ApiResource {
         this.axiosClient = axiosClient;
     }
 
-    dispatch = async (url, method, data) => {
+    async dispatch(url, method, data) {
         const config = {
             url: `${Config.VistaAPIHostname}${url}`,
             method: method,
@@ -26,7 +26,7 @@ class ApiResource {
             }
         }
 
-        const resp = await this.axiosClient.request(config).catch((error) => {
+        const resp = await this.axiosClient.request(config).catch(function(error) {
             if (error.response) {
                 throw Error(error.response.data.error);
             } else if (error.request) {
