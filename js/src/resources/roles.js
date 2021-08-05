@@ -2,13 +2,13 @@
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
 
 class Roles extends ApiResource {
-    async list(environment) {
+    list = async (environment) => {
         return this.dispatch('/v1/roles', HTTP_METHODS.GET, {
             environment: environment,
         });
     }
 
-    async create(role_id, grants, parent_roles, environment) {
+    create = async (role_id, grants, parent_roles, environment) => {
         return this.dispatch('/v1/roles', HTTP_METHODS.POST, {
             id: role_id,
             actions_by_resource_type: grants,
@@ -17,13 +17,13 @@ class Roles extends ApiResource {
         });
     }
 
-    async listUsersetsForRole(role_id, environment) {
+    listUsersetsForRole = async (role_id, environment) => {
         return this.dispatch(`/v1/roles/${role_id}/usersets`, HTTP_METHODS.GET, {
             environment: environment,
         });
     }
 
-    async inherit(child_role_id, parent_role_id, environment) {
+    inherit = async (child_role_id, parent_role_id, environment) => {
         return this.dispatch(`/v1/roles/inherit`, HTTP_METHODS.POST, {
             child_role_id: child_role_id,
             parent_role_id: parent_role_id,

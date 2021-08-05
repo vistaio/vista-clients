@@ -9,6 +9,8 @@ import Roles from './resources/roles.js';
 import Users from './resources/users.js';
 import Usersets from './resources/usersets.js';
 
+import { VistaCheck, withCheck } from './components/VistaCheck.js';
+
 class VistaClient {
     constructor(secret, hostname) {
         this.secret = secret;
@@ -33,4 +35,4 @@ class VistaClient {
     }
 }
 
-export default VistaClient;
+export { VistaClient, VistaCheck, withCheck };

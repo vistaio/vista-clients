@@ -2,13 +2,13 @@
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
 
 class ResourceTypes extends ApiResource {
-    async list(environment) {
+    list = async (environment) => {
         return this.dispatch('/v1/resource_types', HTTP_METHODS.GET, {
             environment: environment,
         });
     }
 
-    async create(name, relationships, attributes, actions, environment) {
+    create = async (name, relationships, attributes, actions, environment) => {
         return this.dispatch('/v1/resource_types', HTTP_METHODS.POST, {
             name: name,
             relationships: relationships,

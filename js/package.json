@@ -1,16 +1,22 @@
 {
   "name": "@vista.io/vista-api-client",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "homepage": "https://www.app.govista.io/",
   "type": "module",
-  "main": "./src/index.js",
+  "main": "./lib/index.js",
   "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
     "axios": "^0.21.1",
     "npm": "^7.17.0",
+    "react": "^17.0.2",
     "underscore": "^1.13.1"
   },
   "scripts": {
-    "deploy": "",
+    "build": "./node_modules/.bin/babel src --out-dir lib/",
+    "publish": "yarn publish --access public",
     "test": ""
   },
   "description": "NodeJS implementation of the Vista API.",

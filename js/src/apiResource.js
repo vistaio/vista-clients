@@ -11,7 +11,7 @@ class ApiResource {
         this.hostname = hostname;
     }
 
-    async dispatch(url, method, data) {
+    dispatch = async (url, method, data) => {
         const config = {
             url: new URL(url, this.hostname).href,
             method: method,
@@ -25,7 +25,7 @@ class ApiResource {
             }
         }
 
-        const resp = await this.axiosClient.request(config).catch(function(error) {
+        const resp = await this.axiosClient.request(config).catch((error) => {
             if (error.response) {
                 throw Error(error.response.data.error);
             } else if (error.request) {
