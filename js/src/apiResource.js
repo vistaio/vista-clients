@@ -1,6 +1,4 @@
 
-import Config from './config/config.js';
-
 const HTTP_METHODS = {
     GET: 'GET',
     POST: 'POST',
@@ -8,13 +6,14 @@ const HTTP_METHODS = {
 }
 
 class ApiResource {
-    constructor(axiosClient) {
+    constructor(axiosClient, hostname) {
         this.axiosClient = axiosClient;
+        this.hostname = hostname;
     }
 
     async dispatch(url, method, data) {
         const config = {
-            url: `${Config.VistaAPIHostname}${url}`,
+            url: new URL(url, this.hostname).href,
             method: method,
         }
 
