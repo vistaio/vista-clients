@@ -1,4 +1,4 @@
 
 config = {
-    'VistaAPIHostname': 'http://localhost:5000/',
+    'VistaAPIHostname': 'https://api.govista.io',
 }

@@ -1,10 +1,10 @@
 
-import VistaClient from '@vista.io/vista-api-client';
+import VistaClient from "@vista.io/vista-api-client";
 
 // test key
-const client = new VistaClient('z9Not6ZyDQn8YGw3GxHZx54k0U1qA_2KIL1HktuYPc5EKEfd');
+const client = new VistaClient('Pxi5nRg23LSlVjl-OehXlOTr53zZHzZggr_cbaodYr8QcchV', 'https://staging.api.govista.io');
 
-client.roles.list('test')
+client.resources.list('test')
     .then((roles) => {
         console.log(JSON.stringify(roles));
     })

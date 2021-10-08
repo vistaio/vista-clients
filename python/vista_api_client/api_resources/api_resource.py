@@ -12,12 +12,14 @@ class HttpMethods(Enum):
     DELETE = 'DELETE'
 
 class ApiResource(object):
-    def __init__(self, secret):
+    def __init__(self, secret, environment, hostname):
+        self.hostname = hostname
+        self.environment = environment
         self.secret = secret
 
     def dispatch(self, route, method, data):
         request_kwargs = {
-            'url': urljoin(config['VistaAPIHostname'], route),
+            'url': urljoin(self.hostname, route),
             'headers': {
                 'Content-Type': 'application/json',
                 'Authorization': f"Bearer {self.secret}",
@@ -28,7 +30,7 @@ class ApiResource(object):
             if method == HttpMethods.GET:
                 request_kwargs['params'] = data
             else:
-                request_kwargs['data'] = data
+                request_kwargs['json'] = data
 
         # no dynamic way to change based on http method
         action = getattr(requests, str(method.value).lower(), None)

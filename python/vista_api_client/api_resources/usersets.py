@@ -3,29 +3,34 @@ from vista_api_client.api_resources.api_resource import ApiResource, HttpMethods
 
 
 class Usersets(ApiResource):
-    def create(self, userset_id, environment):
+    def create(self, userset_id, parent_usersets):
         return self.dispatch('/v1/usersets', HttpMethods.POST, {
             'id': userset_id,
-            'environment': environment,
+            'parent_usersets': parent_usersets,
+            'environment': self.environment,
         })
 
-    def inherit(self, child_userset_id, parent_userset_id, environment):
+    def inherit(self, child_userset_id, parent_userset_id):
         return self.dispatch('/v1/usersets/inherit', HttpMethods.POST, {
             'child_userset_id': child_userset_id,
             'parent_userset_id': parent_userset_id,
-            'environment': environment,
+            'environment': self.environment,
         })
 
-    def listForRole(self, role_id, environment):
-        return self.dispatch(f"/v1/roles/{role_id}/usersets", HttpMethods.GET, {
-            'environment': environment,
-        })
-
-    def grant(self, user_id, action, resource_type, resource_id, environment):
-        return self.dispatch('/v1/usersets/grant', HttpMethods.POST, {
+    def grant_action(self, user_id, action, resource_type, resource_id):
+        return self.dispatch('/v1/usersets/grantAction', HttpMethods.POST, {
             'id': user_id,
             'action': action,
             'resource_type': resource_type,
             'resource_id': resource_id,
-            'environment': environment,
+            'environment': self.environment,
+        })
+
+    def grant_role(self, user_id, role_id, resource_type, resource_id):
+        return self.dispatch('/v1/usersets/grantRole', HttpMethods.POST, {
+            'id': user_id,
+            'role_id': role_id,
+            'resource_type': resource_type,
+            'resource_id': resource_id,
+            'environment': self.environment,
         })

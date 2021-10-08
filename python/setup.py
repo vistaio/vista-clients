@@ -17,9 +17,12 @@ setup(
   download_url = 'https://github.com/siddhantdange/vista-clients/archive/v_01.tar.gz',
   keywords=["vista", "authz", "permissions", "vista-authz", "vistaio"],
   install_requires=[            # I get to this in a second
-          'validators',
-          'beautifulsoup4',
-      ],
+    'certifi == 2021.5.30',
+    'charset-normalizer == 2.0.4',
+    'idna == 3.2',
+    'requests == 2.26.0',
+    'urllib3 == 1.26.6',
+  ],
   classifiers=[
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',

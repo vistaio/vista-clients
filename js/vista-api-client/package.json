@@ -1,0 +1,43 @@
+{
+  "name": "@vista.io/vista-api-client",
+  "version": "0.1.5",
+  "homepage": "https://www.app.govista.io/",
+  "type": "module",
+  "main": "./lib/index.js",
+  "dependencies": {
+    "@babel/cli": "^7.14.8",
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.15.4",
+    "@babel/plugin-transform-modules-umd": "^7.14.5",
+    "@babel/plugin-transform-runtime": "^7.15.8",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "^7.14.5",
+    "axios": "^0.21.1",
+    "npm": "^7.17.0",
+    "react": "^17.0.2",
+    "underscore": "^1.13.1"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/babel src --out-dir lib/",
+    "publish": "yarn publish --access public",
+    "test": ""
+  },
+  "description": "NodeJS implementation of the Vista API.",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siddhantdange/vista-clients.git"
+  },
+  "keywords": [
+    "vista",
+    "authz",
+    "permissions",
+    "vista-authz",
+    "vistaio"
+  ],
+  "author": "Sid Dange",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siddhantdange/vista-clients/issues"
+  }
+}
