@@ -5,7 +5,7 @@
   "homepage": "https://www.app.govista.io/",
   "type": "module",
   "dependencies": {
-    "@vista.io/vista-api-client": "^0.1.18",
+    "@vista.io/vista-api-client": "^0.1.19",
     "esm": "^3.2.25"
   },
   "scripts": {

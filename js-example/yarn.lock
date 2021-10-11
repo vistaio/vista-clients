@@ -1069,10 +1069,10 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@vista.io/vista-api-client@^0.1.18":
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/@vista.io/vista-api-client/-/vista-api-client-0.1.18.tgz#5ea1d374df0365c51bf1c77327879cebf7242d5c"
-  integrity sha512-i07OMQy6otLQw4xoblhSZ9tm3CEUmr9I4ohd6V5Iade0Im1lJNKj4ar/hLMNUvZFt67Jd2lRpsKU9YPF5vT/yg==
+"@vista.io/vista-api-client@^0.1.19":
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/@vista.io/vista-api-client/-/vista-api-client-0.1.19.tgz#4542c75a230d827d412ed7d52381b35b3371ad34"
+  integrity sha512-AMV7YINqRWo4tlCPwzZcPbqWahIgp6LJ+dAuD+tSqp9ywGJZ/hxI3z+7Y0tZe77rt7uCDd8vHhtvFO7UtHmU/Q==
   dependencies:
     "@babel/core" "^7.15.8"
     "@babel/plugin-transform-runtime" "^7.15.8"

@@ -10,7 +10,7 @@ import Users from './resources/users.js';
 import Usersets from './resources/usersets.js';
 
 class VistaClient {
-    constructor(secret, hostname) {
+    constructor(secret, branch, hostname) {
         this.secret = secret;
 
         this.axios = Axios.create({
@@ -25,11 +25,11 @@ class VistaClient {
             hostname = config.VistaAPIHostname
         }
 
-        this.admin = new Admin(this.axios, hostname);
-        this.resources = new ResourceTypes(this.axios, hostname);
-        this.roles = new Roles(this.axios, hostname);
-        this.users = new Users(this.axios, hostname);
-        this.usersets = new Usersets(this.axios, hostname);
+        this.admin = new Admin(this.axios, branch, hostname);
+        this.resourceTypes = new ResourceTypes(this.axios, branch, hostname);
+        this.roles = new Roles(this.axios, branch, hostname);
+        this.users = new Users(this.axios, branch, hostname);
+        this.usersets = new Usersets(this.axios, branch, hostname);
     }
 }
 

@@ -33,3 +33,19 @@ if __name__ == '__main__':
 After that you are good to go!
 
 Please see the [Vista API Documentation](https://docs.govista.io/api/) for documentation of the API.
+://docs.govista.io/api/) for documentation of the API.
+
+## API
+| method | arguments | response | description |
+|--------|-----------|----------|-------------|
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |
+|        |           |          |             |

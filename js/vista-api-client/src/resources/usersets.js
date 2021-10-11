@@ -2,45 +2,39 @@
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
 
 class Usersets extends ApiResource {
-    create = async (userset_id, parent_usersets, branch) => {
+    create = async (usersetId, parentUsersets) => {
         return this.dispatch('/v1/usersets', HTTP_METHODS.POST, {
-            id: userset_id,
-            parent_usersets: parent_usersets,
-            branch: branch,
+            id: usersetId,
+            parent_usersets: parentUsersets,
+            branch: this.branch,
         });
     }
 
-    inherit = async (child_userset_id, parent_userset_id, branch) => {
+    inherit = async (child_usersetId, parentUsersetId) => {
         return this.dispatch(`/v1/usersets/inherit`, HTTP_METHODS.POST, {
-            child_userset_id: child_userset_id,
-            parent_userset_id: parent_userset_id,
-            branch: branch,
+            child_userset_id: child_usersetId,
+            parent_userset_id: parentUsersetId,
+            branch: this.branch,
         });
     }
 
-    listForRole = async (role_id, branch) => {
-        return this.dispatch(`/v1/roles/${role_id}/usersets`, HTTP_METHODS.GET, {
-            branch: branch,
-        });
-    }
-
-    grantAction = async (userset_id, action, resource_type, resource_id, branch) => {
+    grantAction = async (usersetId, action, resourceType, resourceId) => {
         return this.dispatch('/v1/usersets/grantAction', HTTP_METHODS.POST, {
-            id: userset_id,
+            id: usersetId,
             action: action,
-            resource_type: resource_type,
-            resource_id: resource_id,
-            branch: branch,
+            resource_type: resourceType,
+            resource_id: resourceId,
+            branch: this.branch,
         });
     }
 
-    grantRole = async (userset_id, role_id, resource_type, resource_id, branch) => {
+    grantRole = async (usersetId, role_id, resourceType, resourceId) => {
         return this.dispatch('/v1/usersets/grantRole', HTTP_METHODS.POST, {
-            id: userset_id,
+            id: usersetId,
             role_id: role_id,
-            resource_type: resource_type,
-            resource_id: resource_id,
-            branch: branch,
+            resource_type: resourceType,
+            resource_id: resourceId,
+            branch: this.branch,
         });
     }
 }

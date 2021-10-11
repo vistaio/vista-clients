@@ -2,48 +2,48 @@
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
 
 class Users extends ApiResource {
-    create = async (user_id, branch) => {
+    create = async (userId) => {
         return this.dispatch('/v1/users', HTTP_METHODS.POST, {
-            id: user_id,
-            branch: branch,
+            id: userId,
+            branch: this.branch,
         });
     }
 
-    assignToUserset = async (user_id, userset_id, branch) => {
+    assignToUserset = async (userId, usersetId) => {
         return this.dispatch('/v1/users/assign', HTTP_METHODS.POST, {
-            id: user_id,
-            userset_id: userset_id,
-            branch: branch,
+            id: userId,
+            userset_id: usersetId,
+            branch: this.branch,
         });
     }
 
-    check = async (user_id, action, resource_type, resource_id, branch) => {
+    check = async (userId, action, resourceType, resourceId) => {
         return this.dispatch('/v1/users/check', HTTP_METHODS.GET, {
-            id: user_id,
+            id: userId,
             action: action,
-            resource_type: resource_type,
-            resource_id: resource_id,
-            branch: branch,
+            resource_type: resourceType,
+            resource_id: resourceId,
+            branch: this.branch,
         });
     }
 
-    grantAction = async (user_id, action, resource_type, resource_id, branch) => {
+    grantAction = async (userId, action, resourceType, resourceId) => {
         return this.dispatch('/v1/users/grantAction', HTTP_METHODS.POST, {
-            id: user_id,
+            id: userId,
             action: action,
-            resource_type: resource_type,
-            resource_id: resource_id,
-            branch: branch,
+            resource_type: resourceType,
+            resource_id: resourceId,
+            branch: this.branch,
         });
     }
 
-    grantRole = async (user_id, role_id, resource_type, resource_id, branch) => {
+    grantRole = async (userId, role_id, resourceType, resourceId) => {
         return this.dispatch('/v1/users/grantRole', HTTP_METHODS.POST, {
-            id: user_id,
+            id: userId,
             role_id: role_id,
-            resource_type: resource_type,
-            resource_id: resource_id,
-            branch: branch,
+            resource_type: resourceType,
+            resource_id: resourceId,
+            branch: this.branch,
         });
     }
 }

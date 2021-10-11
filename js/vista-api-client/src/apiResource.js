@@ -6,8 +6,9 @@ const HTTP_METHODS = {
 }
 
 class ApiResource {
-    constructor(axiosClient, hostname) {
+    constructor(axiosClient, branch, hostname) {
         this.axiosClient = axiosClient;
+        this.branch = branch;
         this.hostname = hostname;
     }
 
