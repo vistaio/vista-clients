@@ -3,9 +3,9 @@ import datetime
 
 from vista_api_client import VistaClient
 
-# v = VistaClient('Z6Q2KfVk6T5NJ65uskrfOxRCkcrSMhxQRmbAereoxUQ2YA7J',
+# v = VistaClient('Z6Q2KfVk6T5NJ65uskrfOxRCkcrSMhxQRmbAereoxUQ2YA7J', 'test',
 #                 hostname='http://localhost:8080')
-v = VistaClient('Pxi5nRg23LSlVjl-OehXlOTr53zZHzZggr_cbaodYr8QcchV',
+v = VistaClient('Pxi5nRg23LSlVjl-OehXlOTr53zZHzZggr_cbaodYr8QcchV', 'test',
                 hostname='https://staging.api.govista.io')
 
 # DEMO

@@ -7,14 +7,14 @@ class Users(ApiResource):
     def create(self, user_id):
         return self.dispatch('/v1/users', HttpMethods.POST, {
             'id': user_id,
-            'environment': self.environment,
+            'branch': self.branch,
         })
 
     def assign_to_userset(self, user_id, userset_id):
         return self.dispatch('/v1/users/assign', HttpMethods.POST, {
             'id': user_id,
             'userset_id': userset_id,
-            'environment': self.environment,
+            'branch': self.branch,
         })
 
     def check(self, user_id, action, resource_type, resource_id):
@@ -23,7 +23,7 @@ class Users(ApiResource):
             'action': action,
             'resource_type': resource_type,
             'resource_id': resource_id,
-            'environment': self.environment,
+            'branch': self.branch,
         })
 
     def grant_action(self, user_id, action, resource_type, resource_id):
@@ -32,7 +32,7 @@ class Users(ApiResource):
             'action': action,
             'resource_type': resource_type,
             'resource_id': resource_id,
-            'environment': self.environment,
+            'branch': self.branch,
         })
 
     def grant_role(self, user_id, role_id, resource_type, resource_id):
@@ -41,5 +41,5 @@ class Users(ApiResource):
             'role_id': role_id,
             'resource_type': resource_type,
             'resource_id': resource_id,
-            'environment': self.environment,
+            'branch': self.branch,
         })

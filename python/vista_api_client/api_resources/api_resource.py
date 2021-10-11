@@ -12,9 +12,9 @@ class HttpMethods(Enum):
     DELETE = 'DELETE'
 
 class ApiResource(object):
-    def __init__(self, secret, environment, hostname):
+    def __init__(self, secret, branch, hostname):
         self.hostname = hostname
-        self.environment = environment
+        self.branch = branch
         self.secret = secret
 
     def dispatch(self, route, method, data):
