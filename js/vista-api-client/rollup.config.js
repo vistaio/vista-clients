@@ -6,12 +6,17 @@ export default {
     output: [
         {
             file: 'dist/vista.js',
-            format: 'cjs'
+            format: 'cjs',
+        },
+        {
+            file: 'dist/vista.esm.js',
+            format: 'esm',
         }
     ],
     plugins: [
         babel({
-            exclude: "node_modules/**"
+            babelHelpers: 'runtime',
+            exclude: 'node_modules/**',
         })
     ],
 };

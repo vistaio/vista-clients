@@ -1292,6 +1292,13 @@
     "@babel/plugin-transform-react-jsx-development" "^7.14.5"
     "@babel/plugin-transform-react-pure-annotations" "^7.14.5"
 
+"@babel/runtime@^7.15.4":
+  version "7.15.4"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.4.tgz#fd17d16bfdf878e6dd02d19753a39fa8a8d9c84a"
+  integrity sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.8.4":
   version "7.14.8"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
@@ -1552,15 +1559,18 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@vista.io/vista-api-client@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@vista.io/vista-api-client/-/vista-api-client-0.1.14.tgz#d7f005a0b6adf3b5adbf190ad689ad7278808cac"
-  integrity sha512-LSMQTfRIdYQ3Oq+j/LH1sjnta57QgGmxRp5u+F2WbCRRSRdVtNAUW1xYlcdnSIgPkL5WN8Ueg/I6Otq5M4HcHw==
+"@vista.io/vista-api-client@^0.1.18":
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/@vista.io/vista-api-client/-/vista-api-client-0.1.18.tgz#5ea1d374df0365c51bf1c77327879cebf7242d5c"
+  integrity sha512-i07OMQy6otLQw4xoblhSZ9tm3CEUmr9I4ohd6V5Iade0Im1lJNKj4ar/hLMNUvZFt67Jd2lRpsKU9YPF5vT/yg==
   dependencies:
     "@babel/core" "^7.15.8"
+    "@babel/plugin-transform-runtime" "^7.15.8"
     "@babel/preset-env" "^7.15.8"
+    "@babel/runtime" "^7.15.4"
     "@rollup/plugin-babel" "^5.3.0"
     axios "^0.21.1"
+    core-js "^3.18.2"
     npm "^7.17.0"
     react "^17.0.2"
     rollup "^2.58.0"
@@ -2175,6 +2185,11 @@ core-js-compat@^3.16.2:
   dependencies:
     browserslist "^4.17.3"
     semver "7.0.0"
+
+core-js@^3.18.2:
+  version "3.18.2"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.2.tgz#63a551e8a29f305cd4123754846e65896619ba5b"
+  integrity sha512-zNhPOUoSgoizoSQFdX1MeZO16ORRb9FFQLts8gSYbZU5FcgXhp24iMWMxnOQo5uIaIG7/6FA/IqJPwev1o9ZXQ==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"

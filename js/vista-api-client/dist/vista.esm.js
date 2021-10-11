@@ -1,26 +1,12 @@
-'use strict';
-
-var _classCallCheck = require('@babel/runtime/helpers/classCallCheck');
-var Axios = require('axios');
-var _asyncToGenerator = require('@babel/runtime/helpers/asyncToGenerator');
-var _assertThisInitialized = require('@babel/runtime/helpers/assertThisInitialized');
-var _inherits = require('@babel/runtime/helpers/inherits');
-var _possibleConstructorReturn = require('@babel/runtime/helpers/possibleConstructorReturn');
-var _getPrototypeOf = require('@babel/runtime/helpers/getPrototypeOf');
-var _defineProperty = require('@babel/runtime/helpers/defineProperty');
-var _regeneratorRuntime = require('@babel/runtime/regenerator');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var _classCallCheck__default = /*#__PURE__*/_interopDefaultLegacy(_classCallCheck);
-var Axios__default = /*#__PURE__*/_interopDefaultLegacy(Axios);
-var _asyncToGenerator__default = /*#__PURE__*/_interopDefaultLegacy(_asyncToGenerator);
-var _assertThisInitialized__default = /*#__PURE__*/_interopDefaultLegacy(_assertThisInitialized);
-var _inherits__default = /*#__PURE__*/_interopDefaultLegacy(_inherits);
-var _possibleConstructorReturn__default = /*#__PURE__*/_interopDefaultLegacy(_possibleConstructorReturn);
-var _getPrototypeOf__default = /*#__PURE__*/_interopDefaultLegacy(_getPrototypeOf);
-var _defineProperty__default = /*#__PURE__*/_interopDefaultLegacy(_defineProperty);
-var _regeneratorRuntime__default = /*#__PURE__*/_interopDefaultLegacy(_regeneratorRuntime);
+import _classCallCheck from '@babel/runtime/helpers/classCallCheck';
+import Axios from 'axios';
+import _asyncToGenerator from '@babel/runtime/helpers/asyncToGenerator';
+import _assertThisInitialized from '@babel/runtime/helpers/assertThisInitialized';
+import _inherits from '@babel/runtime/helpers/inherits';
+import _possibleConstructorReturn from '@babel/runtime/helpers/possibleConstructorReturn';
+import _getPrototypeOf from '@babel/runtime/helpers/getPrototypeOf';
+import _defineProperty from '@babel/runtime/helpers/defineProperty';
+import _regeneratorRuntime from '@babel/runtime/regenerator';
 
 var config = {
   VistaAPIHostname: 'https://api.govista.io'
@@ -35,12 +21,12 @@ var HTTP_METHODS = {
 var ApiResource = function ApiResource(axiosClient, hostname) {
   var _this = this;
 
-  _classCallCheck__default["default"](this, ApiResource);
+  _classCallCheck(this, ApiResource);
 
-  _defineProperty__default["default"](this, "dispatch", /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(url, method, data) {
+  _defineProperty(this, "dispatch", /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(url, method, data) {
       var config, resp;
-      return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
+      return _regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
@@ -106,19 +92,19 @@ var ApiResource = function ApiResource(axiosClient, hostname) {
   this.hostname = hostname;
 };
 
-function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = _getPrototypeOf__default["default"](Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf__default["default"](this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn__default["default"](this, result); }; }
+function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var Admin = /*#__PURE__*/function (_ApiResource) {
-  _inherits__default["default"](Admin, _ApiResource);
+  _inherits(Admin, _ApiResource);
 
   var _super = _createSuper$4(Admin);
 
   function Admin() {
     var _this;
 
-    _classCallCheck__default["default"](this, Admin);
+    _classCallCheck(this, Admin);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -126,9 +112,9 @@ var Admin = /*#__PURE__*/function (_ApiResource) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "createBranch", /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
+    _defineProperty(_assertThisInitialized(_this), "createBranch", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(branch) {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -155,19 +141,19 @@ var Admin = /*#__PURE__*/function (_ApiResource) {
   return Admin;
 }(ApiResource);
 
-function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = _getPrototypeOf__default["default"](Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf__default["default"](this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn__default["default"](this, result); }; }
+function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct$3() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var ResourceTypes = /*#__PURE__*/function (_ApiResource) {
-  _inherits__default["default"](ResourceTypes, _ApiResource);
+  _inherits(ResourceTypes, _ApiResource);
 
   var _super = _createSuper$3(ResourceTypes);
 
   function ResourceTypes() {
     var _this;
 
-    _classCallCheck__default["default"](this, ResourceTypes);
+    _classCallCheck(this, ResourceTypes);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -175,9 +161,9 @@ var ResourceTypes = /*#__PURE__*/function (_ApiResource) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "list", /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
+    _defineProperty(_assertThisInitialized(_this), "list", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(branch) {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -198,9 +184,9 @@ var ResourceTypes = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "create", /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2(name, relationships, attributes, actions, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
+    _defineProperty(_assertThisInitialized(_this), "create", /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(name, relationships, attributes, actions, branch) {
+        return _regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
@@ -231,19 +217,19 @@ var ResourceTypes = /*#__PURE__*/function (_ApiResource) {
   return ResourceTypes;
 }(ApiResource);
 
-function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = _getPrototypeOf__default["default"](Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf__default["default"](this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn__default["default"](this, result); }; }
+function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var Roles = /*#__PURE__*/function (_ApiResource) {
-  _inherits__default["default"](Roles, _ApiResource);
+  _inherits(Roles, _ApiResource);
 
   var _super = _createSuper$2(Roles);
 
   function Roles() {
     var _this;
 
-    _classCallCheck__default["default"](this, Roles);
+    _classCallCheck(this, Roles);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -251,9 +237,9 @@ var Roles = /*#__PURE__*/function (_ApiResource) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "list", /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
+    _defineProperty(_assertThisInitialized(_this), "list", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(branch) {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -274,9 +260,9 @@ var Roles = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "create", /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2(role_id, grants, parent_roles, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
+    _defineProperty(_assertThisInitialized(_this), "create", /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(role_id, grants, parent_roles, branch) {
+        return _regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
@@ -300,9 +286,9 @@ var Roles = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "listUsersetsForRole", /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3(role_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
+    _defineProperty(_assertThisInitialized(_this), "listUsersetsForRole", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3(role_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
@@ -323,9 +309,9 @@ var Roles = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "inherit", /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee4(child_role_id, parent_role_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee4$(_context4) {
+    _defineProperty(_assertThisInitialized(_this), "inherit", /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(child_role_id, parent_role_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
@@ -354,19 +340,19 @@ var Roles = /*#__PURE__*/function (_ApiResource) {
   return Roles;
 }(ApiResource);
 
-function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = _getPrototypeOf__default["default"](Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf__default["default"](this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn__default["default"](this, result); }; }
+function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var Users = /*#__PURE__*/function (_ApiResource) {
-  _inherits__default["default"](Users, _ApiResource);
+  _inherits(Users, _ApiResource);
 
   var _super = _createSuper$1(Users);
 
   function Users() {
     var _this;
 
-    _classCallCheck__default["default"](this, Users);
+    _classCallCheck(this, Users);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -374,9 +360,9 @@ var Users = /*#__PURE__*/function (_ApiResource) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "create", /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(user_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
+    _defineProperty(_assertThisInitialized(_this), "create", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(user_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -398,9 +384,9 @@ var Users = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "assignToUserset", /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2(user_id, userset_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
+    _defineProperty(_assertThisInitialized(_this), "assignToUserset", /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(user_id, userset_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
@@ -423,9 +409,9 @@ var Users = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "check", /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3(user_id, action, resource_type, resource_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
+    _defineProperty(_assertThisInitialized(_this), "check", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3(user_id, action, resource_type, resource_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
@@ -450,9 +436,9 @@ var Users = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantAction", /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee4(user_id, action, resource_type, resource_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee4$(_context4) {
+    _defineProperty(_assertThisInitialized(_this), "grantAction", /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(user_id, action, resource_type, resource_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
@@ -477,9 +463,9 @@ var Users = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantRole", /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee5(user_id, role_id, resource_type, resource_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee5$(_context5) {
+    _defineProperty(_assertThisInitialized(_this), "grantRole", /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee5(user_id, role_id, resource_type, resource_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
@@ -510,19 +496,19 @@ var Users = /*#__PURE__*/function (_ApiResource) {
   return Users;
 }(ApiResource);
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf__default["default"](Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf__default["default"](this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn__default["default"](this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 var Usersets = /*#__PURE__*/function (_ApiResource) {
-  _inherits__default["default"](Usersets, _ApiResource);
+  _inherits(Usersets, _ApiResource);
 
   var _super = _createSuper(Usersets);
 
   function Usersets() {
     var _this;
 
-    _classCallCheck__default["default"](this, Usersets);
+    _classCallCheck(this, Usersets);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
@@ -530,9 +516,9 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "create", /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(userset_id, parent_usersets, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
+    _defineProperty(_assertThisInitialized(_this), "create", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(userset_id, parent_usersets, branch) {
+        return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
@@ -555,9 +541,9 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "inherit", /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2(child_userset_id, parent_userset_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
+    _defineProperty(_assertThisInitialized(_this), "inherit", /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2(child_userset_id, parent_userset_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
@@ -580,9 +566,9 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "listForRole", /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3(role_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
+    _defineProperty(_assertThisInitialized(_this), "listForRole", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee3(role_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
@@ -603,9 +589,9 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantAction", /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee4(userset_id, action, resource_type, resource_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee4$(_context4) {
+    _defineProperty(_assertThisInitialized(_this), "grantAction", /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(userset_id, action, resource_type, resource_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
@@ -630,9 +616,9 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantRole", /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee5(userset_id, role_id, resource_type, resource_id, branch) {
-        return _regeneratorRuntime__default["default"].wrap(function _callee5$(_context5) {
+    _defineProperty(_assertThisInitialized(_this), "grantRole", /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee5(userset_id, role_id, resource_type, resource_id, branch) {
+        return _regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
@@ -664,10 +650,10 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
 }(ApiResource);
 
 var VistaClient = function VistaClient(secret, hostname) {
-  _classCallCheck__default["default"](this, VistaClient);
+  _classCallCheck(this, VistaClient);
 
   this.secret = secret;
-  this.axios = Axios__default["default"].create({
+  this.axios = Axios.create({
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
@@ -686,4 +672,4 @@ var VistaClient = function VistaClient(secret, hostname) {
   this.usersets = new Usersets(this.axios, hostname);
 };
 
-module.exports = VistaClient;
+export { VistaClient as default };
