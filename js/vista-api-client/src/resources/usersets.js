@@ -28,8 +28,28 @@ class Usersets extends ApiResource {
         });
     }
 
+    revokeAction = async (usersetId, action, resourceType, resourceId) => {
+        return this.dispatch('/v1/usersets/revokeAction', HTTP_METHODS.POST, {
+            id: usersetId,
+            action: action,
+            resource_type: resourceType,
+            resource_id: resourceId,
+            branch: this.branch,
+        });
+    }
+
     grantRole = async (usersetId, role_id, resourceType, resourceId) => {
         return this.dispatch('/v1/usersets/grantRole', HTTP_METHODS.POST, {
+            id: usersetId,
+            role_id: role_id,
+            resource_type: resourceType,
+            resource_id: resourceId,
+            branch: this.branch,
+        });
+    }
+
+    revokeRole = async (usersetId, role_id, resourceType, resourceId) => {
+        return this.dispatch('/v1/usersets/revokeRole', HTTP_METHODS.POST, {
             id: usersetId,
             role_id: role_id,
             resource_type: resourceType,

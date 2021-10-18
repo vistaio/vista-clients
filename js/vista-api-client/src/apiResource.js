@@ -44,7 +44,7 @@ class ApiResource {
             return true;
         }
 
-        return resp.data;
+        return resp.data.data;
     };
 }
 

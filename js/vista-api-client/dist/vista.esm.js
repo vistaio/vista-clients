@@ -73,7 +73,7 @@ var ApiResource = function ApiResource(axiosClient, branch, hostname) {
               return _context.abrupt("return", true);
 
             case 9:
-              return _context.abrupt("return", resp.data);
+              return _context.abrupt("return", resp.data.data);
 
             case 10:
             case "end":
@@ -400,17 +400,14 @@ var Users = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty(_assertThisInitialized(_this), "grantAction", /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(userId, action, resourceType, resourceId) {
+    _defineProperty(_assertThisInitialized(_this), "expand", /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(userId) {
         return _regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                return _context4.abrupt("return", _this.dispatch('/v1/users/grantAction', HTTP_METHODS.POST, {
+                return _context4.abrupt("return", _this.dispatch('/v1/users/expand', HTTP_METHODS.GET, {
                   id: userId,
-                  action: action,
-                  resource_type: resourceType,
-                  resource_id: resourceId,
                   branch: _this.branch
                 }));
 
@@ -422,20 +419,20 @@ var Users = /*#__PURE__*/function (_ApiResource) {
         }, _callee4);
       }));
 
-      return function (_x8, _x9, _x10, _x11) {
+      return function (_x8) {
         return _ref4.apply(this, arguments);
       };
     }());
 
-    _defineProperty(_assertThisInitialized(_this), "grantRole", /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee5(userId, role_id, resourceType, resourceId) {
+    _defineProperty(_assertThisInitialized(_this), "grantAction", /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee5(userId, action, resourceType, resourceId) {
         return _regeneratorRuntime.wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                return _context5.abrupt("return", _this.dispatch('/v1/users/grantRole', HTTP_METHODS.POST, {
+                return _context5.abrupt("return", _this.dispatch('/v1/users/grantAction', HTTP_METHODS.POST, {
                   id: userId,
-                  role_id: role_id,
+                  action: action,
                   resource_type: resourceType,
                   resource_id: resourceId,
                   branch: _this.branch
@@ -449,8 +446,89 @@ var Users = /*#__PURE__*/function (_ApiResource) {
         }, _callee5);
       }));
 
-      return function (_x12, _x13, _x14, _x15) {
+      return function (_x9, _x10, _x11, _x12) {
         return _ref5.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty(_assertThisInitialized(_this), "revokeAction", /*#__PURE__*/function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee6(userId, action, resourceType, resourceId) {
+        return _regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                return _context6.abrupt("return", _this.dispatch('/v1/users/revokeAction', HTTP_METHODS.POST, {
+                  id: userId,
+                  action: action,
+                  resource_type: resourceType,
+                  resource_id: resourceId,
+                  branch: _this.branch
+                }));
+
+              case 1:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+
+      return function (_x13, _x14, _x15, _x16) {
+        return _ref6.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty(_assertThisInitialized(_this), "grantRole", /*#__PURE__*/function () {
+      var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee7(userId, role_id, resourceType, resourceId) {
+        return _regeneratorRuntime.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                return _context7.abrupt("return", _this.dispatch('/v1/users/grantRole', HTTP_METHODS.POST, {
+                  id: userId,
+                  role_id: role_id,
+                  resource_type: resourceType,
+                  resource_id: resourceId,
+                  branch: _this.branch
+                }));
+
+              case 1:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }));
+
+      return function (_x17, _x18, _x19, _x20) {
+        return _ref7.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty(_assertThisInitialized(_this), "revokeRole", /*#__PURE__*/function () {
+      var _ref8 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee8(userId, role_id, resourceType, resourceId) {
+        return _regeneratorRuntime.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                return _context8.abrupt("return", _this.dispatch('/v1/users/revokeRole', HTTP_METHODS.POST, {
+                  id: userId,
+                  role_id: role_id,
+                  resource_type: resourceType,
+                  resource_id: resourceId,
+                  branch: _this.branch
+                }));
+
+              case 1:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }));
+
+      return function (_x21, _x22, _x23, _x24) {
+        return _ref8.apply(this, arguments);
       };
     }());
 
@@ -557,15 +635,15 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty(_assertThisInitialized(_this), "grantRole", /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(usersetId, role_id, resourceType, resourceId) {
+    _defineProperty(_assertThisInitialized(_this), "revokeAction", /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee4(usersetId, action, resourceType, resourceId) {
         return _regeneratorRuntime.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                return _context4.abrupt("return", _this.dispatch('/v1/usersets/grantRole', HTTP_METHODS.POST, {
+                return _context4.abrupt("return", _this.dispatch('/v1/usersets/revokeAction', HTTP_METHODS.POST, {
                   id: usersetId,
-                  role_id: role_id,
+                  action: action,
                   resource_type: resourceType,
                   resource_id: resourceId,
                   branch: _this.branch
@@ -581,6 +659,60 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
 
       return function (_x9, _x10, _x11, _x12) {
         return _ref4.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty(_assertThisInitialized(_this), "grantRole", /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee5(usersetId, role_id, resourceType, resourceId) {
+        return _regeneratorRuntime.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                return _context5.abrupt("return", _this.dispatch('/v1/usersets/grantRole', HTTP_METHODS.POST, {
+                  id: usersetId,
+                  role_id: role_id,
+                  resource_type: resourceType,
+                  resource_id: resourceId,
+                  branch: _this.branch
+                }));
+
+              case 1:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }));
+
+      return function (_x13, _x14, _x15, _x16) {
+        return _ref5.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty(_assertThisInitialized(_this), "revokeRole", /*#__PURE__*/function () {
+      var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee6(usersetId, role_id, resourceType, resourceId) {
+        return _regeneratorRuntime.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                return _context6.abrupt("return", _this.dispatch('/v1/usersets/revokeRole', HTTP_METHODS.POST, {
+                  id: usersetId,
+                  role_id: role_id,
+                  resource_type: resourceType,
+                  resource_id: resourceId,
+                  branch: _this.branch
+                }));
+
+              case 1:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }));
+
+      return function (_x17, _x18, _x19, _x20) {
+        return _ref6.apply(this, arguments);
       };
     }());
 

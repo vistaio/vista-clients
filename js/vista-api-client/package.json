@@ -1,6 +1,6 @@
 {
   "name": "@vista.io/vista-api-client",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "homepage": "https://www.app.govista.io/",
   "main": "./dist/vista.js",
   "dependencies": {
@@ -19,7 +19,6 @@
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "yarn clean && rollup -c",
-    "publish": "./scripts/publish.sh",
     "test": ""
   },
   "description": "NodeJS implementation of the Vista API.",
