@@ -17,6 +17,14 @@ class Users extends ApiResource {
         });
     }
 
+    removeFromUserset = async (userId, usersetId) => {
+        return this.dispatch('/v1/users/removeFromUserset', HTTP_METHODS.POST, {
+            id: userId,
+            userset_id: usersetId,
+            branch: this.branch,
+        });
+    }
+
     check = async (userId, action, resourceType, resourceId) => {
         return this.dispatch('/v1/users/check', HTTP_METHODS.GET, {
             id: userId,

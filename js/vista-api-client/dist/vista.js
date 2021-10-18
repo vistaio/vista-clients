@@ -387,17 +387,15 @@ var Users = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "check", /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3(userId, action, resourceType, resourceId) {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "removeFromUserset", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3(userId, usersetId) {
         return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                return _context3.abrupt("return", _this.dispatch('/v1/users/check', HTTP_METHODS.GET, {
+                return _context3.abrupt("return", _this.dispatch('/v1/users/removeFromUserset', HTTP_METHODS.POST, {
                   id: userId,
-                  action: action,
-                  resource_type: resourceType,
-                  resource_id: resourceId,
+                  userset_id: usersetId,
                   branch: _this.branch
                 }));
 
@@ -409,19 +407,22 @@ var Users = /*#__PURE__*/function (_ApiResource) {
         }, _callee3);
       }));
 
-      return function (_x4, _x5, _x6, _x7) {
+      return function (_x4, _x5) {
         return _ref3.apply(this, arguments);
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "expand", /*#__PURE__*/function () {
-      var _ref4 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee4(userId) {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "check", /*#__PURE__*/function () {
+      var _ref4 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee4(userId, action, resourceType, resourceId) {
         return _regeneratorRuntime__default["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                return _context4.abrupt("return", _this.dispatch('/v1/users/expand', HTTP_METHODS.GET, {
+                return _context4.abrupt("return", _this.dispatch('/v1/users/check', HTTP_METHODS.GET, {
                   id: userId,
+                  action: action,
+                  resource_type: resourceType,
+                  resource_id: resourceId,
                   branch: _this.branch
                 }));
 
@@ -433,22 +434,19 @@ var Users = /*#__PURE__*/function (_ApiResource) {
         }, _callee4);
       }));
 
-      return function (_x8) {
+      return function (_x6, _x7, _x8, _x9) {
         return _ref4.apply(this, arguments);
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantAction", /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee5(userId, action, resourceType, resourceId) {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "expand", /*#__PURE__*/function () {
+      var _ref5 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee5(userId) {
         return _regeneratorRuntime__default["default"].wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                return _context5.abrupt("return", _this.dispatch('/v1/users/grantAction', HTTP_METHODS.POST, {
+                return _context5.abrupt("return", _this.dispatch('/v1/users/expand', HTTP_METHODS.GET, {
                   id: userId,
-                  action: action,
-                  resource_type: resourceType,
-                  resource_id: resourceId,
                   branch: _this.branch
                 }));
 
@@ -460,18 +458,18 @@ var Users = /*#__PURE__*/function (_ApiResource) {
         }, _callee5);
       }));
 
-      return function (_x9, _x10, _x11, _x12) {
+      return function (_x10) {
         return _ref5.apply(this, arguments);
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "revokeAction", /*#__PURE__*/function () {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantAction", /*#__PURE__*/function () {
       var _ref6 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee6(userId, action, resourceType, resourceId) {
         return _regeneratorRuntime__default["default"].wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                return _context6.abrupt("return", _this.dispatch('/v1/users/revokeAction', HTTP_METHODS.POST, {
+                return _context6.abrupt("return", _this.dispatch('/v1/users/grantAction', HTTP_METHODS.POST, {
                   id: userId,
                   action: action,
                   resource_type: resourceType,
@@ -487,20 +485,20 @@ var Users = /*#__PURE__*/function (_ApiResource) {
         }, _callee6);
       }));
 
-      return function (_x13, _x14, _x15, _x16) {
+      return function (_x11, _x12, _x13, _x14) {
         return _ref6.apply(this, arguments);
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantRole", /*#__PURE__*/function () {
-      var _ref7 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee7(userId, role_id, resourceType, resourceId) {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "revokeAction", /*#__PURE__*/function () {
+      var _ref7 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee7(userId, action, resourceType, resourceId) {
         return _regeneratorRuntime__default["default"].wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                return _context7.abrupt("return", _this.dispatch('/v1/users/grantRole', HTTP_METHODS.POST, {
+                return _context7.abrupt("return", _this.dispatch('/v1/users/revokeAction', HTTP_METHODS.POST, {
                   id: userId,
-                  role_id: role_id,
+                  action: action,
                   resource_type: resourceType,
                   resource_id: resourceId,
                   branch: _this.branch
@@ -514,18 +512,18 @@ var Users = /*#__PURE__*/function (_ApiResource) {
         }, _callee7);
       }));
 
-      return function (_x17, _x18, _x19, _x20) {
+      return function (_x15, _x16, _x17, _x18) {
         return _ref7.apply(this, arguments);
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "revokeRole", /*#__PURE__*/function () {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantRole", /*#__PURE__*/function () {
       var _ref8 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee8(userId, role_id, resourceType, resourceId) {
         return _regeneratorRuntime__default["default"].wrap(function _callee8$(_context8) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                return _context8.abrupt("return", _this.dispatch('/v1/users/revokeRole', HTTP_METHODS.POST, {
+                return _context8.abrupt("return", _this.dispatch('/v1/users/grantRole', HTTP_METHODS.POST, {
                   id: userId,
                   role_id: role_id,
                   resource_type: resourceType,
@@ -541,8 +539,35 @@ var Users = /*#__PURE__*/function (_ApiResource) {
         }, _callee8);
       }));
 
-      return function (_x21, _x22, _x23, _x24) {
+      return function (_x19, _x20, _x21, _x22) {
         return _ref8.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "revokeRole", /*#__PURE__*/function () {
+      var _ref9 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee9(userId, role_id, resourceType, resourceId) {
+        return _regeneratorRuntime__default["default"].wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                return _context9.abrupt("return", _this.dispatch('/v1/users/revokeRole', HTTP_METHODS.POST, {
+                  id: userId,
+                  role_id: role_id,
+                  resource_type: resourceType,
+                  resource_id: resourceId,
+                  branch: _this.branch
+                }));
+
+              case 1:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
+      }));
+
+      return function (_x23, _x24, _x25, _x26) {
+        return _ref9.apply(this, arguments);
       };
     }());
 
