@@ -26,8 +26,26 @@ class Usersets(ApiResource):
             'branch': self.branch,
         })
 
+    def revoke_action(self, user_id, action, resource_type, resource_id):
+        return self.dispatch('/v1/usersets/revokeAction', HttpMethods.POST, {
+            'id': user_id,
+            'action': action,
+            'resource_type': resource_type,
+            'resource_id': resource_id,
+            'branch': self.branch,
+        })
+
     def grant_role(self, user_id, role_id, resource_type, resource_id):
         return self.dispatch('/v1/usersets/grantRole', HttpMethods.POST, {
+            'id': user_id,
+            'role_id': role_id,
+            'resource_type': resource_type,
+            'resource_id': resource_id,
+            'branch': self.branch,
+        })
+
+    def revoke_role(self, user_id, role_id, resource_type, resource_id):
+        return self.dispatch('/v1/usersets/revokeRole', HttpMethods.POST, {
             'id': user_id,
             'role_id': role_id,
             'resource_type': resource_type,

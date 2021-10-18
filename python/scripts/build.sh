@@ -1,1 +1,2 @@
-python setup.py sdist
+rm -rf dist/* && python setup.py sdist
+
