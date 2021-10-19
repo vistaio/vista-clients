@@ -136,6 +136,21 @@ var Admin = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
+    _defineProperty(_assertThisInitialized(_this), "createReadTokens", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee2() {
+      return _regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              return _context2.abrupt("return", _this.dispatch('/v1/auth/readTokens', HTTP_METHODS.GET));
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    })));
+
     return _this;
   }
 

@@ -35,6 +35,7 @@ Please see the [Vista API Documentation](https://docs.govista.io/api/) for docum
 ## API
 | method | description |
 |--------|-------------|
+| `client.admin.createReadTokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 | `client.resourceTypes.list()`       | Lists all Resource Types         |
 | `client.resourceTypes.create(name : String, actions : Array(String)`       |
 | `client.roles.list()`       | Lists all Roles         |

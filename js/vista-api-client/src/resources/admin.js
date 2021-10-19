@@ -7,6 +7,10 @@ class Admin extends ApiResource {
             branch: branch,
         });
     }
+
+    createReadTokens = async () => {
+        return this.dispatch('/v1/auth/readTokens', HTTP_METHODS.GET);
+    }
 }
 
 export default Admin;

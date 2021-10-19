@@ -150,6 +150,21 @@ var Admin = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "createReadTokens", /*#__PURE__*/_asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2() {
+      return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              return _context2.abrupt("return", _this.dispatch('/v1/auth/readTokens', HTTP_METHODS.GET));
+
+            case 1:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    })));
+
     return _this;
   }
 
