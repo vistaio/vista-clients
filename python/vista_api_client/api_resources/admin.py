@@ -7,3 +7,6 @@ class Admin(ApiResource):
         return self.dispatch('/v1/branches', HttpMethods.POST, {
             'branch': branch,
         })
+
+    def create_read_tokens(self):
+        return self.dispatch('/v1/auth/readTokens', HttpMethods.GET)

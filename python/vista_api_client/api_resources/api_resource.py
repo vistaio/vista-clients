@@ -17,7 +17,7 @@ class ApiResource(object):
         self.branch = branch
         self.secret = secret
 
-    def dispatch(self, route, method, data):
+    def dispatch(self, route, method, data=None):
         request_kwargs = {
             'url': urljoin(self.hostname, route),
             'headers': {

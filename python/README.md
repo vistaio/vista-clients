@@ -40,6 +40,7 @@ Please see the [Vista API Documentation](https://docs.govista.io/api/) for docum
 | method | description |
 |--------|-------------|
 | `client.admin.create_branch(branch : String)`| Creates new Branch  |
+| `client.admin.create_read_tokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 | `client.resource_types.list()`| Lists all Resource Types  |
 | `client.resource_types.create(name : String, actions : Array(String)`)`|
 | `client.roles.list()`| Lists all Roles  |
