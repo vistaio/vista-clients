@@ -15,7 +15,7 @@ class VistaCheck extends React.Component {
 
     componentDidMount = async () => {
         if (!this.state.hasChecked) {
-            const vistaClient = new VistaClient(this.props.public_key, this.props.branch, this.props.hostname);
+            const vistaClient = new VistaClient(this.props.read_tokens.access_token, this.props.branch, this.props.hostname);
             const checkStatus = await vistaClient.users.check(this.props.user_id,
                 this.props.action,
                 this.props.resource_type,

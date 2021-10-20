@@ -24,8 +24,8 @@ Then in your Node application:
 import { VistaCheck } from '@vista.io/react-vista-js';
 
 <VistaCheck
-        // how to generate 'token' https://docs.govista.io/Guides/React%20Components/Authentication
-        token="Z6Q2KfVk6T5NJ65uskrfOxRCkcrSMhxQRmbAereoxUQ2YA7J"
+        // how to generate 'read tokens' https://docs.govista.io/Guides/React%20Components/Authentication
+        read_tokens={read_tokens}
         user_id={user_id}
         action={action}
         resource_type={resource_type}

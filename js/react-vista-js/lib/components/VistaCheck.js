@@ -62,7 +62,7 @@ var VistaCheck = /*#__PURE__*/function (_React$Component) {
                 break;
               }
 
-              vistaClient = new _vistaApiClient.default(_this.props.public_key, _this.props.branch, _this.props.hostname);
+              vistaClient = new _vistaApiClient.default(_this.props.read_tokens.access_token, _this.props.branch, _this.props.hostname);
               _context.next = 4;
               return vistaClient.users.check(_this.props.user_id, _this.props.action, _this.props.resource_type, _this.props.resource_id, _this.props.branch).catch(function (err) {
                 if (_this.props.handleError) {
