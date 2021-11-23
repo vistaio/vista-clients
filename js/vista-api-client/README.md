@@ -45,6 +45,7 @@ Please see the [Vista API Documentation](https://docs.govista.io/api/) for docum
 | `client.users.assignToUserset(userId : String, usersetId : String)`       | Adds User to a Userset         |
 | `client.users.removeFromUserset(userId : String, usersetId : String)`       | Removes User from Userset         |
 | `client.users.check(userId : String, action : String, resourceType : String, resourceId : String)`       | Checks User access         |
+| `client.users.expand(userId : String)`       | Returns all permissions for users (action, resource_type, resource_id)         |
 | `client.users.grantAction(userId : String, action : String, resourceType : String, resourceId : String)`       | Allows User to perform `action` on (`resourceId`, `resourceType`)        |
 | `client.users.revokeAction(userId : String, action : String, resourceType : String, resourceId : String)`       | Revokes `action` on (`resourceId`, `resourceType`) for User       |
 | `client.users.grantRole(userId : String, roleId : String, resourceType : String, resourceId : String)`       | Grants Role to User         |
