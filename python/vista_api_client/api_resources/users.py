@@ -24,7 +24,7 @@ class Users(ApiResource):
             'branch': self.branch,
         })
 
-    def check(self, user_id, action, resource_type, resource_id):
+    def check(self, user_id, action, resource_id, resource_type):
         return self.dispatch('/v1/users/check', HttpMethods.GET, {
             'id': user_id,
             'action': action,
@@ -39,7 +39,7 @@ class Users(ApiResource):
             'branch': self.branch,
         })
 
-    def grant_action(self, user_id, action, resource_type, resource_id):
+    def grant_action(self, user_id, action, resource_id, resource_type):
         return self.dispatch('/v1/users/grantAction', HttpMethods.POST, {
             'id': user_id,
             'action': action,
@@ -48,7 +48,7 @@ class Users(ApiResource):
             'branch': self.branch,
         })
 
-    def revoke_action(self, user_id, action, resource_type, resource_id):
+    def revoke_action(self, user_id, action, resource_id, resource_type):
         return self.dispatch('/v1/users/revokeAction', HttpMethods.POST, {
             'id': user_id,
             'action': action,
@@ -57,7 +57,7 @@ class Users(ApiResource):
             'branch': self.branch,
         })
 
-    def grant_role(self, user_id, role_id, resource_type, resource_id):
+    def grant_role(self, user_id, role_id, resource_id, resource_type):
         return self.dispatch('/v1/users/grantRole', HttpMethods.POST, {
             'id': user_id,
             'role_id': role_id,
@@ -66,7 +66,7 @@ class Users(ApiResource):
             'branch': self.branch,
         })
 
-    def revoke_role(self, user_id, role_id, resource_type, resource_id):
+    def revoke_role(self, user_id, role_id, resource_id, resource_type):
         return self.dispatch('/v1/users/revokeRole', HttpMethods.POST, {
             'id': user_id,
             'role_id': role_id,

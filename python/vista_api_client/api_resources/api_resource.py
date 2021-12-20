@@ -37,9 +37,13 @@ class ApiResource(object):
         resp = action(**request_kwargs)
 
         # raise exception if not success
-        resp.raise_for_status()
+        try:
+            resp.raise_for_status()
+        except Exception as e:
+            print(resp.json()['message'])
+            raise e
 
         if resp.status_code == 204:
             return {}
 
-        return resp.json()
+        return resp.json()['data']

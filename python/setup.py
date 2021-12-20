@@ -6,7 +6,7 @@ with open('README.md') as f:
 setup(
   name = 'vista_api_client',
   packages=find_packages(),
-  version = '0.1.8',
+  version = '0.1.9',
   license='MIT',
   description = 'Client for the Vista API',
   long_description_content_type='text/markdown',
