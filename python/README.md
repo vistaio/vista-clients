@@ -42,9 +42,9 @@ Please see the [Vista API Documentation](https://docs.govista.io/api/) for docum
 | `client.admin.create_branch(branch : String)`| Creates new Branch  |
 | `client.admin.create_read_tokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 | `client.resource_types.list()`| Lists all Resource Types  |
-| `client.resource_types.create(name : String, actions : Array(String)`)`|
+| `client.resource_types.upsert(name : String, actions : Array(String)`)`|
 | `client.roles.list()`| Lists all Roles  |
-| `client.roles.create(role_id : String, actionsByResourceType : Array(Dict(Resource Type, Action), parent_roles : Array(String))`      | Creates a new Role |
+| `client.roles.upsert(role_id : String, actionsByResourceType : Array(Dict(Resource Type, Action), parent_roles : Array(String))`      | Creates a new Role |
 | `client.roles.inherit(child_role_id : String, parent_role_id : String)`| Adds Role as child of parent role  |
 | `client.users.create(user_id : String)`| Creates new User  |
 | `client.users.assign_to_userset(user_id : String, userset_id : String)`| Adds User to a Userset  |

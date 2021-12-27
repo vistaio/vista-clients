@@ -35,24 +35,25 @@ Please see the [Vista API Documentation](https://docs.govista.io/api/) for docum
 ## API
 | method | description |
 |--------|-------------|
+| `client.admin.createBranch(branch: string)`| Creates a set of read-only tokens meant to be used by Vista React components    |
 | `client.admin.createReadTokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 | `client.resourceTypes.list()`       | Lists all Resource Types         |
-| `client.resourceTypes.create(name : String, actions : Array(String)`       |
+| `client.resourceTypes.upsert(name: string, actions: string[]`       |
 | `client.roles.list()`       | Lists all Roles         |
-| `client.roles.create(roleId : String, actionsByResourceType : Array(Dict(Resource Type, Action)), parentRoles : Array(String))`      | Creates a new Role        |
-| `client.roles.inherit(childRoleId : String, parentRoleId : String)`       | Adds Role as child of parent Role         |
-| `client.users.create(userId : String)`       | Creates new User         |
-| `client.users.assignToUserset(userId : String, usersetId : String)`       | Adds User to a Userset         |
-| `client.users.removeFromUserset(userId : String, usersetId : String)`       | Removes User from Userset         |
-| `client.users.check(userId : String, action : String, resourceType : String, resourceId : String)`       | Checks User access         |
-| `client.users.expand(userId : String)`       | Returns all permissions for users (action, resource_type, resource_id)         |
-| `client.users.grantAction(userId : String, action : String, resourceType : String, resourceId : String)`       | Allows User to perform `action` on (`resourceId`, `resourceType`)        |
-| `client.users.revokeAction(userId : String, action : String, resourceType : String, resourceId : String)`       | Revokes `action` on (`resourceId`, `resourceType`) for User       |
-| `client.users.grantRole(userId : String, roleId : String, resourceType : String, resourceId : String)`       | Grants Role to User         |
-| `client.users.revokeRole(userId : String, roleId : String, resourceType : String, resourceId : String)`       | Revokes Role from User         |
-| `client.usersets.create(userId : String)`       | Creates Userset         |
-| `client.usersets.inherit(childRoleId : String, parentRoleId : String)`       | Adds Userset as child of parent Userset         |
-| `client.usersets.grantAction(userId : String, action : String, resourceType : String, resourceId : String)`       | Allows User to perform `action` on (`resourceId`, `resourceType`)       |
-| `client.usersets.revokeAction(userId : String, action : String, resourceType : String, resourceId : String)`       | Revokes `action` on (`resourceId`, `resourceType`) for Userset      |
-| `client.usersets.grantRole(userId : String, roleId : String, resourceType : String, resourceId : String)`       | Grants Role to Userset         |
-| `client.usersets.revokeRole(userId : String, roleId : String, resourceType : String, resourceId : String)`       | Revokes Role from Userset         |
+| `client.roles.upsert(roleId: string, actionsByResourceType: { [resourceType: string]: string[] }, parentRoles: string[])`      | Creates a new Role        |
+| `client.roles.inherit(childRoleId: string, parentRoleId: string)`       | Adds Role as child of parent Role         |
+| `client.users.create(userId: string)`       | Creates new User         |
+| `client.users.assignToUserset(userId: string, usersetId: string)`       | Adds User to a Userset         |
+| `client.users.removeFromUserset(userId: string, usersetId: string)`       | Removes User from Userset         |
+| `client.users.check(userId: string, action: string, resourceType: string, resourceId: string)`       | Checks User access         |
+| `client.users.expand(userId: string)`       | Returns all permissions for users (action, resource_type, resource_id)         |
+| `client.users.grantAction(userId: string, action: string, resourceType: string, resourceId: string)`       | Allows User to perform `action` on (`resourceId`, `resourceType`)        |
+| `client.users.revokeAction(userId: string, action: string, resourceType: string, resourceId: string)`       | Revokes `action` on (`resourceId`, `resourceType`) for User       |
+| `client.users.grantRole(userId: string, roleId: string, resourceType: string, resourceId: string)`       | Grants Role to User         |
+| `client.users.revokeRole(userId: string, roleId: string, resourceType: string, resourceId: string)`       | Revokes Role from User         |
+| `client.usersets.create(userId: string)`       | Creates Userset         |
+| `client.usersets.inherit(childRoleId: string, parentRoleId: string)`       | Adds Userset as child of parent Userset         |
+| `client.usersets.grantAction(userId: string, action: string, resourceType: string, resourceId: string)`       | Allows User to perform `action` on (`resourceId`, `resourceType`)       |
+| `client.usersets.revokeAction(userId: string, action: string, resourceType: string, resourceId: string)`       | Revokes `action` on (`resourceId`, `resourceType`) for Userset      |
+| `client.usersets.grantRole(userId: string, roleId: string, resourceType: string, resourceId: string)`       | Grants Role to Userset         |
+| `client.usersets.revokeRole(userId: string, roleId: string, resourceType: string, resourceId: string)`       | Revokes Role from Userset         |
