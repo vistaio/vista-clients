@@ -25,7 +25,7 @@ class Users(ApiResource):
         })
 
     def check(self, user_id, action, resource_id, resource_type):
-        return self.dispatch('/v1/users/check', HttpMethods.GET, {
+        return self.dispatch('/v1/grants', HttpMethods.GET, {
             'id': user_id,
             'action': action,
             'resource_type': resource_type,
@@ -34,42 +34,48 @@ class Users(ApiResource):
         })
 
     def expand(self, user_id):
-        return self.dispatch('/v1/users/expand', HttpMethods.GET, {
+        return self.dispatch('/v1/grants', HttpMethods.GET, {
             'id': user_id,
             'branch': self.branch,
         })
 
     def grant_action(self, user_id, action, resource_id, resource_type):
-        return self.dispatch('/v1/users/grantAction', HttpMethods.POST, {
+        return self.dispatch('/v1/grants', HttpMethods.POST, {
             'id': user_id,
-            'action': action,
+            'subject_type': 'USER',
+            'relation': action,
+            'relation_type': 'ACTION',
             'resource_type': resource_type,
             'resource_id': resource_id,
             'branch': self.branch,
         })
 
     def revoke_action(self, user_id, action, resource_id, resource_type):
-        return self.dispatch('/v1/users/revokeAction', HttpMethods.POST, {
+        return self.dispatch('/v1/grants', HttpMethods.DELETE, {
             'id': user_id,
-            'action': action,
+            'subject_type': 'USER',
+            'relation': action,
             'resource_type': resource_type,
             'resource_id': resource_id,
             'branch': self.branch,
         })
 
     def grant_role(self, user_id, role_id, resource_id, resource_type):
-        return self.dispatch('/v1/users/grantRole', HttpMethods.POST, {
+        return self.dispatch('/v1/grants', HttpMethods.POST, {
             'id': user_id,
-            'role_id': role_id,
+            'subject_type': 'USER',
+            'relation': role_id,
+            'relation_type': 'ROLE',
             'resource_type': resource_type,
             'resource_id': resource_id,
             'branch': self.branch,
         })
 
     def revoke_role(self, user_id, role_id, resource_id, resource_type):
-        return self.dispatch('/v1/users/revokeRole', HttpMethods.POST, {
+        return self.dispatch('/v1/grants', HttpMethods.DELETE, {
             'id': user_id,
-            'role_id': role_id,
+            'subject_type': 'USER',
+            'relation': role_id,
             'resource_type': resource_type,
             'resource_id': resource_id,
             'branch': self.branch,

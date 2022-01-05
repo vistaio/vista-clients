@@ -26,7 +26,7 @@ class Users extends ApiResource {
     }
 
     check = async (userId, action, resourceType, resourceId) => {
-        return this.dispatch('/v1/users/check', HTTP_METHODS.GET, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
             id: userId,
             action: action,
             resource_type: resourceType,
@@ -36,16 +36,18 @@ class Users extends ApiResource {
     }
 
     expand = async (userId) => {
-        return this.dispatch('/v1/users/expand', HTTP_METHODS.GET, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
             id: userId,
             branch: this.branch,
         });
     }
 
     grantAction = async (userId, action, resourceType, resourceId) => {
-        return this.dispatch('/v1/users/grantAction', HTTP_METHODS.POST, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
             id: userId,
-            action: action,
+            subject_type: 'USER',
+            relation: action,
+            relation_type: 'ACTION',
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,
@@ -53,9 +55,10 @@ class Users extends ApiResource {
     }
 
     revokeAction = async (userId, action, resourceType, resourceId) => {
-        return this.dispatch('/v1/users/revokeAction', HTTP_METHODS.POST, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
             id: userId,
-            action: action,
+            subject_type: 'USER',
+            relation: action,
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,
@@ -63,9 +66,11 @@ class Users extends ApiResource {
     }
 
     grantRole = async (userId, role_id, resourceType, resourceId) => {
-        return this.dispatch('/v1/users/grantRole', HTTP_METHODS.POST, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
             id: userId,
-            role_id: role_id,
+            subject_type: 'USER',
+            relation: role_id,
+            relation_type: 'ROLE',
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,
@@ -73,9 +78,10 @@ class Users extends ApiResource {
     }
 
     revokeRole = async (userId, role_id, resourceType, resourceId) => {
-        return this.dispatch('/v1/users/revokeRole', HTTP_METHODS.POST, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
             id: userId,
-            role_id: role_id,
+            subject_type: 'USER',
+            relation: role_id,
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,

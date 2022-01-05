@@ -19,9 +19,11 @@ class Usersets extends ApiResource {
     }
 
     grantAction = async (usersetId, action, resourceType, resourceId) => {
-        return this.dispatch('/v1/usersets/grantAction', HTTP_METHODS.POST, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
             id: usersetId,
-            action: action,
+            subject_type: 'USERSET',
+            relation: action,
+            relation_type: 'ACTION',
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,
@@ -29,9 +31,10 @@ class Usersets extends ApiResource {
     }
 
     revokeAction = async (usersetId, action, resourceType, resourceId) => {
-        return this.dispatch('/v1/usersets/revokeAction', HTTP_METHODS.POST, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
             id: usersetId,
-            action: action,
+            subject_type: 'USERSET',
+            relation: action,
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,
@@ -39,9 +42,11 @@ class Usersets extends ApiResource {
     }
 
     grantRole = async (usersetId, role_id, resourceType, resourceId) => {
-        return this.dispatch('/v1/usersets/grantRole', HTTP_METHODS.POST, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
             id: usersetId,
-            role_id: role_id,
+            subject_type: 'USERSET',
+            relation: role_id,
+            relation_type: 'ROLE',
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,
@@ -49,9 +54,10 @@ class Usersets extends ApiResource {
     }
 
     revokeRole = async (usersetId, role_id, resourceType, resourceId) => {
-        return this.dispatch('/v1/usersets/revokeRole', HTTP_METHODS.POST, {
+        return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
             id: usersetId,
-            role_id: role_id,
+            subject_type: 'USERSET',
+            relation: role_id,
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,
