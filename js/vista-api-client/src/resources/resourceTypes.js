@@ -8,10 +8,11 @@ class ResourceTypes extends ApiResource {
         });
     }
 
-    upsert = async (name, actions) => {
+    upsert = async (name, actions, attributes=[]) => {
         return this.dispatch('/v1/resource_types', HTTP_METHODS.POST, {
             name: name,
             actions: actions,
+            attributes: attributes,
             branch: this.branch,
         });
     }

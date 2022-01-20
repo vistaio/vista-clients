@@ -8,10 +8,10 @@ class Roles extends ApiResource {
         });
     }
 
-    upsert = async (roleId, actionsByResourceType, parentRoles) => {
+    upsert = async (roleId, resourceTypeToAttributeToActions, parentRoles) => {
         return this.dispatch('/v1/roles', HTTP_METHODS.POST, {
             id: roleId,
-            actions_by_resource_type: actionsByResourceType,
+            resource_type_to_attribute_to_actions: resourceTypeToAttributeToActions,
             parent_roles: parentRoles,
             branch: this.branch,
         });

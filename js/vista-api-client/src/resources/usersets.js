@@ -18,7 +18,7 @@ class Usersets extends ApiResource {
         });
     }
 
-    grantAction = async (usersetId, action, resourceType, resourceId) => {
+    grantAction = async (usersetId, action, resourceType, resourceId, attribute='') => {
         return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
             id: usersetId,
             subject_type: 'USERSET',
@@ -26,17 +26,20 @@ class Usersets extends ApiResource {
             relation_type: 'ACTION',
             resource_type: resourceType,
             resource_id: resourceId,
+            attribute: attribute,
             branch: this.branch,
         });
     }
 
-    revokeAction = async (usersetId, action, resourceType, resourceId) => {
+    revokeAction = async (usersetId, action, resourceType, resourceId, attribute = '') => {
         return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
             id: usersetId,
             subject_type: 'USERSET',
             relation: action,
+            relation_type: 'ACTION',
             resource_type: resourceType,
             resource_id: resourceId,
+            attribute: attribute,
             branch: this.branch,
         });
     }
@@ -58,6 +61,7 @@ class Usersets extends ApiResource {
             id: usersetId,
             subject_type: 'USERSET',
             relation: role_id,
+            relation_type: 'ROLE',
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,

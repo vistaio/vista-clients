@@ -10,6 +10,8 @@ import Users from './resources/users.js';
 import Usersets from './resources/usersets.js';
 
 class VistaClient {
+    static ALL = '*';
+
     constructor(secret, branch, hostname) {
         this.secret = secret;
 

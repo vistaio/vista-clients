@@ -25,12 +25,13 @@ class Users extends ApiResource {
         });
     }
 
-    check = async (userId, action, resourceType, resourceId) => {
+    check = async (userId, action, resourceType, resourceId, attribute='') => {
         return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
             id: userId,
             action: action,
             resource_type: resourceType,
             resource_id: resourceId,
+            attribute: attribute,
             branch: this.branch,
         });
     }
@@ -42,7 +43,7 @@ class Users extends ApiResource {
         });
     }
 
-    grantAction = async (userId, action, resourceType, resourceId) => {
+    grantAction = async (userId, action, resourceType, resourceId, attribute='') => {
         return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
             id: userId,
             subject_type: 'USER',
@@ -50,17 +51,20 @@ class Users extends ApiResource {
             relation_type: 'ACTION',
             resource_type: resourceType,
             resource_id: resourceId,
+            attribute: attribute,
             branch: this.branch,
         });
     }
 
-    revokeAction = async (userId, action, resourceType, resourceId) => {
+    revokeAction = async (userId, action, resourceType, resourceId, attribute = '') => {
         return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
             id: userId,
             subject_type: 'USER',
             relation: action,
+            relation_type: 'ACTION',
             resource_type: resourceType,
             resource_id: resourceId,
+            attribute: attribute,
             branch: this.branch,
         });
     }
@@ -82,6 +86,7 @@ class Users extends ApiResource {
             id: userId,
             subject_type: 'USER',
             relation: role_id,
+            relation_type: 'ROLE',
             resource_type: resourceType,
             resource_id: resourceId,
             branch: this.branch,
