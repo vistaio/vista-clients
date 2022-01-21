@@ -11,11 +11,10 @@ class VistaClient(object):
     ALL = '*'
 
     def __init__(self, secret, branch, hostname=None):
-        if not hostname:
-            hostname = config['VistaAPIHostname']
+        self.hostname = hostname or config['VistaAPIHostname']
 
-        self.admin = Admin(secret, branch, hostname)
-        self.resource_types = ResourceTypes(secret, branch, hostname)
-        self.roles = Roles(secret, branch, hostname)
-        self.users = Users(secret, branch, hostname)
-        self.usersets = Usersets(secret, branch, hostname)
+        self.admin = Admin(secret, branch, self.hostname)
+        self.resource_types = ResourceTypes(secret, branch, self.hostname)
+        self.roles = Roles(secret, branch, self.hostname)
+        self.users = Users(secret, branch, self.hostname)
+        self.usersets = Usersets(secret, branch, self.hostname)

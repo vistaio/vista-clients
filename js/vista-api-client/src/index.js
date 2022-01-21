@@ -23,15 +23,13 @@ class VistaClient {
             },
         });
 
-        if (!hostname) {
-            hostname = config.VistaAPIHostname
-        }
+        this.hostname = hostname || config.VistaAPIHostname;
 
-        this.admin = new Admin(this.axios, branch, hostname);
-        this.resourceTypes = new ResourceTypes(this.axios, branch, hostname);
-        this.roles = new Roles(this.axios, branch, hostname);
-        this.users = new Users(this.axios, branch, hostname);
-        this.usersets = new Usersets(this.axios, branch, hostname);
+        this.admin = new Admin(this.axios, branch, this.hostname);
+        this.resourceTypes = new ResourceTypes(this.axios, branch, this.hostname);
+        this.roles = new Roles(this.axios, branch, this.hostname);
+        this.users = new Users(this.axios, branch, this.hostname);
+        this.usersets = new Usersets(this.axios, branch, this.hostname);
     }
 }
 
