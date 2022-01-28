@@ -8,5 +8,11 @@ class Admin(ApiResource):
             'branch': branch,
         })
 
+    def clone_branch(self, branch, new_branch):
+        return self.dispatch('/v1/companies/branches/clone', HttpMethods.POST, {
+            'branch': branch,
+            'new_branch': new_branch,
+        })
+
     def create_read_tokens(self):
         return self.dispatch('/v1/auth/readTokens', HttpMethods.GET)

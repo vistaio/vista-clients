@@ -8,6 +8,13 @@ class Admin extends ApiResource {
         });
     }
 
+    cloneBranch = async (branch, newBranch) => {
+        return this.dispatch('/v1/companies/branches', HTTP_METHODS.POST, {
+            branch: branch,
+            new_branch: newBranch,
+        });
+    }
+
     createReadTokens = async () => {
         return this.dispatch('/v1/auth/readTokens', HTTP_METHODS.GET);
     }
