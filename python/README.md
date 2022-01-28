@@ -39,7 +39,7 @@ Please see the [Vista API Documentation](https://docs.govista.io/api/) for docum
 You can use `VistaClient.ALL` in place where `resource_id` or `resource_type` is accepted to indicate all.
 
 ## Usage
-The following describes methods namespaced by Vista resources.
+The following describes methods namespaced by Vista [resources](https://docs.govista.io/Concepts/Terminology).
 
 
 ### Admin
@@ -48,11 +48,11 @@ The following describes methods namespaced by Vista resources.
 | method | description |
 |--------|-------------|
 | `create_branch(branch : str)`| Creates new Branch  |
-| `clone_branch(branch : str, new_branch: str)`| Clones templates in `branch` to `newBranch`  |
+| `clone_branch(branch : str, new_branch: str)`| Clones [templates](https://docs.govista.io/Concepts/Terminology#permission-template) in `branch` to `newBranch`  |
 | `create_read_tokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 
 
-### Resource Types
+### [Resource Types](https://docs.govista.io/Concepts/Terminology#resource)
 `client.resource_types`
 
 | method | description |
@@ -61,7 +61,7 @@ The following describes methods namespaced by Vista resources.
 | `upsert(name : str, actions : str[], attributes: str[])`| Upserts a Resource Type |
 
 
-### Roles
+### [Roles](https://docs.govista.io/Concepts/Terminology#role)
 `client.roles`
 
 | method | description |
@@ -71,7 +71,7 @@ The following describes methods namespaced by Vista resources.
 | `inherit(child_role_id: str, parent_role_id: str)`| Adds Role as child of parent role  |
 
 
-### Users
+### [Users](https://docs.govista.io/Concepts/Terminology#user)
 `client.users`
 
 | method | description |
@@ -87,7 +87,7 @@ The following describes methods namespaced by Vista resources.
 | `revoke_role(user_id: str, role_id: str, resource_type: str, resource_id: str)`| Revokes Role from User  |
 
 
-### Usersets
+### [Usersets](https://docs.govista.io/Concepts/Terminology#userset)
 `client.usersets`
 
 | method | description |

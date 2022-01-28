@@ -36,7 +36,7 @@ Please see the [Vista API Documentation](https://docs.govista.io/api/) for docum
 You can use `VistaClient.ALL` in place where `resource_id` or `resource_type` is accepted to indicate all.
 
 ## Usage
-The following describes methods namespaced by Vista resources.
+The following describes methods namespaced by Vista [resources](https://docs.govista.io/Concepts/Terminology).
 
 
 ### Admin
@@ -45,11 +45,11 @@ The following describes methods namespaced by Vista resources.
 | method | description |
 |--------|-------------|
 | `createBranch(branch: string)`| Creates a set of read-only tokens meant to be used by Vista React components    |
-| `cloneBranch(branch: string, newBranch: string)`| Clones templates in `branch` to `newBranch`    |
+| `cloneBranch(branch: string, newBranch: string)`| Clones [templates](https://docs.govista.io/Concepts/Terminology#permission-template) in `branch` to `newBranch`    |
 | `createReadTokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 
 
-### Resource Types
+### [Resource Types](https://docs.govista.io/Concepts/Terminology#resource)
 `client.resourceTypes`
 
 | method | description |
@@ -57,7 +57,7 @@ The following describes methods namespaced by Vista resources.
 | `list()`       | Lists all Resource Types         |
 | `upsert(name: string, actions: string[], attributes: string[])`       | Upserts a Resource Type |
 
-### Roles
+### [Roles](https://docs.govista.io/Concepts/Terminology#role)
 `client.roles`
 
 | method | description |
@@ -67,7 +67,7 @@ The following describes methods namespaced by Vista resources.
 | `client.roles.inherit(childRoleId: string, parentRoleId: string)`       | Adds Role as child of parent Role         |
 
 
-### Users
+### [Users](https://docs.govista.io/Concepts/Terminology#user)
 `client.users`
 
 | method | description |
@@ -83,7 +83,7 @@ The following describes methods namespaced by Vista resources.
 | `revokeRole(userId: string, roleId: string, resourceType: string, resourceId: string)`       | Revokes Role from User         |
 
 
-### Usersets
+### [Usersets](https://docs.govista.io/Concepts/Terminology#userset)
 `client.usersets`
 
 | method | description |
