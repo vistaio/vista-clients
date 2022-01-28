@@ -41,7 +41,6 @@ You can use `VistaClient.ALL` in place where `resource_id` or `resource_type` is
 ## Usage
 The following describes methods namespaced by Vista resources.
 
-<br />
 
 ### Admin
 `client.admin`
@@ -52,7 +51,6 @@ The following describes methods namespaced by Vista resources.
 | `clone_branch(branch : str, new_branch: str)`| Creates new Branch  |
 | `create_read_tokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 
-<br />
 
 ### Resource Types
 `client.resource_types`
@@ -62,7 +60,6 @@ The following describes methods namespaced by Vista resources.
 | `list()`| Lists all Resource Types  |
 | `upsert(name : str, actions : str[], attributes: str[])`|
 
-<br />
 
 ### Roles
 `client.roles`
@@ -73,7 +70,6 @@ The following describes methods namespaced by Vista resources.
 | `upsert(role_id : str, resource_type_to_attribute_to_actions : { resource_type: { attribute: actions[] }}, parent_roles: str[])`      | Creates a new Role |
 | `inherit(child_role_id: str, parent_role_id: str)`| Adds Role as child of parent role  |
 
-<br />
 
 ### Users
 `client.users`
@@ -90,7 +86,6 @@ The following describes methods namespaced by Vista resources.
 | `grant_role(user_id: str, role_id: str, resource_type: str, resource_id: str)`| Grants Role to User  |
 | `revoke_role(user_id: str, role_id: str, resource_type: str, resource_id: str)`| Revokes Role from User  |
 
-<br />
 
 ### Usersets
 `client.usersets`
