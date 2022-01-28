@@ -55,7 +55,7 @@ The following describes methods namespaced by Vista resources.
 | method | description |
 |--------|-------------|
 | `list()`       | Lists all Resource Types         |
-| `upsert(name: string, actions: string[], attributes: string[])`       | Creates new Resource Type
+| `upsert(name: string, actions: string[], attributes: string[])`       | Upserts a Resource Type |
 
 ### Roles
 `client.roles`
@@ -63,7 +63,7 @@ The following describes methods namespaced by Vista resources.
 | method | description |
 |--------|-------------|
 | `client.roles.list()`       | Lists all Roles         |
-| `client.roles.upsert(roleId: string, resourceTypeToAttributeToActions: { [resourceType: string]: { [attribute: string]: string[] } }, parentRoles: string[])`      | Creates a new Role        |
+| `client.roles.upsert(roleId: string, resourceTypeToAttributeToActions: { [resourceType: string]: { [attribute: string]: string[] } }, parentRoles: string[])`      | Upserts a Role        |
 | `client.roles.inherit(childRoleId: string, parentRoleId: string)`       | Adds Role as child of parent Role         |
 
 

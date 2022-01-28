@@ -48,7 +48,7 @@ The following describes methods namespaced by Vista resources.
 | method | description |
 |--------|-------------|
 | `create_branch(branch : str)`| Creates new Branch  |
-| `clone_branch(branch : str, new_branch: str)`| Creates new Branch  |
+| `clone_branch(branch : str, new_branch: str)`| Clones templates in `branch` to `newBranch`  |
 | `create_read_tokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 
 
@@ -58,7 +58,7 @@ The following describes methods namespaced by Vista resources.
 | method | description |
 |--------|-------------|
 | `list()`| Lists all Resource Types  |
-| `upsert(name : str, actions : str[], attributes: str[])`|
+| `upsert(name : str, actions : str[], attributes: str[])`| Upserts a Resource Type |
 
 
 ### Roles
@@ -67,7 +67,7 @@ The following describes methods namespaced by Vista resources.
 | method | description |
 |--------|-------------|
 | `list()`| Lists all Roles  |
-| `upsert(role_id : str, resource_type_to_attribute_to_actions : { resource_type: { attribute: actions[] }}, parent_roles: str[])`      | Creates a new Role |
+| `upsert(role_id : str, resource_type_to_attribute_to_actions : { resource_type: { attribute: actions[] }}, parent_roles: str[])`      | Upserts a Role |
 | `inherit(child_role_id: str, parent_role_id: str)`| Adds Role as child of parent role  |
 
 
