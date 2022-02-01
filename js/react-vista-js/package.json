@@ -1,6 +1,6 @@
 {
   "name": "@vista.io/react-vista-js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "homepage": "https://www.app.govista.io/",
   "type": "module",
   "main": "./lib/index.js",
