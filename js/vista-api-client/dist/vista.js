@@ -1,25 +1,25 @@
 'use strict';
 
 var _classCallCheck = require('@babel/runtime/helpers/classCallCheck');
+var _defineProperty = require('@babel/runtime/helpers/defineProperty');
 var Axios = require('axios');
 var _asyncToGenerator = require('@babel/runtime/helpers/asyncToGenerator');
 var _assertThisInitialized = require('@babel/runtime/helpers/assertThisInitialized');
 var _inherits = require('@babel/runtime/helpers/inherits');
 var _possibleConstructorReturn = require('@babel/runtime/helpers/possibleConstructorReturn');
 var _getPrototypeOf = require('@babel/runtime/helpers/getPrototypeOf');
-var _defineProperty = require('@babel/runtime/helpers/defineProperty');
 var _regeneratorRuntime = require('@babel/runtime/regenerator');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var _classCallCheck__default = /*#__PURE__*/_interopDefaultLegacy(_classCallCheck);
+var _defineProperty__default = /*#__PURE__*/_interopDefaultLegacy(_defineProperty);
 var Axios__default = /*#__PURE__*/_interopDefaultLegacy(Axios);
 var _asyncToGenerator__default = /*#__PURE__*/_interopDefaultLegacy(_asyncToGenerator);
 var _assertThisInitialized__default = /*#__PURE__*/_interopDefaultLegacy(_assertThisInitialized);
 var _inherits__default = /*#__PURE__*/_interopDefaultLegacy(_inherits);
 var _possibleConstructorReturn__default = /*#__PURE__*/_interopDefaultLegacy(_possibleConstructorReturn);
 var _getPrototypeOf__default = /*#__PURE__*/_interopDefaultLegacy(_getPrototypeOf);
-var _defineProperty__default = /*#__PURE__*/_interopDefaultLegacy(_defineProperty);
 var _regeneratorRuntime__default = /*#__PURE__*/_interopDefaultLegacy(_regeneratorRuntime);
 
 var config = {
@@ -133,7 +133,7 @@ var Admin = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                return _context.abrupt("return", _this.dispatch('/v1/branches', HTTP_METHODS.POST, {
+                return _context.abrupt("return", _this.dispatch('/v1/companies/branches', HTTP_METHODS.POST, {
                   branch: branch
                 }));
 
@@ -150,19 +150,43 @@ var Admin = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "createReadTokens", /*#__PURE__*/_asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2() {
-      return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "cloneBranch", /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2(branch, newBranch) {
+        return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                return _context2.abrupt("return", _this.dispatch('/v1/companies/branches', HTTP_METHODS.POST, {
+                  branch: branch,
+                  new_branch: newBranch
+                }));
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function (_x2, _x3) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "createReadTokens", /*#__PURE__*/_asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3() {
+      return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              return _context2.abrupt("return", _this.dispatch('/v1/auth/readTokens', HTTP_METHODS.GET));
+              return _context3.abrupt("return", _this.dispatch('/v1/auth/readTokens', HTTP_METHODS.GET));
 
             case 1:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     })));
 
     return _this;
@@ -208,19 +232,23 @@ var ResourceTypes = /*#__PURE__*/function (_ApiResource) {
       }, _callee);
     })));
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "create", /*#__PURE__*/function () {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "upsert", /*#__PURE__*/function () {
       var _ref2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2(name, actions) {
+        var attributes,
+            _args2 = arguments;
         return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                attributes = _args2.length > 2 && _args2[2] !== undefined ? _args2[2] : [];
                 return _context2.abrupt("return", _this.dispatch('/v1/resource_types', HTTP_METHODS.POST, {
                   name: name,
                   actions: actions,
+                  attributes: attributes,
                   branch: _this.branch
                 }));
 
-              case 1:
+              case 2:
               case "end":
                 return _context2.stop();
             }
@@ -276,15 +304,15 @@ var Roles = /*#__PURE__*/function (_ApiResource) {
       }, _callee);
     })));
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "create", /*#__PURE__*/function () {
-      var _ref2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2(roleId, actionsByResourceType, parentRoles) {
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "upsert", /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee2(roleId, resourceTypeToAttributeToActions, parentRoles) {
         return _regeneratorRuntime__default["default"].wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 return _context2.abrupt("return", _this.dispatch('/v1/roles', HTTP_METHODS.POST, {
                   id: roleId,
-                  actions_by_resource_type: actionsByResourceType,
+                  resource_type_to_attribute_to_actions: resourceTypeToAttributeToActions,
                   parent_roles: parentRoles,
                   branch: _this.branch
                 }));
@@ -429,19 +457,23 @@ var Users = /*#__PURE__*/function (_ApiResource) {
 
     _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "check", /*#__PURE__*/function () {
       var _ref4 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee4(userId, action, resourceType, resourceId) {
+        var attribute,
+            _args4 = arguments;
         return _regeneratorRuntime__default["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                return _context4.abrupt("return", _this.dispatch('/v1/users/check', HTTP_METHODS.GET, {
+                attribute = _args4.length > 4 && _args4[4] !== undefined ? _args4[4] : '';
+                return _context4.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.GET, {
                   id: userId,
                   action: action,
                   resource_type: resourceType,
                   resource_id: resourceId,
+                  attribute: attribute,
                   branch: _this.branch
                 }));
 
-              case 1:
+              case 2:
               case "end":
                 return _context4.stop();
             }
@@ -460,7 +492,7 @@ var Users = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                return _context5.abrupt("return", _this.dispatch('/v1/users/expand', HTTP_METHODS.GET, {
+                return _context5.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.GET, {
                   id: userId,
                   branch: _this.branch
                 }));
@@ -480,19 +512,25 @@ var Users = /*#__PURE__*/function (_ApiResource) {
 
     _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantAction", /*#__PURE__*/function () {
       var _ref6 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee6(userId, action, resourceType, resourceId) {
+        var attribute,
+            _args6 = arguments;
         return _regeneratorRuntime__default["default"].wrap(function _callee6$(_context6) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                return _context6.abrupt("return", _this.dispatch('/v1/users/grantAction', HTTP_METHODS.POST, {
+                attribute = _args6.length > 4 && _args6[4] !== undefined ? _args6[4] : '';
+                return _context6.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.POST, {
                   id: userId,
-                  action: action,
+                  subject_type: 'USER',
+                  relation: action,
+                  relation_type: 'ACTION',
                   resource_type: resourceType,
                   resource_id: resourceId,
+                  attribute: attribute,
                   branch: _this.branch
                 }));
 
-              case 1:
+              case 2:
               case "end":
                 return _context6.stop();
             }
@@ -507,19 +545,25 @@ var Users = /*#__PURE__*/function (_ApiResource) {
 
     _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "revokeAction", /*#__PURE__*/function () {
       var _ref7 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee7(userId, action, resourceType, resourceId) {
+        var attribute,
+            _args7 = arguments;
         return _regeneratorRuntime__default["default"].wrap(function _callee7$(_context7) {
           while (1) {
             switch (_context7.prev = _context7.next) {
               case 0:
-                return _context7.abrupt("return", _this.dispatch('/v1/users/revokeAction', HTTP_METHODS.POST, {
+                attribute = _args7.length > 4 && _args7[4] !== undefined ? _args7[4] : '';
+                return _context7.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
                   id: userId,
-                  action: action,
+                  subject_type: 'USER',
+                  relation: action,
+                  relation_type: 'ACTION',
                   resource_type: resourceType,
                   resource_id: resourceId,
+                  attribute: attribute,
                   branch: _this.branch
                 }));
 
-              case 1:
+              case 2:
               case "end":
                 return _context7.stop();
             }
@@ -538,9 +582,11 @@ var Users = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context8.prev = _context8.next) {
               case 0:
-                return _context8.abrupt("return", _this.dispatch('/v1/users/grantRole', HTTP_METHODS.POST, {
+                return _context8.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.POST, {
                   id: userId,
-                  role_id: role_id,
+                  subject_type: 'USER',
+                  relation: role_id,
+                  relation_type: 'ROLE',
                   resource_type: resourceType,
                   resource_id: resourceId,
                   branch: _this.branch
@@ -565,9 +611,11 @@ var Users = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
-                return _context9.abrupt("return", _this.dispatch('/v1/users/revokeRole', HTTP_METHODS.POST, {
+                return _context9.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
                   id: userId,
-                  role_id: role_id,
+                  subject_type: 'USER',
+                  relation: role_id,
+                  relation_type: 'ROLE',
                   resource_type: resourceType,
                   resource_id: resourceId,
                   branch: _this.branch
@@ -664,19 +712,25 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
 
     _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "grantAction", /*#__PURE__*/function () {
       var _ref3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3(usersetId, action, resourceType, resourceId) {
+        var attribute,
+            _args3 = arguments;
         return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                return _context3.abrupt("return", _this.dispatch('/v1/usersets/grantAction', HTTP_METHODS.POST, {
+                attribute = _args3.length > 4 && _args3[4] !== undefined ? _args3[4] : '';
+                return _context3.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.POST, {
                   id: usersetId,
-                  action: action,
+                  subject_type: 'USERSET',
+                  relation: action,
+                  relation_type: 'ACTION',
                   resource_type: resourceType,
                   resource_id: resourceId,
+                  attribute: attribute,
                   branch: _this.branch
                 }));
 
-              case 1:
+              case 2:
               case "end":
                 return _context3.stop();
             }
@@ -691,19 +745,25 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
 
     _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "revokeAction", /*#__PURE__*/function () {
       var _ref4 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee4(usersetId, action, resourceType, resourceId) {
+        var attribute,
+            _args4 = arguments;
         return _regeneratorRuntime__default["default"].wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                return _context4.abrupt("return", _this.dispatch('/v1/usersets/revokeAction', HTTP_METHODS.POST, {
+                attribute = _args4.length > 4 && _args4[4] !== undefined ? _args4[4] : '';
+                return _context4.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
                   id: usersetId,
-                  action: action,
+                  subject_type: 'USERSET',
+                  relation: action,
+                  relation_type: 'ACTION',
                   resource_type: resourceType,
                   resource_id: resourceId,
+                  attribute: attribute,
                   branch: _this.branch
                 }));
 
-              case 1:
+              case 2:
               case "end":
                 return _context4.stop();
             }
@@ -722,9 +782,11 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                return _context5.abrupt("return", _this.dispatch('/v1/usersets/grantRole', HTTP_METHODS.POST, {
+                return _context5.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.POST, {
                   id: usersetId,
-                  role_id: role_id,
+                  subject_type: 'USERSET',
+                  relation: role_id,
+                  relation_type: 'ROLE',
                   resource_type: resourceType,
                   resource_id: resourceId,
                   branch: _this.branch
@@ -749,9 +811,11 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                return _context6.abrupt("return", _this.dispatch('/v1/usersets/revokeRole', HTTP_METHODS.POST, {
+                return _context6.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
                   id: usersetId,
-                  role_id: role_id,
+                  subject_type: 'USERSET',
+                  relation: role_id,
+                  relation_type: 'ROLE',
                   resource_type: resourceType,
                   resource_id: resourceId,
                   branch: _this.branch
@@ -787,16 +851,14 @@ var VistaClient = function VistaClient(secret, branch, hostname) {
       'Authorization': "Bearer ".concat(secret)
     }
   });
-
-  if (!hostname) {
-    hostname = config.VistaAPIHostname;
-  }
-
-  this.admin = new Admin(this.axios, branch, hostname);
-  this.resourceTypes = new ResourceTypes(this.axios, branch, hostname);
-  this.roles = new Roles(this.axios, branch, hostname);
-  this.users = new Users(this.axios, branch, hostname);
-  this.usersets = new Usersets(this.axios, branch, hostname);
+  this.hostname = hostname || config.VistaAPIHostname;
+  this.admin = new Admin(this.axios, branch, this.hostname);
+  this.resourceTypes = new ResourceTypes(this.axios, branch, this.hostname);
+  this.roles = new Roles(this.axios, branch, this.hostname);
+  this.users = new Users(this.axios, branch, this.hostname);
+  this.usersets = new Usersets(this.axios, branch, this.hostname);
 };
+
+_defineProperty__default["default"](VistaClient, "ALL", '*');
 
 module.exports = VistaClient;

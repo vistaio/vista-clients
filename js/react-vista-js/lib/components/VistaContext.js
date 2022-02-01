@@ -5,17 +5,13 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.VistaCheck = void 0;
+exports.VistaProvider = exports.VistaContext = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _VistaContext = require("./VistaContext");
+var _vistaApiClient = _interopRequireDefault(require("@vista.io/vista-api-client"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -37,86 +33,34 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var VistaContext = /*#__PURE__*/_react.default.createContext();
 
-var VistaCheck = /*#__PURE__*/function (_React$Component) {
-  _inherits(VistaCheck, _React$Component);
+exports.VistaContext = VistaContext;
 
-  var _super = _createSuper(VistaCheck);
+var VistaProvider = /*#__PURE__*/function (_React$Component) {
+  _inherits(VistaProvider, _React$Component);
 
-  function VistaCheck(props) {
-    var _this;
+  var _super = _createSuper(VistaProvider);
 
-    _classCallCheck(this, VistaCheck);
+  function VistaProvider() {
+    _classCallCheck(this, VistaProvider);
 
-    _this = _super.call(this, props);
-
-    _defineProperty(_assertThisInitialized(_this), "componentDidMount", /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var vistaClient, grants, granted;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              if (_this.state.hasChecked) {
-                _context.next = 7;
-                break;
-              }
-
-              vistaClient = new _this.context.vistaClient(_this.context.secret, _this.props.branch, _this.props.hostname);
-              _context.next = 4;
-              return vistaClient.users.check(_this.props.user_id, _this.props.action, _this.props.resource_type, _this.props.resource_id, _this.props.branch).catch(function (err) {
-                if (_this.props.handleError) {
-                  _this.props.handleError(err);
-                } else {
-                  console.log(err);
-                }
-              });
-
-            case 4:
-              grants = _context.sent;
-              granted = grants.length > 0;
-
-              if (granted) {
-                _this.setState({
-                  hasChecked: true,
-                  granted: granted
-                });
-              }
-
-            case 7:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    })));
-
-    _this.state = {
-      hasChecked: false,
-      granted: false
-    };
-    return _this;
+    return _super.apply(this, arguments);
   }
 
-  _createClass(VistaCheck, [{
-    key: "renderedComponent",
-    value: function renderedComponent() {
-      if (this.state.hasChecked && this.state.granted) {
-        return this.props.children;
-      } else {
-        return this.props.denyComponent ? this.props.denyComponent : null;
-      }
-    }
-  }, {
+  _createClass(VistaProvider, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, this.renderedComponent());
+      return /*#__PURE__*/_react.default.createElement(VistaContext.Provider, {
+        value: {
+          secret: this.props.secret,
+          vistaClient: _vistaApiClient.default
+        }
+      }, this.props.children);
     }
   }]);
 
-  return VistaCheck;
+  return VistaProvider;
 }(_react.default.Component);
 
-exports.VistaCheck = VistaCheck;
-
-_defineProperty(VistaCheck, "contextType", _VistaContext.VistaContext);
+exports.VistaProvider = VistaProvider;

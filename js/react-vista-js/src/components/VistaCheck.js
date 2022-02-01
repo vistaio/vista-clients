@@ -1,9 +1,11 @@
 
 import React from 'react';
 
-import VistaClient from '@vista.io/vista-api-client';
+import { VistaContext } from './VistaContext';
 
 class VistaCheck extends React.Component {
+    static contextType = VistaContext;
+
     constructor(props) {
         super(props);
 
@@ -15,8 +17,8 @@ class VistaCheck extends React.Component {
 
     componentDidMount = async () => {
         if (!this.state.hasChecked) {
-            const vistaClient = new VistaClient(this.props.read_token, this.props.branch, this.props.hostname);
-            const checkStatus = await vistaClient.users.check(this.props.user_id,
+            const vistaClient = new this.context.vistaClient(this.context.secret, this.props.branch, this.props.hostname);
+            const grants = await vistaClient.users.check(this.props.user_id,
                 this.props.action,
                 this.props.resource_type,
                 this.props.resource_id,
@@ -28,10 +30,11 @@ class VistaCheck extends React.Component {
                     }
                 });
 
-            if (checkStatus) {
+            const granted = grants.length > 0;
+            if (granted) {
                 this.setState({
                     hasChecked: true,
-                    granted: checkStatus.granted,
+                    granted,
                 });
             }
         }
