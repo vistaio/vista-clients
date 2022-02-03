@@ -66,9 +66,9 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `list()`| Lists all Roles  |
-| `upsert(role_id : str, resource_type_to_attribute_to_actions : { resource_type: { attribute: actions[] }}, parent_roles: str[])`      | Upserts a Role |
-| `inherit(child_role_id: str, parent_role_id: str)`| Adds Role as child of parent role  |
+| `list(org_id: str)`| Lists all Roles  |
+| `upsert(role_id : str, resource_type_to_attribute_to_actions : { resource_type: { attribute: actions[] }}, parent_roles: str[], org_id: str)`      | Upserts a Role |
+| `inherit(child_role_id: str, parent_role_id: str, org_id: str)`| Adds Role as child of parent role  |
 
 
 ### [Users](https://docs.govista.io/Concepts/Terminology#user)
@@ -76,7 +76,8 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `create(user_id: str)`| Creates new User  |
+| `create(user_id: str, org_id: str)`| Creates new User  |
+| `list(org_id: str)`| Lists Users in `org_id`  |
 | `assign_to_userset(user_id: str, userset_id: str)`| Adds User to a Userset  |
 | `remove_from_userset(user_id: str, userset_id: str)`| Removes User from Userset  |
 | `check(user_id: str, action: str, resource_type: str, resource_id: str, attribute?: str)`| Checks User access  |
@@ -92,10 +93,17 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `create(user_id: str)`| Creates Userset  |
+| `create(user_id: str, org_id: str)`| Creates Userset  |
 | `inherit(child_role_id: str, parent_role_id: str)`| Adds Userset as child of parent Userset  |
 | `grant_action(user_id: str, action: str, resource_type: str, resource_id: str, attribute?: str)`| Allows User to perform `action` on (`resource_id`, `resource_type`)|
 | `revoke_action(user_id: str, action: str, resource_type: str, resource_id: str, attribute?: str)`| Revokes `action` on (`resource_id`, `resource_type`) for Userset      |
 | `grant_role(user_id: str, role_id: str, resource_type: str, resource_id: str)`| Grants Role to Userset  |
 | `revoke_role(user_id: str, role_id: str, resource_type: str, resource_id: str)`| Revokes Role from Userset  |
 
+
+### Grants
+`client.grants`
+
+| method | description |
+|--------|-------------|
+| `list_unflattened(org_id: str)`| Lists User or Userset grants  |

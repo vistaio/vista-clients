@@ -2,9 +2,15 @@
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
 
 class Usersets extends ApiResource {
-    create = async (usersetId, parentUsersets) => {
+    constructor(axiosClient, branch, hostname) {
+        super(axiosClient, branch, hostname);
+        this.grants = new Grants(axiosClient, branch, hostname);
+    }
+
+    create = async (usersetId, orgId, parentUsersets) => {
         return this.dispatch('/v1/usersets', HTTP_METHODS.POST, {
             id: usersetId,
+            org_id: orgId,
             parent_usersets: parentUsersets,
             branch: this.branch,
         });
@@ -18,54 +24,20 @@ class Usersets extends ApiResource {
         });
     }
 
-    grantAction = async (usersetId, action, resourceType, resourceId, attribute='') => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
-            id: usersetId,
-            subject_type: 'USERSET',
-            relation: action,
-            relation_type: 'ACTION',
-            resource_type: resourceType,
-            resource_id: resourceId,
-            attribute: attribute,
-            branch: this.branch,
-        });
+    grantAction = async (usersetId, action, resourceId, resourceType, attribute = '') => {
+        return this.grants.grant(usersetId, 'USERSET', action, 'ACTION', resourceId, resourceType, attribute);
     }
 
-    revokeAction = async (usersetId, action, resourceType, resourceId, attribute = '') => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
-            id: usersetId,
-            subject_type: 'USERSET',
-            relation: action,
-            relation_type: 'ACTION',
-            resource_type: resourceType,
-            resource_id: resourceId,
-            attribute: attribute,
-            branch: this.branch,
-        });
+    revokeAction = async (usersetId, action, resourceId, resourceType, attribute = '') => {
+        return this.grants.revoke(usersetId, 'USERSET', action, 'ACTION', resourceId, resourceType, attribute);
     }
 
-    grantRole = async (usersetId, role_id, resourceType, resourceId) => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
-            id: usersetId,
-            subject_type: 'USERSET',
-            relation: role_id,
-            relation_type: 'ROLE',
-            resource_type: resourceType,
-            resource_id: resourceId,
-            branch: this.branch,
-        });
+    grantRole = async (usersetId, role_id, resourceId, resourceType) => {
+        return this.grants.grant(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, attribute);
     }
 
-    revokeRole = async (usersetId, role_id, resourceType, resourceId) => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
-            id: usersetId,
-            subject_type: 'USERSET',
-            relation: role_id,
-            relation_type: 'ROLE',
-            resource_type: resourceType,
-            resource_id: resourceId,
-            branch: this.branch,
-        });
+    revokeRole = async (usersetId, role_id, resourceId, resourceType) => {
+        return this.grants.revoke(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, attribute);
     }
 }
 

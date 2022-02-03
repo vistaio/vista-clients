@@ -62,9 +62,9 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `client.roles.list()`       | Lists all Roles         |
-| `client.roles.upsert(roleId: string, resourceTypeToAttributeToActions: { [resourceType: string]: { [attribute: string]: string[] } }, parentRoles: string[])`      | Upserts a Role        |
-| `client.roles.inherit(childRoleId: string, parentRoleId: string)`       | Adds Role as child of parent Role         |
+| `client.roles.list(orgId: string)`       | Lists all Roles         |
+| `client.roles.upsert(roleId: string, resourceTypeToAttributeToActions: { [resourceType: string]: { [attribute: string]: string[] } }, parentRoles: string[], orgId: string)`      | Upserts a Role        |
+| `client.roles.inherit(childRoleId: string, parentRoleId: string, orgId: string)`       | Adds Role as child of parent Role         |
 
 
 ### [Users](https://docs.govista.io/Concepts/Terminology#user)
@@ -72,7 +72,8 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `create(userId: string)`       | Creates new User         |
+| `create(userId: string, orgId: string)`       | Creates new User         |
+| `list(orgId: string)`| Lists Users in `org_id`  |
 | `assignToUserset(userId: string, usersetId: string)`       | Adds User to a Userset         |
 | `removeFromUserset(userId: string, usersetId: string)`       | Removes User from Userset         |
 | `check(userId: string, action: string, resourceType: string, resourceId: string, attribute?: string)`       | Checks User access         |
@@ -88,9 +89,17 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `create(userId: string)`       | Creates Userset         |
+| `create(userId: string, orgId: string)`       | Creates Userset         |
 | `inherit(childRoleId: string, parentRoleId: string)`       | Adds Userset as child of parent Userset         |
 | `grantAction(userId: string, action: string, resourceType: string, resourceId: string, attribute?: string)`       | Allows User to perform `action` on (`resourceId`, `resourceType`)       |
 | `revokeAction(userId: string, action: string, resourceType: string, resourceId: string, attribute?: string)`       | Revokes `action` on (`resourceId`, `resourceType`) for Userset      |
 | `grantRole(userId: string, roleId: string, resourceType: string, resourceId: string)`       | Grants Role to Userset         |
 | `revokeRole(userId: string, roleId: string, resourceType: string, resourceId: string)`       | Revokes Role from Userset         |
+
+
+### Grants
+`client.grants`
+
+| method | description |
+|--------|-------------|
+| `listUnflattened(orgId: string)`| Lists User or Userset grants  |

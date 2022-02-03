@@ -28,7 +28,7 @@ class ApiResource {
 
         const resp = await this.axiosClient.request(config).catch((error) => {
             if (error.response) {
-                throw Error(error.response.data);
+                throw Error(error.response.data.message);
             } else if (error.request) {
                 throw Error('There was a problem with the request');
             } else {

@@ -4,6 +4,7 @@ import Axios from 'axios';
 import config from './config/config.js';
 
 import Admin from './resources/admin.js';
+import Grants from './resources/grants.js';
 import ResourceTypes from './resources/resourceTypes.js';
 import Roles from './resources/roles.js';
 import Users from './resources/users.js';
@@ -26,6 +27,7 @@ class VistaClient {
         this.hostname = hostname || config.VistaAPIHostname;
 
         this.admin = new Admin(this.axios, branch, this.hostname);
+        this.grants = new Grants(this.axios, branch, this.hostname);
         this.resourceTypes = new ResourceTypes(this.axios, branch, this.hostname);
         this.roles = new Roles(this.axios, branch, this.hostname);
         this.users = new Users(this.axios, branch, this.hostname);

@@ -1,10 +1,25 @@
 
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
+import Grants from './grants';
 
 class Users extends ApiResource {
-    create = async (userId) => {
+    constructor(axiosClient, branch, hostname) {
+        super(axiosClient, branch, hostname);
+        this.grants = new Grants(axiosClient, branch, hostname);
+    }
+
+    create = async (userId, orgId) => {
         return this.dispatch('/v1/users', HTTP_METHODS.POST, {
             id: userId,
+            org_id: orgId,
+            branch: this.branch,
+        });
+    }
+
+    list = async (userId, orgId='') => {
+        return this.dispatch('/v1/users', HTTP_METHODS.GET, {
+            id: userId,
+            org_id: orgId,
             branch: this.branch,
         });
     }
@@ -26,71 +41,27 @@ class Users extends ApiResource {
     }
 
     check = async (userId, action, resourceType, resourceId, attribute='') => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
-            id: userId,
-            action: action,
-            resource_type: resourceType,
-            resource_id: resourceId,
-            attribute: attribute,
-            branch: this.branch,
-        });
+        return this.grants.check(userId, action, resourceType, resourceId, attribute);
     }
 
     expand = async (userId) => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
-            id: userId,
-            branch: this.branch,
-        });
+        return this.grants.expand(userId);
     }
 
-    grantAction = async (userId, action, resourceType, resourceId, attribute='') => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
-            id: userId,
-            subject_type: 'USER',
-            relation: action,
-            relation_type: 'ACTION',
-            resource_type: resourceType,
-            resource_id: resourceId,
-            attribute: attribute,
-            branch: this.branch,
-        });
+    grantAction = async (userId, action, resourceId, resourceType, attribute='') => {
+        return this.grants.grant(userId, 'USER', action, 'ACTION', resourceId, resourceType, attribute);
     }
 
-    revokeAction = async (userId, action, resourceType, resourceId, attribute = '') => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
-            id: userId,
-            subject_type: 'USER',
-            relation: action,
-            relation_type: 'ACTION',
-            resource_type: resourceType,
-            resource_id: resourceId,
-            attribute: attribute,
-            branch: this.branch,
-        });
+    revokeAction = async (userId, action, resourceId, resourceType, attribute = '') => {
+        return this.grants.revoke(userId, 'USER', action, 'ACTION', resourceId, resourceType, attribute);
     }
 
-    grantRole = async (userId, role_id, resourceType, resourceId) => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
-            id: userId,
-            subject_type: 'USER',
-            relation: role_id,
-            relation_type: 'ROLE',
-            resource_type: resourceType,
-            resource_id: resourceId,
-            branch: this.branch,
-        });
+    grantRole = async (userId, role_id, resourceId, resourceType) => {
+        return this.grants.grant(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, attribute);
     }
 
-    revokeRole = async (userId, role_id, resourceType, resourceId) => {
-        return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
-            id: userId,
-            subject_type: 'USER',
-            relation: role_id,
-            relation_type: 'ROLE',
-            resource_type: resourceType,
-            resource_id: resourceId,
-            branch: this.branch,
-        });
+    revokeRole = async (userId, role_id, resourceId, resourceType) => {
+        return this.grants.revoke(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, attribute);
     }
 }
 
