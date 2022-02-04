@@ -1,5 +1,6 @@
 
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
+import Grants from './grants';
 
 class Usersets extends ApiResource {
     constructor(axiosClient, branch, hostname) {
