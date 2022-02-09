@@ -185,7 +185,7 @@ function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeRefl
 
 function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
-var Grants$1 = /*#__PURE__*/function (_ApiResource) {
+var Grants = /*#__PURE__*/function (_ApiResource) {
   _inherits(Grants, _ApiResource);
 
   var _super = _createSuper$4(Grants);
@@ -319,7 +319,7 @@ var Grants$1 = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                return _context5.abrupt("return", _this.dispatch('/v1/grants/unflattened', HTTP_METHODS.POST, {
+                return _context5.abrupt("return", _this.dispatch('/v1/grants/unflattened', HTTP_METHODS.GET, {
                   org_id: orgId,
                   branch: _this.branch
                 }));
@@ -777,7 +777,7 @@ var Users = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _this.grants = new Grants$1(axiosClient, branch, hostname);
+    _this.grants = new Grants(axiosClient, branch, hostname);
     return _this;
   }
 
@@ -961,7 +961,7 @@ var VistaClient = function VistaClient(secret, branch, hostname) {
   });
   this.hostname = hostname || config.VistaAPIHostname;
   this.admin = new Admin(this.axios, branch, this.hostname);
-  this.grants = new Grants$1(this.axios, branch, this.hostname);
+  this.grants = new Grants(this.axios, branch, this.hostname);
   this.resourceTypes = new ResourceTypes(this.axios, branch, this.hostname);
   this.roles = new Roles(this.axios, branch, this.hostname);
   this.users = new Users(this.axios, branch, this.hostname);

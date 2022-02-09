@@ -1,6 +1,6 @@
 {
   "name": "@vista.io/vista-api-client",
-  "version": "0.4.0",
+  "version": "0.4.3",
   "homepage": "https://www.app.govista.io/",
   "main": "./dist/vista",
   "dependencies": {
@@ -12,7 +12,6 @@
     "axios": "^0.21.1",
     "core-js": "^3.18.2",
     "npm": "^7.17.0",
-    "react": "^17.0.2",
     "rollup": "^2.58.0",
     "underscore": "^1.13.1"
   },

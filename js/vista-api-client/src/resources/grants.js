@@ -47,7 +47,7 @@ class Grants extends ApiResource {
   }
 
   listUnflattened = async (orgId) => {
-    return this.dispatch('/v1/grants/unflattened', HTTP_METHODS.POST, {
+    return this.dispatch('/v1/grants/unflattened', HTTP_METHODS.GET, {
       org_id: orgId,
       branch: this.branch,
     });
