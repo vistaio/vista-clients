@@ -55,6 +55,7 @@ The `VistaGrant` component allows your admins to grant teammates roles.
 import { VistaProvider, VistaGrant } from '@vista.io/react-vista-js';
 <VistaProvider secret={read_token}>
     <VistaGrant
+        // map of user_id to names for display purposes
         userIdMap={{
             u1: 'u1',
             u2: 'u2',
