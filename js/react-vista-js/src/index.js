@@ -1,6 +1,6 @@
 
 import { VistaCheck } from './components/VistaCheck.js';
-import { VistaProvider } from './components/VistaContext.js';
+import { VistaGrant } from './components/VistaGrant.js';
+import { VistaProvider, VistaContext } from './components/VistaContext.js';
 
-export { VistaCheck, VistaProvider };
-
+export { VistaCheck, VistaGrant, VistaContext, VistaProvider };
