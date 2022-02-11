@@ -21,7 +21,7 @@ class ApiResource {
         if (data) {
             if (method === HTTP_METHODS.GET) {
                 config.url = `${config.url}?${new URLSearchParams(data)}`;
-            } else if (method === HTTP_METHODS.POST) {
+            } else {
                 config.data = data;
             }
         }
@@ -41,7 +41,7 @@ class ApiResource {
         }
 
         if (resp.status === 204) {
-            return true;
+            return {};
         }
 
         return resp.data.data;

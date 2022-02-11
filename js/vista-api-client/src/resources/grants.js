@@ -2,7 +2,7 @@
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
 
 class Grants extends ApiResource {
-  check = async (userId, action, resourceType, resourceId, attribute) => {
+  check = async (userId, action, resourceId, resourceType, attribute) => {
     return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
       id: userId,
       action: action,

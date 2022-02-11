@@ -8,7 +8,7 @@ class Usersets extends ApiResource {
         this.grants = new Grants(axiosClient, branch, hostname);
     }
 
-    create = async (usersetId, orgId, parentUsersets) => {
+    create = async (usersetId, orgId, parentUsersets=[]) => {
         return this.dispatch('/v1/usersets', HTTP_METHODS.POST, {
             id: usersetId,
             org_id: orgId,
@@ -34,11 +34,11 @@ class Usersets extends ApiResource {
     }
 
     grantRole = async (usersetId, role_id, resourceId, resourceType) => {
-        return this.grants.grant(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, attribute);
+        return this.grants.grant(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, '');
     }
 
     revokeRole = async (usersetId, role_id, resourceId, resourceType) => {
-        return this.grants.revoke(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, attribute);
+        return this.grants.revoke(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, '');
     }
 }
 

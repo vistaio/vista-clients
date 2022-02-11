@@ -18,15 +18,6 @@ class Roles extends ApiResource {
             branch: this.branch,
         });
     }
-
-    inherit = async (childRoleId, parentRoleId, orgId='*') => {
-        return this.dispatch(`/v1/roles/inherit`, HTTP_METHODS.POST, {
-            child_role_id: childRoleId,
-            parent_role_id: parentRoleId,
-            org_id: orgId,
-            branch: this.branch,
-        });
-    }
 }
 
 export default Roles;

@@ -40,8 +40,8 @@ class Users extends ApiResource {
         });
     }
 
-    check = async (userId, action, resourceType, resourceId, attribute='') => {
-        return this.grants.check(userId, action, resourceType, resourceId, attribute);
+    check = async (userId, action, resourceId, resourceType, attribute='') => {
+        return this.grants.check(userId, action, resourceId, resourceType, attribute);
     }
 
     expand = async (userId) => {
@@ -57,11 +57,11 @@ class Users extends ApiResource {
     }
 
     grantRole = async (userId, role_id, resourceId, resourceType) => {
-        return this.grants.grant(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, attribute);
+        return this.grants.grant(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, '');
     }
 
     revokeRole = async (userId, role_id, resourceId, resourceType) => {
-        return this.grants.revoke(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, attribute);
+        return this.grants.revoke(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, '');
     }
 }
 

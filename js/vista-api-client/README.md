@@ -64,7 +64,6 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 |--------|-------------|
 | `client.roles.list(orgId: string)`       | Lists all Roles         |
 | `client.roles.upsert(roleId: string, resourceTypeToAttributeToActions: { [resourceType: string]: { [attribute: string]: string[] } }, parentRoles: string[], orgId: string)`      | Upserts a Role        |
-| `client.roles.inherit(childRoleId: string, parentRoleId: string, orgId: string)`       | Adds Role as child of parent Role         |
 
 
 ### [Users](https://docs.govista.io/Concepts/Terminology#user)
