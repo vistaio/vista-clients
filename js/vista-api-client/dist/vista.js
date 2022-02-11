@@ -52,7 +52,7 @@ var ApiResource = function ApiResource(axiosClient, branch, hostname) {
               if (data) {
                 if (method === HTTP_METHODS.GET) {
                   config.url = "".concat(config.url, "?").concat(new URLSearchParams(data));
-                } else if (method === HTTP_METHODS.POST) {
+                } else {
                   config.data = data;
                 }
               }
@@ -84,7 +84,7 @@ var ApiResource = function ApiResource(axiosClient, branch, hostname) {
                 break;
               }
 
-              return _context.abrupt("return", true);
+              return _context.abrupt("return", {});
 
             case 9:
               return _context.abrupt("return", resp.data.data);
@@ -216,7 +216,7 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
     _this = _super.call.apply(_super, [this].concat(args));
 
     _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "check", /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(userId, action, resourceType, resourceId, attribute) {
+      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(userId, action, resourceId, resourceType, attribute) {
         return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -502,35 +502,6 @@ var Roles = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
-    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "inherit", /*#__PURE__*/function () {
-      var _ref3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3(childRoleId, parentRoleId) {
-        var orgId,
-            _args3 = arguments;
-        return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
-          while (1) {
-            switch (_context3.prev = _context3.next) {
-              case 0:
-                orgId = _args3.length > 2 && _args3[2] !== undefined ? _args3[2] : '*';
-                return _context3.abrupt("return", _this.dispatch("/v1/roles/inherit", HTTP_METHODS.POST, {
-                  child_role_id: childRoleId,
-                  parent_role_id: parentRoleId,
-                  org_id: orgId,
-                  branch: _this.branch
-                }));
-
-              case 2:
-              case "end":
-                return _context3.stop();
-            }
-          }
-        }, _callee3);
-      }));
-
-      return function (_x3, _x4) {
-        return _ref3.apply(this, arguments);
-      };
-    }());
-
     return _this;
   }
 
@@ -657,7 +628,7 @@ var Users = /*#__PURE__*/function (_ApiResource) {
     }());
 
     _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "check", /*#__PURE__*/function () {
-      var _ref5 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee5(userId, action, resourceType, resourceId) {
+      var _ref5 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee5(userId, action, resourceId, resourceType) {
         var attribute,
             _args5 = arguments;
         return _regeneratorRuntime__default["default"].wrap(function _callee5$(_context5) {
@@ -665,7 +636,7 @@ var Users = /*#__PURE__*/function (_ApiResource) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 attribute = _args5.length > 4 && _args5[4] !== undefined ? _args5[4] : '';
-                return _context5.abrupt("return", _this.grants.check(userId, action, resourceType, resourceId, attribute));
+                return _context5.abrupt("return", _this.grants.check(userId, action, resourceId, resourceType, attribute));
 
               case 2:
               case "end":
@@ -755,7 +726,7 @@ var Users = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context9.prev = _context9.next) {
               case 0:
-                return _context9.abrupt("return", _this.grants.grant(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, attribute));
+                return _context9.abrupt("return", _this.grants.grant(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, ''));
 
               case 1:
               case "end":
@@ -776,7 +747,7 @@ var Users = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context10.prev = _context10.next) {
               case 0:
-                return _context10.abrupt("return", _this.grants.revoke(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, attribute));
+                return _context10.abrupt("return", _this.grants.revoke(userId, 'USER', role_id, 'ROLE', resourceId, resourceType, ''));
 
               case 1:
               case "end":
@@ -815,11 +786,14 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
     _this = _super.call(this, axiosClient, branch, hostname);
 
     _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "create", /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(usersetId, orgId, parentUsersets) {
+      var _ref = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee(usersetId, orgId) {
+        var parentUsersets,
+            _args = arguments;
         return _regeneratorRuntime__default["default"].wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                parentUsersets = _args.length > 2 && _args[2] !== undefined ? _args[2] : [];
                 return _context.abrupt("return", _this.dispatch('/v1/usersets', HTTP_METHODS.POST, {
                   id: usersetId,
                   org_id: orgId,
@@ -827,7 +801,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
                   branch: _this.branch
                 }));
 
-              case 1:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -835,7 +809,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
         }, _callee);
       }));
 
-      return function (_x, _x2, _x3) {
+      return function (_x, _x2) {
         return _ref.apply(this, arguments);
       };
     }());
@@ -860,7 +834,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
         }, _callee2);
       }));
 
-      return function (_x4, _x5) {
+      return function (_x3, _x4) {
         return _ref2.apply(this, arguments);
       };
     }());
@@ -884,7 +858,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
         }, _callee3);
       }));
 
-      return function (_x6, _x7, _x8, _x9) {
+      return function (_x5, _x6, _x7, _x8) {
         return _ref3.apply(this, arguments);
       };
     }());
@@ -908,7 +882,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
         }, _callee4);
       }));
 
-      return function (_x10, _x11, _x12, _x13) {
+      return function (_x9, _x10, _x11, _x12) {
         return _ref4.apply(this, arguments);
       };
     }());
@@ -919,7 +893,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
-                return _context5.abrupt("return", _this.grants.grant(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, attribute));
+                return _context5.abrupt("return", _this.grants.grant(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, ''));
 
               case 1:
               case "end":
@@ -929,7 +903,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
         }, _callee5);
       }));
 
-      return function (_x14, _x15, _x16, _x17) {
+      return function (_x13, _x14, _x15, _x16) {
         return _ref5.apply(this, arguments);
       };
     }());
@@ -940,7 +914,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context6.prev = _context6.next) {
               case 0:
-                return _context6.abrupt("return", _this.grants.revoke(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, attribute));
+                return _context6.abrupt("return", _this.grants.revoke(usersetId, 'USERSET', role_id, 'ROLE', resourceId, resourceType, ''));
 
               case 1:
               case "end":
@@ -950,7 +924,7 @@ var Usersets = /*#__PURE__*/function (_ApiResource) {
         }, _callee6);
       }));
 
-      return function (_x18, _x19, _x20, _x21) {
+      return function (_x17, _x18, _x19, _x20) {
         return _ref6.apply(this, arguments);
       };
     }());
