@@ -17,11 +17,3 @@ class Roles(ApiResource):
             'org_id': org_id,
             'branch': self.branch,
         })
-
-    def inherit(self, child_role_id, parent_role_id, org_id='*'):
-        return self.dispatch('/v1/roles/inherit', HttpMethods.POST, {
-            'child_role_id': child_role_id,
-            'parent_role_id': parent_role_id,
-            'org_id': org_id,
-            'branch': self.branch,
-        })

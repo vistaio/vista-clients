@@ -1,1 +1,2 @@
-twine upload dist/*
+./scripts/build && twine upload dist/*
+
