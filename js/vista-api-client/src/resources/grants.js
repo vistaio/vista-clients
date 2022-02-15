@@ -3,6 +3,13 @@ import { HTTP_METHODS, ApiResource } from '../apiResource.js';
 
 class Grants extends ApiResource {
   list = async (userId, action, resourceId, resourceType, attribute, orgId) => {
+    userId = userId || '';
+    action = action || '';
+    resourceId = resourceId || '';
+    resourceType = resourceType || '';
+    attribute = attribute || '';
+    orgId = orgId || '';
+
     return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
       id: userId,
       action: action,

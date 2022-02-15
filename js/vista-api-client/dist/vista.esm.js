@@ -207,6 +207,12 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                userId = userId || '';
+                action = action || '';
+                resourceId = resourceId || '';
+                resourceType = resourceType || '';
+                attribute = attribute || '';
+                orgId = orgId || '';
                 return _context.abrupt("return", _this.dispatch('/v1/grants', HTTP_METHODS.GET, {
                   id: userId,
                   action: action,
@@ -217,7 +223,7 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
                   branch: _this.branch
                 }));
 
-              case 1:
+              case 7:
               case "end":
                 return _context.stop();
             }

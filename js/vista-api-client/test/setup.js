@@ -8,6 +8,8 @@ const randomIntFromInterval = (min, max) => {
 const testId = randomIntFromInterval(1, 10000).toString()
 const orgId = randomIntFromInterval(1, 10000).toString()
 
+console.log(`Test ID: ${testId}, Org ID: ${orgId}`);
+
 const config = {
   secret: 'IZtgnWFVLMdpJ/4FL4JRDDjsNTmqN+7llhEEH8Vlh3I=',
   hostname: 'http://localhost:8080',
