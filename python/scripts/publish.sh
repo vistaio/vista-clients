@@ -1,2 +1,2 @@
-./scripts/build && twine upload dist/*
+./scripts/build.sh && twine upload dist/*
 

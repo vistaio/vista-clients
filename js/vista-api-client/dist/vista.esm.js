@@ -201,8 +201,8 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
 
     _this = _super.call.apply(_super, [this].concat(args));
 
-    _defineProperty(_assertThisInitialized(_this), "check", /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(userId, action, resourceId, resourceType, attribute) {
+    _defineProperty(_assertThisInitialized(_this), "list", /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime.mark(function _callee(userId, action, resourceId, resourceType, attribute, orgId) {
         return _regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -213,6 +213,7 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
                   resource_type: resourceType,
                   resource_id: resourceId,
                   attribute: attribute,
+                  org_id: orgId,
                   branch: _this.branch
                 }));
 
@@ -224,7 +225,7 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
         }, _callee);
       }));
 
-      return function (_x, _x2, _x3, _x4, _x5) {
+      return function (_x, _x2, _x3, _x4, _x5, _x6) {
         return _ref.apply(this, arguments);
       };
     }());
@@ -248,7 +249,7 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
         }, _callee2);
       }));
 
-      return function (_x6) {
+      return function (_x7) {
         return _ref2.apply(this, arguments);
       };
     }());
@@ -278,7 +279,7 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
         }, _callee3);
       }));
 
-      return function (_x7, _x8, _x9, _x10, _x11, _x12, _x13) {
+      return function (_x8, _x9, _x10, _x11, _x12, _x13, _x14) {
         return _ref3.apply(this, arguments);
       };
     }());
@@ -308,7 +309,7 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
         }, _callee4);
       }));
 
-      return function (_x14, _x15, _x16, _x17, _x18, _x19, _x20) {
+      return function (_x15, _x16, _x17, _x18, _x19, _x20, _x21) {
         return _ref4.apply(this, arguments);
       };
     }());
@@ -332,7 +333,7 @@ var Grants = /*#__PURE__*/function (_ApiResource) {
         }, _callee5);
       }));
 
-      return function (_x21) {
+      return function (_x22) {
         return _ref5.apply(this, arguments);
       };
     }());
@@ -622,7 +623,7 @@ var Users = /*#__PURE__*/function (_ApiResource) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 attribute = _args5.length > 4 && _args5[4] !== undefined ? _args5[4] : '';
-                return _context5.abrupt("return", _this.grants.check(userId, action, resourceId, resourceType, attribute));
+                return _context5.abrupt("return", _this.grants.list(userId, action, resourceId, resourceType, attribute, ''));
 
               case 2:
               case "end":

@@ -2,13 +2,14 @@
 import { HTTP_METHODS, ApiResource } from '../apiResource.js';
 
 class Grants extends ApiResource {
-  check = async (userId, action, resourceId, resourceType, attribute) => {
+  list = async (userId, action, resourceId, resourceType, attribute, orgId) => {
     return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
       id: userId,
       action: action,
       resource_type: resourceType,
       resource_id: resourceId,
       attribute: attribute,
+      org_id: orgId,
       branch: this.branch,
     });
   }

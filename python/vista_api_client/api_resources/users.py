@@ -35,7 +35,7 @@ class Users(ApiResource):
         })
 
     def check(self, user_id, action, resource_id, resource_type, attribute=''):
-        return self.grants.check(user_id, action, resource_id, resource_type, attribute)
+        return self.grants.list(user_id, action, resource_id, resource_type, attribute, '')
 
     def expand(self, user_id):
         return self.grants.expand(user_id)
