@@ -55,7 +55,8 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `list()`       | Lists all Resource Types         |
-| `upsert(name: string, actions: string[], attributes: string[])`       | Upserts a Resource Type |
+| `upsert(name: string, actions: string[], attributes: {id: string, target_resource_type: string, attribute_type: 'RELATIONSHIP' \| 'SCALAR'}[])`       | Upserts a Resource Type |
+| `addRelationship(fromId: string, fromResourceType: string, attribute: string, toId: string, toResourceType: string)`| Adds an attribute relationship between 2 resourceIds |
 
 ### [Roles](https://docs.govista.io/Concepts/Terminology#role)
 `client.roles`

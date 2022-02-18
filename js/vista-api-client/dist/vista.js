@@ -430,6 +430,34 @@ var ResourceTypes = /*#__PURE__*/function (_ApiResource) {
       };
     }());
 
+    _defineProperty__default["default"](_assertThisInitialized__default["default"](_this), "addRelationship", /*#__PURE__*/function () {
+      var _ref3 = _asyncToGenerator__default["default"]( /*#__PURE__*/_regeneratorRuntime__default["default"].mark(function _callee3(fromId, fromResourceType, attribute, toId, toResourceType) {
+        return _regeneratorRuntime__default["default"].wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                return _context3.abrupt("return", _this.dispatch('/v1/resource_types/relationships', HTTP_METHODS.POST, {
+                  'from_id': fromId,
+                  'from_resource_type': fromResourceType,
+                  'attribute': attribute,
+                  'to_id': toId,
+                  'to_resource_type': toResourceType,
+                  'branch': _this.branch
+                }));
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x3, _x4, _x5, _x6, _x7) {
+        return _ref3.apply(this, arguments);
+      };
+    }());
+
     return _this;
   }
 

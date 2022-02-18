@@ -47,8 +47,8 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `create_branch(branch : str)`| Creates new Branch  |
-| `clone_branch(branch : str, new_branch: str)`| Clones [templates](https://docs.govista.io/Concepts/Terminology#permission-template) in `branch` to `newBranch`  |
+| `create_branch(branch: str)`| Creates new Branch  |
+| `clone_branch(branch: str, new_branch: str)`| Clones [templates](https://docs.govista.io/Concepts/Terminology#permission-template) in `branch` to `newBranch`  |
 | `create_read_tokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
 
 
@@ -58,7 +58,10 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `list()`| Lists all Resource Types  |
-| `upsert(name : str, actions : str[], attributes: str[])`| Upserts a Resource Type |
+| `upsert(name: str, actions: str[], attributes: {id: str, target_resource_type: str, attribute_type: 'RELATIONSHIP' \| 'SCALAR'}[])`       | Upserts a Resource Type |
+| `add_relationship(from_id: str, from_resource_type: str, attribute: str, to_id: str, to_resource_type: str)`| Adds an attribute relationship between 2 resourceIds |
+
+
 
 
 ### [Roles](https://docs.govista.io/Concepts/Terminology#role)
@@ -67,7 +70,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `list(org_id: str)`| Lists all Roles  |
-| `upsert(role_id : str, resource_type_to_attribute_to_actions : { resource_type: { attribute: actions[] }}, parent_roles: str[], org_id: str)`      | Upserts a Role |
+| `upsert(role_id: str, resource_type_to_attribute_to_actions: { resource_type: { attribute: actions[] }}, parent_roles: str[], org_id: str)`      | Upserts a Role |
 | `inherit(child_role_id: str, parent_role_id: str, org_id: str)`| Adds Role as child of parent role  |
 
 

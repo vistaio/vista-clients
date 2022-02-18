@@ -15,3 +15,13 @@ class ResourceTypes(ApiResource):
             'attributes': attributes,
             'branch': self.branch,
         })
+
+    def add_relationship(self, from_id, from_resource_type, attribute, to_id, to_resource_type):
+        return self.dispatch('/v1/resource_types/relationships', HttpMethods.POST, {
+            'from_id': from_id,
+            'from_resource_type': from_resource_type,
+            'to_id': to_id,
+            'to_resource_type': to_resource_type,
+            'attribute': attribute,
+            'branch': self.branch,
+        });
