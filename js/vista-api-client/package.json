@@ -1,6 +1,7 @@
 {
   "name": "@vista.io/vista-api-client",
   "version": "0.4.13",
+  "description": "NodeJS implementation of the Vista API.",
   "type": "module",
   "homepage": "https://www.app.govista.io/",
   "main": "./dist/vista",
@@ -10,18 +11,16 @@
       "import": "./dist/vista.esm.js"
     }
   },
-  "dependencies": {
-    "@types/axios": "^0.14.0",
-    "axios": "^0.21.1",
-    "underscore": "^1.13.1"
-  },
   "scripts": {
     "clean": "rm -rf dist/*",
     "build": "yarn clean && rollup -c",
     "lint": "eslint . --ext .ts",
     "test": "mocha && yarn lint"
   },
-  "description": "NodeJS implementation of the Vista API.",
+  "dependencies": {
+    "axios": "^0.21.3",
+    "underscore": "^1.13.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/plugin-transform-runtime": "^7.15.8",
