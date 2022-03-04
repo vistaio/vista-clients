@@ -1,7 +1,7 @@
 
 import Axios, { AxiosInstance } from 'axios';
 
-import config from './config/config.js';
+import config from './config/Config';
 
 import Admin from './resources/Admin';
 import Grants from './resources/Grants';

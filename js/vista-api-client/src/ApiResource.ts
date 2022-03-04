@@ -18,7 +18,7 @@ export class ApiResource {
         this.hostname = hostname;
     }
 
-    dispatch = async (url: string, method: HttpMethods, data={}): Promise<any> => {
+    dispatch = async (url: string, method: HttpMethods, data = {}): Promise<any> => { // eslint-disable-line
         const config = {
             url: new URL(url, this.hostname).href,
             method: method,

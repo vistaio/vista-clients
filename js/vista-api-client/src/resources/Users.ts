@@ -1,6 +1,6 @@
 
 import { AxiosInstance } from 'axios';
-import { HttpMethods, ApiResource } from '../apiResource.js';
+import { HttpMethods, ApiResource } from '../ApiResource';
 import Grants from './Grants';
 
 class Users extends ApiResource {

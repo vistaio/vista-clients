@@ -1,11 +1,11 @@
 
-import { HttpMethods, ApiResource } from '../apiResource.js';
+import { HttpMethods, ApiResource } from '../ApiResource';
 
 interface ResourceTypeToAttributeToActions {
     [resourceType: string] : {
         [attribute: string ]: string[]
     }
-};
+}
 
 class Roles extends ApiResource {
     list = async (orgId='*') => {

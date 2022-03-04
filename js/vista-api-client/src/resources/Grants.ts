@@ -1,5 +1,5 @@
 
-import { HttpMethods, ApiResource } from '../apiResource.js';
+import { HttpMethods, ApiResource } from '../ApiResource';
 
 class Grants extends ApiResource {
   list = async (userId: string, action: string, resourceId: string, resourceType: string, attribute: string, orgId: string) => {

@@ -1,5 +1,5 @@
 
-import { HttpMethods, ApiResource } from '../apiResource.js';
+import { HttpMethods, ApiResource } from '../ApiResource';
 
 class ResourceTypes extends ApiResource {
     list = async () => {
