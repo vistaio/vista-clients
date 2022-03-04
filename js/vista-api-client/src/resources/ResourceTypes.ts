@@ -1,15 +1,15 @@
 
-import { HTTP_METHODS, ApiResource } from '../apiResource.js';
+import { HttpMethods, ApiResource } from '../apiResource.js';
 
 class ResourceTypes extends ApiResource {
     list = async () => {
-        return this.dispatch('/v1/resource_types', HTTP_METHODS.GET, {
+        return this.dispatch('/v1/resource_types', HttpMethods.GET, {
             branch: this.branch,
         });
     }
 
-    upsert = async (name, actions, attributes=[]) => {
-        return this.dispatch('/v1/resource_types', HTTP_METHODS.POST, {
+    upsert = async (name: string, actions: string[], attributes=[]) => {
+        return this.dispatch('/v1/resource_types', HttpMethods.POST, {
             name: name,
             actions: actions,
             attributes: attributes,
@@ -17,8 +17,8 @@ class ResourceTypes extends ApiResource {
         });
     }
 
-    addRelationship = async (fromId, fromResourceType, attribute, toId, toResourceType) => {
-        return this.dispatch('/v1/resource_types/relationships', HTTP_METHODS.POST, {
+    addRelationship = async (fromId: string, fromResourceType: string, attribute: string, toId: string, toResourceType: string) => {
+        return this.dispatch('/v1/resource_types/relationships', HttpMethods.POST, {
             'from_id': fromId,
             'from_resource_type': fromResourceType,
             'attribute': attribute,

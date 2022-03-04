@@ -1,8 +1,8 @@
 
-import { HTTP_METHODS, ApiResource } from '../apiResource.js';
+import { HttpMethods, ApiResource } from '../apiResource.js';
 
 class Grants extends ApiResource {
-  list = async (userId, action, resourceId, resourceType, attribute, orgId) => {
+  list = async (userId: string, action: string, resourceId: string, resourceType: string, attribute: string, orgId: string) => {
     userId = userId || '';
     action = action || '';
     resourceId = resourceId || '';
@@ -10,7 +10,7 @@ class Grants extends ApiResource {
     attribute = attribute || '';
     orgId = orgId || '';
 
-    return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
+    return this.dispatch('/v1/grants', HttpMethods.GET, {
       id: userId,
       action: action,
       resource_type: resourceType,
@@ -21,15 +21,15 @@ class Grants extends ApiResource {
     });
   }
 
-  expand = async (userId) => {
-    return this.dispatch('/v1/grants', HTTP_METHODS.GET, {
+  expand = async (userId: string) => {
+    return this.dispatch('/v1/grants', HttpMethods.GET, {
       id: userId,
       branch: this.branch,
     });
   }
 
-  grant = async (userId, subjectType, relation, relationType, resourceId, resourceType, attribute) => {
-    return this.dispatch('/v1/grants', HTTP_METHODS.POST, {
+  grant = async (userId: string, subjectType: string, relation: string, relationType: string, resourceId: string, resourceType: string, attribute: string) => {
+    return this.dispatch('/v1/grants', HttpMethods.POST, {
       id: userId,
       subject_type: subjectType,
       relation: relation,
@@ -41,8 +41,8 @@ class Grants extends ApiResource {
     });
   }
 
-  revoke = async (userId, subjectType, relation, relationType, resourceId, resourceType, attribute) => {
-    return this.dispatch('/v1/grants', HTTP_METHODS.DELETE, {
+  revoke = async (userId: string, subjectType: string, relation: string, relationType: string, resourceId: string, resourceType: string, attribute: string) => {
+    return this.dispatch('/v1/grants', HttpMethods.DELETE, {
       id: userId,
       subject_type: subjectType,
       relation: relation,
@@ -54,8 +54,8 @@ class Grants extends ApiResource {
     });
   }
 
-  listUnflattened = async (orgId) => {
-    return this.dispatch('/v1/grants/unflattened', HTTP_METHODS.GET, {
+  listUnflattened = async (orgId: string) => {
+    return this.dispatch('/v1/grants/unflattened', HttpMethods.GET, {
       org_id: orgId,
       branch: this.branch,
     });

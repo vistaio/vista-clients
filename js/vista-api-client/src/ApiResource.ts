@@ -1,25 +1,32 @@
 
-const HTTP_METHODS = {
-    GET: 'GET',
-    POST: 'POST',
-    DELETE: 'DELETE',
+import { AxiosInstance } from "axios";
+
+export enum HttpMethods {
+    GET = 'GET',
+    POST = 'POST',
+    DELETE = 'DELETE',
 }
 
-class ApiResource {
-    constructor(axiosClient, branch, hostname) {
+export class ApiResource {
+    axiosClient: AxiosInstance;
+    branch: string;
+    hostname: string;
+
+    constructor(axiosClient: AxiosInstance, branch: string, hostname: string) {
         this.axiosClient = axiosClient;
         this.branch = branch;
         this.hostname = hostname;
     }
 
-    dispatch = async (url, method, data) => {
+    dispatch = async (url: string, method: HttpMethods, data={}): Promise<any> => {
         const config = {
             url: new URL(url, this.hostname).href,
             method: method,
+            data: {},
         }
 
         if (data) {
-            if (method === HTTP_METHODS.GET) {
+            if (method === HttpMethods.GET) {
                 config.url = `${config.url}?${new URLSearchParams(data)}`;
             } else {
                 config.data = data;
@@ -47,5 +54,3 @@ class ApiResource {
         return resp.data.data;
     };
 }
-
-export { HTTP_METHODS, ApiResource };

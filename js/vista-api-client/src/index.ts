@@ -1,19 +1,29 @@
 
-import Axios from 'axios';
+import Axios, { AxiosInstance } from 'axios';
 
 import config from './config/config.js';
 
-import Admin from './resources/admin.js';
-import Grants from './resources/grants.js';
-import ResourceTypes from './resources/resourceTypes.js';
-import Roles from './resources/roles.js';
-import Users from './resources/users.js';
-import Usersets from './resources/usersets.js';
+import Admin from './resources/Admin';
+import Grants from './resources/Grants';
+import ResourceTypes from './resources/ResourceTypes';
+import Roles from './resources/Roles';
+import Users from './resources/Users';
+import Usersets from './resources/Usersets';
 
-class VistaClient {
+export default class VistaClient {
     static ALL = '*';
+    secret: string;
+    axios: AxiosInstance;
+    hostname: string;
 
-    constructor(secret, branch, hostname) {
+    admin: Admin;
+    grants: Grants;
+    resourceTypes: ResourceTypes;
+    roles: Roles;
+    users: Users;
+    usersets: Usersets;
+
+    constructor(secret: string, branch: string, hostname: string) {
         this.secret = secret;
 
         this.axios = Axios.create({
@@ -34,6 +44,3 @@ class VistaClient {
         this.usersets = new Usersets(this.axios, branch, this.hostname);
     }
 }
-
-export default VistaClient;
-

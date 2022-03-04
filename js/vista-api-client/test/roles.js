@@ -1,6 +1,6 @@
 
 import expect from 'expect.js';
-import { client, testId, orgId } from './setup';
+import { client, testId } from './setup.js';
 
 const uid_base = `${testId}_roles`;
 

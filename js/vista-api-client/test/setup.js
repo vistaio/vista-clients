@@ -1,5 +1,5 @@
 
-import VistaClient from '../src';
+import VistaClient from '../dist/vista.esm.js';
 
 const randomIntFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
