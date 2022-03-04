@@ -1,6 +1,6 @@
 {
   "name": "@vista.io/vista-api-client",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "type": "module",
   "homepage": "https://www.app.govista.io/",
   "main": "./dist/vista",
