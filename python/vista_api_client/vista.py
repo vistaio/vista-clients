@@ -8,7 +8,8 @@ from vista_api_client.api_resources.usersets import Usersets
 
 from vista_api_client.config.config import config
 
-class VistaClient(object):
+
+class VistaClient():
     ALL = '*'
 
     def __init__(self, secret, branch, hostname=None):

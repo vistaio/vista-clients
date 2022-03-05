@@ -9,11 +9,12 @@ class Roles(ApiResource):
             'branch': self.branch,
         })
 
-    def upsert(self, role_id, resource_type_to_attribute_to_actions, parent_roles=[], org_id='*'):
+    def upsert(self, role_id, resource_type_to_attribute_to_actions, parent_roles=None, org_id='*'):
+        parents = parent_roles or []
         return self.dispatch('/v1/roles', HttpMethods.POST, {
             'id': role_id,
             'resource_type_to_attribute_to_actions': resource_type_to_attribute_to_actions,
-            'parent_roles': parent_roles,
+            'parent_roles': parents,
             'org_id': org_id,
             'branch': self.branch,
         })

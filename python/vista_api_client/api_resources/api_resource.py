@@ -4,14 +4,14 @@ from urllib.parse import urljoin
 
 import requests
 
-from vista_api_client.config.config import config
 
 class HttpMethods(Enum):
     GET = 'GET'
     POST = 'POST'
     DELETE = 'DELETE'
 
-class ApiResource(object):
+
+class ApiResource():
     def __init__(self, secret, branch, hostname):
         self.hostname = hostname
         self.branch = branch
@@ -22,7 +22,7 @@ class ApiResource(object):
             'url': urljoin(self.hostname, route),
             'headers': {
                 'Content-Type': 'application/json',
-                'Authorization': f"Bearer {self.secret}",
+                'Authorization': f'Bearer {self.secret}',
             }
         }
 
@@ -32,15 +32,13 @@ class ApiResource(object):
             else:
                 request_kwargs['json'] = data
 
-        # no dynamic way to change based on http method
-        action = getattr(requests, str(method.value).lower(), None)
-        resp = action(**request_kwargs)
+        resp = requests.request(method.value, **request_kwargs)
 
         # raise exception if not success
         try:
             resp.raise_for_status()
-        except Exception as e:
-            raise Exception(resp.json()['message'])
+        except Exception as exc:
+            raise Exception(resp.json()['message']) from exc
 
         if resp.status_code == 204:
             return {}

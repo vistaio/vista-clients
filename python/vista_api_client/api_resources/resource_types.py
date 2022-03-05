@@ -8,11 +8,12 @@ class ResourceTypes(ApiResource):
             'branch': self.branch,
         })
 
-    def upsert(self, name, actions, attributes=[]):
+    def upsert(self, name, actions, attributes=None):
+        attrs = attributes or []
         return self.dispatch('/v1/resource_types', HttpMethods.POST, {
             'name': name,
             'actions': actions,
-            'attributes': attributes,
+            'attributes': attrs,
             'branch': self.branch,
         })
 
@@ -24,4 +25,4 @@ class ResourceTypes(ApiResource):
             'to_resource_type': to_resource_type,
             'attribute': attribute,
             'branch': self.branch,
-        });
+        })

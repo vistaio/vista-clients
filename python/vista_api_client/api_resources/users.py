@@ -2,6 +2,7 @@
 from vista_api_client.api_resources.api_resource import ApiResource, HttpMethods
 from vista_api_client.api_resources.grants import Grants
 
+
 class Users(ApiResource):
     def __init__(self, secret, branch, hostname):
         super().__init__(secret, branch, hostname)
@@ -41,10 +42,12 @@ class Users(ApiResource):
         return self.grants.expand(user_id)
 
     def grant_action(self, user_id, action, resource_id, resource_type, attribute=''):
-        return self.grants.grant(user_id, 'USER', action, 'ACTION', resource_id, resource_type, attribute)
+        return self.grants.grant(user_id, 'USER', action, 'ACTION',
+                                 resource_id, resource_type, attribute)
 
     def revoke_action(self, user_id, action, resource_id, resource_type, attribute=''):
-        return self.grants.revoke(user_id, 'USER', action, 'ACTION', resource_id, resource_type, attribute)
+        return self.grants.revoke(user_id, 'USER', action, 'ACTION',
+                                  resource_id, resource_type, attribute)
 
     def grant_role(self, user_id, role_id, resource_id, resource_type):
         return self.grants.grant(user_id, 'USER', role_id, 'ROLE', resource_id, resource_type, '')

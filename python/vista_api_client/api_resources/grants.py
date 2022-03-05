@@ -27,7 +27,8 @@ class Grants(ApiResource):
             'branch': self.branch,
         })
 
-    def grant(self, user_id, subject_type, relation, relation_type, resource_id, resource_type, attribute):
+    def grant(self, user_id, subject_type, relation, relation_type,
+              resource_id, resource_type, attribute):
         return self.dispatch('/v1/grants', HttpMethods.POST, {
             'id': user_id,
             'subject_type': subject_type,
@@ -39,7 +40,8 @@ class Grants(ApiResource):
             'branch': self.branch,
         })
 
-    def revoke(self, user_id, subject_type, relation, relation_type, resource_id, resource_type, attribute):
+    def revoke(self, user_id, subject_type, relation, relation_type,
+               resource_id, resource_type, attribute):
         return self.dispatch('/v1/grants', HttpMethods.DELETE, {
             'id': user_id,
             'subject_type': subject_type,
