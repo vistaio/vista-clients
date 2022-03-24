@@ -1,6 +1,6 @@
 {
   "name": "@vista.io/vista-api-client",
-  "version": "0.4.13",
+  "version": "0.4.14",
   "description": "NodeJS implementation of the Vista API.",
   "type": "module",
   "homepage": "https://www.app.govista.io/",
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "axios": "^0.21.3",
+    "rollup-plugin-dts": "^4.2.0",
     "underscore": "^1.13.1"
   },
   "devDependencies": {
