@@ -27,7 +27,7 @@ from vista_api_client import VistaClient
 VISTA_API_KEY = 'create-in-vista-dashboard';
 
 client = VistaClient(VISTA_API_KEY, 'branch_name')
-roles = client.resources.list('test')
+roles = client.roles.list()
 ```
 
 After that you are good to go!
