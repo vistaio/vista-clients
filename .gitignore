@@ -1,4 +1,7 @@
 
+# config
+.vscode/*
+
 # artifacts
 */build/*
 */node_modules/*

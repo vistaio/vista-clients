@@ -26,11 +26,12 @@ import VistaClient from '@vista.io/vista-api-client';
 
 const VISTA_API_KEY = 'create-in-vista-dashboard';
 const client = new VistaClient(VISTA_API_KEY, 'branch_name');
+const roles = client.roles.list()
 ```
 
 After that you are good to go!
 
-Please see the [Vista API Documentation](https://docs.govista.io/api/) for documentation of the API.
+Please see the [Vista API Documentation](https://docs.govista.io/api/) for the API documentation.
 
 ## All Operator
 You can use `VistaClient.ALL` in place where `resource_id` or `resource_type` is accepted to indicate all.
@@ -63,7 +64,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `client.roles.list(orgId: string)`       | Lists all Roles         |
+| `client.roles.list(orgId?: string)`       | Lists all Roles         |
 | `client.roles.upsert(roleId: string, resourceTypeToAttributeToActions: { [resourceType: string]: { [attribute: string]: string[] } }, parentRoles: string[], orgId: string)`      | Upserts a Role        |
 
 
@@ -73,7 +74,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `create(userId: string, orgId: string)`       | Creates new User         |
-| `list(orgId: string)`| Lists Users in `org_id`  |
+| `list(orgId?: string)`| Lists Users in `orgId`  |
 | `assignToUserset(userId: string, usersetId: string)`       | Adds User to a Userset         |
 | `removeFromUserset(userId: string, usersetId: string)`       | Removes User from Userset         |
 | `check(userId: string, action: string, resourceType: string, resourceId: string, attribute?: string)`       | Checks User access         |

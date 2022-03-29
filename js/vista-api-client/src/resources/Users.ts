@@ -19,7 +19,7 @@ class Users extends ApiResource {
         });
     }
 
-    list = async (userId: string, orgId='') => {
+    list = async (userId: string, orgId = '') => {
         return this.dispatch('/v1/users', HttpMethods.GET, {
             id: userId,
             org_id: orgId,
@@ -43,7 +43,7 @@ class Users extends ApiResource {
         });
     }
 
-    check = async (userId: string, action: string, resourceId: string, resourceType: string, attribute='') => {
+    check = async (userId: string, action: string, resourceId: string, resourceType: string, attribute = '') => {
         return this.grants.list(userId, action, resourceId, resourceType, attribute, '');
     }
 
@@ -51,7 +51,7 @@ class Users extends ApiResource {
         return this.grants.expand(userId);
     }
 
-    grantAction = async (userId: string, action: string, resourceId: string, resourceType: string, attribute='') => {
+    grantAction = async (userId: string, action: string, resourceId: string, resourceType: string, attribute = '') => {
         return this.grants.grant(userId, 'USER', action, 'ACTION', resourceId, resourceType, attribute);
     }
 

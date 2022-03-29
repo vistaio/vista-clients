@@ -24,16 +24,15 @@ Then in your Node application:
 ```python
 from vista_api_client import VistaClient
 
-if __name__ == '__main__':
-    client = VistaClient('z9Not6ZyDQn8YGw3GxHZx54k0U1qA_2KIL1HktuYPc5EKEfd', 'branch_name')
-    roles = client.resources.list('test')
-    print(roles)
+VISTA_API_KEY = 'create-in-vista-dashboard';
+
+client = VistaClient(VISTA_API_KEY, 'branch_name')
+roles = client.resources.list('test')
 ```
 
 After that you are good to go!
 
-Please see the [Vista API Documentation](https://docs.govista.io/api/) for documentation of the API.
-://docs.govista.io/api/) for documentation of the API.
+Please see the [Vista API Documentation](https://docs.govista.io/api/) for the API documentation.
 
 ## All Operator
 You can use `VistaClient.ALL` in place where `resource_id` or `resource_type` is accepted to indicate all.
@@ -71,7 +70,6 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 |--------|-------------|
 | `list(org_id: str)`| Lists all Roles  |
 | `upsert(role_id: str, resource_type_to_attribute_to_actions: { resource_type: { attribute: actions[] }}, parent_roles: str[], org_id: str)`      | Upserts a Role |
-| `inherit(child_role_id: str, parent_role_id: str, org_id: str)`| Adds Role as child of parent role  |
 
 
 ### [Users](https://docs.govista.io/Concepts/Terminology#user)
@@ -80,7 +78,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `create(user_id: str, org_id: str)`| Creates new User  |
-| `list(org_id: str)`| Lists Users in `org_id`  |
+| `list(org_id?: str)`| Lists Users in `org_id`  |
 | `assign_to_userset(user_id: str, userset_id: str)`| Adds User to a Userset  |
 | `remove_from_userset(user_id: str, userset_id: str)`| Removes User from Userset  |
 | `check(user_id: str, action: str, resource_type: str, resource_id: str, attribute?: str)`| Checks User access  |

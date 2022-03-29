@@ -11,7 +11,7 @@ class Usersets extends ApiResource {
         this.grants = new Grants(axiosClient, branch, hostname);
     }
 
-    create = async (usersetId: string, orgId: string, parentUsersets=[]) => {
+    create = async (usersetId: string, orgId: string, parentUsersets = []) => {
         return this.dispatch('/v1/usersets', HttpMethods.POST, {
             id: usersetId,
             org_id: orgId,
