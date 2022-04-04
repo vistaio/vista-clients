@@ -4,7 +4,9 @@
 Vista has React components that streamline adding permissions to your platform:
 
 * VistaCheck: dynamically adjusts UI based on permissions checks
-* VistaGrant: 'control panel' that allows your admins to grant teammates roles. This component can be styled to your needs.
+* VistaGrant: 'control panel' that allows your admins to grant teammates roles (can be scoped by orgId). This component can be styled to your needs.
+* VistaRoles: Component that shows list of Roles (can be scoped by orgId). This component can be styled to your needs.
+
 
 ## Reference
 
@@ -20,8 +22,7 @@ Vista has React components that streamline adding permissions to your platform:
 npm install @vista.io/react-vista-js;
 ```
 
-## Components
-### VistaCheck
+## VistaCheck Component
 
 The `VistaCheck` component dynamically hides child components if the current user does not have the specified permissions. You can optionally render an alternate component if access is denied.
 
@@ -47,7 +48,7 @@ import { VistaProvider, VistaCheck } from '@vista.io/react-vista-js';
 
 See the [client library docs](https://docs.govista.io/Guides/React%20Components/Authentication) on how to generate 'token'.
 
-### Vista Grant
+## VistaGrant Component
 
 The `VistaGrant` component allows your admins to grant teammates roles.
 
@@ -118,5 +119,62 @@ const styles = {
         height: '75px'
     },
     grantRoleSelect: {}, // role dropdown in a 'grantRow'
+};
+```
+
+## VistaRoles Component
+
+The `VistaRoles` component allows your admins to view all created roles and the permissions associated.
+
+```js
+import { VistaProvider, VistaGrant } from '@vista.io/react-vista-js';
+<VistaProvider secret={read_token}>
+    <VistaRoles
+        branch="test"
+
+        // optional
+        orgId='customer_12312' // scopes fetched roles by customer (includes global roles)
+        styles={{
+            grantButton: {
+                backgroundColor: 'red',
+            }
+        }}
+    />
+</VistaProvider>
+```
+
+### Styling
+The `VistaRoles` component can be styled at all levels (See the [MaterialUI Customization Guide](https://mui.com/customization/how-to-customize/#1-one-off-customization)):
+```js
+// pass this in the 'styles' attribute
+const styles = {
+  container: { // VistaRoles container
+    height: '500px',
+    width: '1000px',
+    display: 'flex',
+    border: 'solid',
+    borderColor: 'lightgray',
+    borderWidth: '1px',
+  },
+  title: { // Title text
+    marginTop: '0px',
+  },
+  rolesList: { // List with all Roles
+    height: '100%',
+    width: '200px',
+    overflow: 'scroll',
+    borderRight: '1px solid lightgray',
+  },
+  rolesListRow: { // Row in rolesList
+    height: '60px',
+  },
+  permissionsTable: { // Table that lists all permissions for the selected role
+    height: '100%',
+    flexGrow: '1',
+  },
+  permissionsTableRow: {}, // Row in permissionsTable
+  permissionsTableRowInherited: { // Row in permissionsTable if permission is inherited
+    color: 'grey',
+  },
 };
 ```

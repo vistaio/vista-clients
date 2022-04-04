@@ -15,6 +15,12 @@ Object.defineProperty(exports, "VistaGrant", {
     return _VistaGrant.VistaGrant;
   }
 });
+Object.defineProperty(exports, "VistaRoles", {
+  enumerable: true,
+  get: function get() {
+    return _VistaRoles.VistaRoles;
+  }
+});
 Object.defineProperty(exports, "VistaProvider", {
   enumerable: true,
   get: function get() {
@@ -31,5 +37,7 @@ Object.defineProperty(exports, "VistaContext", {
 var _VistaCheck = require("./components/VistaCheck.js");
 
 var _VistaGrant = require("./components/VistaGrant.js");
+
+var _VistaRoles = require("./components/VistaRoles.js");
 
 var _VistaContext = require("./components/VistaContext.js");
