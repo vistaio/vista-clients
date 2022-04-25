@@ -3,13 +3,16 @@ from vista_api_client.api_resources.api_resource import ApiResource, HttpMethods
 
 
 class Grants(ApiResource):
-    def list(self, user_id, action, resource_id, resource_type, attribute, org_id):
+    def list(self, user_id, action, resource_id, resource_type,
+             attribute, org_id, start_time=None, end_time=None):
         user_id = user_id or ''
         action = action or ''
         resource_id = resource_id or ''
         resource_type = resource_type or ''
         attribute = attribute or ''
         org_id = org_id or ''
+        start_time = start_time or ''
+        end_time = end_time or ''
 
         return self.dispatch('/v1/grants', HttpMethods.GET, {
             'id': user_id,
@@ -18,6 +21,8 @@ class Grants(ApiResource):
             'resource_id': resource_id,
             'attribute': attribute,
             'org_id': org_id,
+            'start_time': start_time,
+            'end_time': end_time,
             'branch': self.branch,
         })
 

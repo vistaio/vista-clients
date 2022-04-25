@@ -21,7 +21,7 @@ describe('Grants', () => {
       await client.users.create(uid, orgId);
       await client.users.grantAction(uid, 'write', 'rid_0', rt);
       await client.users.grantRole(uid, role, 'rid_0', rt);
-      const r = await client.grants.list(undefined, undefined, 'rid_0', rt, undefined, undefined);
+      const r = await client.grants.list(undefined, undefined, 'rid_0', rt, undefined, undefined, undefined, undefined);
 
       expect(r).to.be.an('array');
       expect(r).to.not.be.empty();
@@ -32,6 +32,30 @@ describe('Grants', () => {
       expect(r[0]).to.have.key('resource_type');
       expect(r[0]).to.have.key('attribute');
       expect(r[0]).to.have.key('created_at');
+    });
+
+    it('should should filter by dates', async () => {
+      const rt = `${uid_base}_rt_0`;
+      await client.resourceTypes.upsert(rt, ['read', 'write'], []);
+
+      const role = `${uid_base}_role_0`;
+      await client.roles.upsert(role, {
+        [rt]: {
+          '*': ['read'],
+        },
+      });
+
+      const uid = `${uid_base}_user_1`;
+      await client.users.create(uid, orgId);
+      await client.users.grantAction(uid, 'write', 'rid_1', rt);
+
+      const today = new Date()
+      const tomorrow = new Date(today)
+      tomorrow.setDate(tomorrow.getDate() + 1)
+      const r = await client.grants.list(null, null, 'rid_1', rt, null, null, tomorrow, null);
+
+      expect(r).to.be.an('array');
+      expect(r).to.be.empty();
     });
   });
 });

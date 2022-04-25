@@ -2,21 +2,16 @@
 import { HttpMethods, ApiResource } from '../ApiResource';
 
 class Grants extends ApiResource {
-  list = async (userId: string, action: string, resourceId: string, resourceType: string, attribute: string, orgId: string) => {
-    userId = userId || '';
-    action = action || '';
-    resourceId = resourceId || '';
-    resourceType = resourceType || '';
-    attribute = attribute || '';
-    orgId = orgId || '';
-
+  list = async (userId: string | null, action: string | null, resourceId: string | null, resourceType: string | null, attribute: string | null, orgId: string | null, startTime: Date | null, endTime: Date | null) => {
     return this.dispatch('/v1/grants', HttpMethods.GET, {
-      id: userId,
-      action: action,
-      resource_type: resourceType,
-      resource_id: resourceId,
-      attribute: attribute,
-      org_id: orgId,
+      id: userId || '',
+      action: action || '',
+      resource_id: resourceId || '',
+      resource_type: resourceType || '',
+      attribute: attribute || '',
+      org_id: orgId || '',
+      start_time: startTime ? startTime.toISOString() : '',
+      end_time: endTime ? endTime.toISOString() : '',
       branch: this.branch,
     });
   }

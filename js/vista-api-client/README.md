@@ -103,5 +103,5 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `list(userId: string \| null, action: string \| null, resourceId: string \| null, resourceType: string \| null, attribute: string \| null, orgId: string \| null)`| List & filter grants by arguments  |
+| `list(userId: string \| null, action: string \| null, resourceId: string \| null, resourceType: string \| null, attribute: string \| null, orgId: string \| null, startTime: string \| null, endTime: string \| null)`| List & filter grants by arguments, `startTime` is inclusive (>=) and `endTime` is exclusive (<)  |
 | `listUnflattened(orgId: string)`| Lists User or Userset grants  |

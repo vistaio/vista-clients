@@ -44,7 +44,7 @@ class Users extends ApiResource {
     }
 
     check = async (userId: string, action: string, resourceId: string, resourceType: string, attribute = '') => {
-        return this.grants.list(userId, action, resourceId, resourceType, attribute, '');
+        return this.grants.list(userId, action, resourceId, resourceType, attribute, '', null, null);
     }
 
     expand = async (userId: string) => {

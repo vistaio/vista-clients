@@ -16,6 +16,7 @@ const config = {
   branch: 'test',
 }
 
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 const client = new VistaClient(config.secret, config.branch, config.hostname);
 
 export { client, testId, orgId };

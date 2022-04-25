@@ -99,20 +99,16 @@ class Admin extends ApiResource {
 class Grants extends ApiResource {
     constructor() {
         super(...arguments);
-        this.list = (userId, action, resourceId, resourceType, attribute, orgId) => __awaiter(this, void 0, void 0, function* () {
-            userId = userId || '';
-            action = action || '';
-            resourceId = resourceId || '';
-            resourceType = resourceType || '';
-            attribute = attribute || '';
-            orgId = orgId || '';
+        this.list = (userId, action, resourceId, resourceType, attribute, orgId, startTime, endTime) => __awaiter(this, void 0, void 0, function* () {
             return this.dispatch('/v1/grants', HttpMethods.GET, {
-                id: userId,
-                action: action,
-                resource_type: resourceType,
-                resource_id: resourceId,
-                attribute: attribute,
-                org_id: orgId,
+                id: userId || '',
+                action: action || '',
+                resource_id: resourceId || '',
+                resource_type: resourceType || '',
+                attribute: attribute || '',
+                org_id: orgId || '',
+                start_time: startTime ? startTime.toISOString() : '',
+                end_time: endTime ? endTime.toISOString() : '',
                 branch: this.branch,
             });
         });
@@ -237,7 +233,7 @@ class Users extends ApiResource {
             });
         });
         this.check = (userId, action, resourceId, resourceType, attribute = '') => __awaiter(this, void 0, void 0, function* () {
-            return this.grants.list(userId, action, resourceId, resourceType, attribute, '');
+            return this.grants.list(userId, action, resourceId, resourceType, attribute, '', null, null);
         });
         this.expand = (userId) => __awaiter(this, void 0, void 0, function* () {
             return this.grants.expand(userId);
