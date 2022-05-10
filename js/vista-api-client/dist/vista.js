@@ -1,10 +1,4 @@
-'use strict';
-
-var Axios = require('axios');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var Axios__default = /*#__PURE__*/_interopDefaultLegacy(Axios);
+import Axios from 'axios';
 
 var config = {
     VistaAPIHostname: 'https://api.govista.io',
@@ -300,7 +294,7 @@ class Usersets extends ApiResource {
 class VistaClient {
     constructor(secret, branch, hostname) {
         this.secret = secret;
-        this.axios = Axios__default["default"].create({
+        this.axios = Axios.create({
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
@@ -318,5 +312,5 @@ class VistaClient {
 }
 VistaClient.ALL = '*';
 
-module.exports = VistaClient;
+export { VistaClient as default };
 //# sourceMappingURL=vista.js.map

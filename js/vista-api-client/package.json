@@ -1,15 +1,14 @@
 {
   "name": "@vista.io/vista-api-client",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "NodeJS implementation of the Vista API.",
   "type": "module",
   "homepage": "https://www.app.govista.io/",
   "main": "./dist/vista",
   "exports": {
-    ".": {
-      "require": "./dist/vista.js",
-      "import": "./dist/vista.esm.js"
-    }
+    "types": "./dist/vista.d.ts",
+    "require": "./dist/vista.cjs",
+    "import": "./dist/vista.js"
   },
   "scripts": {
     "clean": "rm -rf dist/*",
