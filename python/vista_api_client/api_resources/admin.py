@@ -3,6 +3,9 @@ from vista_api_client.api_resources.api_resource import ApiResource, HttpMethods
 
 
 class Admin(ApiResource):
+    def get_company(self):
+        return self.dispatch('/v1/accounts', HttpMethods.GET)
+
     def create_branch(self, branch):
         return self.dispatch('/v1/companies/branches', HttpMethods.POST, {
             'branch': branch,

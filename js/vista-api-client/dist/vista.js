@@ -85,6 +85,9 @@ class ApiResource {
 class Admin extends ApiResource {
     constructor() {
         super(...arguments);
+        this.getCompany = () => __awaiter(this, void 0, void 0, function* () {
+            return this.dispatch('/v1/accounts', HttpMethods.GET);
+        });
         this.createBranch = (branch) => __awaiter(this, void 0, void 0, function* () {
             return this.dispatch('/v1/companies/branches', HttpMethods.POST, {
                 branch: branch,

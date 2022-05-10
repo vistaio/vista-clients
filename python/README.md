@@ -49,6 +49,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | `create_branch(branch: str)`| Creates new Branch  |
 | `clone_branch(branch: str, new_branch: str)`| Clones [templates](https://docs.govista.io/Concepts/Terminology#permission-template) in `branch` to `newBranch`  |
 | `create_read_tokens()`| Creates a set of read-only tokens meant to be used by Vista React components    |
+| `get_company()`| Gets Company ID |
 
 
 ### [Resource Types](https://docs.govista.io/Concepts/Terminology#resource)
@@ -59,8 +60,6 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | `list()`| Lists all Resource Types  |
 | `upsert(name: str, actions: str[], attributes: {id: str, target_resource_type: str, attribute_type: 'RELATIONSHIP' \| 'SCALAR'}[])`       | Upserts a Resource Type |
 | `add_relationship(from_id: str, from_resource_type: str, attribute: str, to_id: str, to_resource_type: str)`| Adds an attribute relationship between 2 resourceIds |
-
-
 
 
 ### [Roles](https://docs.govista.io/Concepts/Terminology#role)

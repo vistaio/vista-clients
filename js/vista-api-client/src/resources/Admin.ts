@@ -2,6 +2,10 @@
 import { HttpMethods, ApiResource } from '../ApiResource';
 
 class Admin extends ApiResource {
+    getCompany = async () => {
+        return this.dispatch('/v1/accounts', HttpMethods.GET);
+    }
+
     createBranch = async (branch: string) => {
         return this.dispatch('/v1/companies/branches', HttpMethods.POST, {
             branch: branch,
