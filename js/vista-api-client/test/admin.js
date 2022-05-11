@@ -1,5 +1,7 @@
 
 import expect from 'expect.js';
+import { describe, it } from 'mocha';
+
 import { client } from './setup.js';
 
 describe('Admin', () => {

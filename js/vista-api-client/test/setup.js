@@ -1,5 +1,5 @@
 
-import VistaClient from '../dist/vista.esm.js';
+import VistaClient from '../dist/vista.js';
 
 const randomIntFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -19,4 +19,4 @@ const config = {
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const client = new VistaClient(config.secret, config.branch, config.hostname);
 
-export { client, testId, orgId };
+export { client, testId, orgId, sleep };

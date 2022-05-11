@@ -1,5 +1,7 @@
 
 import expect from 'expect.js';
+import { describe, it } from 'mocha';
+
 import { client, testId } from './setup.js';
 
 const uid_base = `${testId}_rt`;
@@ -25,13 +27,13 @@ describe('ResourceTypes', () => {
       await client.resourceTypes.upsert(rt, ['read'], []);
       const r = await client.resourceTypes.list();
 
-      // expect(r).to.be.an('array');
-      // expect(r).to.not.be.empty();
-      // expect(r[0]).to.have.key('name');
-      // expect(r[0]).to.have.key('actions');
-      // expect(r[0].actions).to.be.an('array');
-      // expect(r[0]).to.have.key('attributes');
-      // expect(r[0].attributes).to.be.an('array');
+      expect(r).to.be.an('array');
+      expect(r).to.not.be.empty();
+      expect(r[0]).to.have.key('name');
+      expect(r[0]).to.have.key('actions');
+      expect(r[0].actions).to.be.an('array');
+      expect(r[0]).to.have.key('attributes');
+      expect(r[0].attributes).to.be.an('array');
     });
   });
 

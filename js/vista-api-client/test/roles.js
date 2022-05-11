@@ -1,5 +1,7 @@
 
 import expect from 'expect.js';
+import { describe, it } from 'mocha';
+
 import { client, testId } from './setup.js';
 
 const uid_base = `${testId}_roles`;
