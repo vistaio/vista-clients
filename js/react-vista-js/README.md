@@ -32,10 +32,10 @@ import { VistaProvider, VistaCheck } from '@vista.io/react-vista-js';
 // how to generate 'read tokens' https://docs.govista.io/Guides/React%20Components/Authentication
 <VistaProvider secret={read_token}>
     <VistaCheck
-        user_id={user_id}
+        userId={user_id}
         action={action}
-        resource_type={resource_type}
-        resource_id={resource_id}
+        resourceType={resource_type}
+        resourceId={resource_id}
         branch="test"
 
         // optional
