@@ -2,7 +2,7 @@
 import expect from 'expect.js';
 import { describe, it } from 'mocha';
 
-import { client, testId } from './setup.js';
+import { client, testId, rtDictToPerms } from './setup.js';
 
 const uid_base = `${testId}_roles`;
 
@@ -13,19 +13,19 @@ describe('Roles', () => {
       await client.resourceTypes.upsert(rt, ['read'], []);
 
       const role = `${uid_base}_role_0`;
-      const r = await client.roles.upsert(role, {
+      const r = await client.roles.upsert(role, rtDictToPerms({
         [rt]: {
           '*': ['read'],
         },
-      });
+      }));
 
       expect(r).to.have.key('id');
       expect(r).to.have.key('parent_roles');
       expect(r.parent_roles).to.be.an('array');
-      expect(r).to.have.key('resource_types_to_attributes_to_actions');
-      expect(r.resource_types_to_attributes_to_actions).to.be.an('object');
-      expect(r.resource_types_to_attributes_to_actions[rt]).to.be.an('object');
-      expect(r.resource_types_to_attributes_to_actions[rt]['*']).to.be.an('array');
+      expect(r).to.have.key('permissions');
+      expect(r.permissions).to.be.an('array');
+      expect(r.permissions[0]).to.be.an('object');
+      expect(r.permissions[0]).to.have.key('resourceType');
     });
   });
 
@@ -35,11 +35,11 @@ describe('Roles', () => {
       await client.resourceTypes.upsert(rt, ['read'], []);
 
       const role = `${uid_base}_role_1`;
-      await client.roles.upsert(role, {
+      await client.roles.upsert(role, rtDictToPerms({
         [rt]: {
           '*': ['read'],
         },
-      });
+      }));
 
       const r = await client.roles.list();
 
@@ -48,8 +48,8 @@ describe('Roles', () => {
       expect(r[0]).to.have.key('id');
       expect(r[0]).to.have.key('parent_roles');
       expect(r[0].parent_roles).to.be.an('array');
-      expect(r[0]).to.have.key('resource_types_to_attributes_to_actions');
-      expect(r[0].resource_types_to_attributes_to_actions).to.be.an('object');
+      expect(r[0]).to.have.key('permissions');
+      expect(r[0].permissions[0]).to.be.an('object');
     });
   });
 });

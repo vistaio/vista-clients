@@ -68,7 +68,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `list(org_id: str)`| Lists all Roles  |
-| `upsert(role_id: str, resource_type_to_attribute_to_actions: { resource_type: { attribute: actions[] }}, parent_roles: str[], org_id: str)`      | Upserts a Role |
+| `upsert(role_id: str, permissions: { resourceType: str, attribute: str, action: str }[], parentRoles: string[], orgId: string)`      | Upserts a Role |
 
 
 ### [Users](https://docs.govista.io/Concepts/Terminology#user)

@@ -2,7 +2,7 @@
 import expect from 'expect.js';
 import { describe, it } from 'mocha';
 
-import { client, testId, orgId } from './setup.js';
+import { client, testId, orgId, rtDictToPerms } from './setup.js';
 
 const uid_base = `${testId}_usersets`;
 
@@ -69,11 +69,11 @@ describe('Usersets', () => {
       await client.resourceTypes.upsert(rt, ['read'], []);
 
       const role = `${uid_base}_role_4`;
-      await client.roles.upsert(role, {
+      await client.roles.upsert(role, rtDictToPerms({
         [rt]: {
           '*': ['read'],
         },
-      });
+      }));
 
       const usid = `${uid_base}_userset_4`;
       await client.usersets.create(usid, orgId);
@@ -93,11 +93,11 @@ describe('Usersets', () => {
       await client.resourceTypes.upsert(rt, ['read'], []);
 
       const role = `${uid_base}_role_5`;
-      await client.roles.upsert(role, {
+      await client.roles.upsert(role, rtDictToPerms({
         [rt]: {
           '*': ['read'],
         },
-      });
+      }));
 
       const usid = `${uid_base}_userset_5`;
       await client.usersets.create(usid, orgId);

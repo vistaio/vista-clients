@@ -34,14 +34,14 @@ declare class ResourceTypes extends ApiResource {
     addRelationship: (fromId: string, fromResourceType: string, attribute: string, toId: string, toResourceType: string) => Promise<any>;
 }
 
-interface ResourceTypeToAttributeToActions {
-    [resourceType: string]: {
-        [attribute: string]: string[];
-    };
+interface Permission {
+    resourceType: string;
+    attribute: string;
+    action: string;
 }
 declare class Roles extends ApiResource {
     list: (orgId?: string) => Promise<any>;
-    upsert: (roleId: string, resourceTypeToAttributeToActions: ResourceTypeToAttributeToActions, parentRoles?: string[], orgId?: string) => Promise<any>;
+    upsert: (roleId: string, permissions: Permission[], parentRoles?: string[], orgId?: string) => Promise<any>;
 }
 
 declare class Users extends ApiResource {
