@@ -58,8 +58,18 @@ class Grants(ApiResource):
             'branch': self.branch,
         })
 
-    def list_unflattened(self, org_id):
+    def list_unflattened(self, userset_id, relation, relation_type,
+                         resource_id, resource_type, attribute, org_id):
+        if relation_type not in ['ROLE', 'ACTION', None]:
+            raise Exception("relation_type must be ['ROLE', 'ACTION', None]")
+
         return self.dispatch('/v1/grants/unflattened', HttpMethods.GET, {
-            'org_id': org_id,
+            'usersetId': userset_id,
+            'relation': relation,
+            'relationType': relation_type,
+            'resourceId': resource_id,
+            'resourceType': resource_type,
+            'attribute': attribute,
+            'orgId': org_id,
             'branch': self.branch,
         })

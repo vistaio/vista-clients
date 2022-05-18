@@ -49,9 +49,15 @@ class Grants extends ApiResource {
     });
   }
 
-  listUnflattened = async (orgId: string) => {
+  listUnflattened = async (usersetId: string | null, relation: string | null, relationType: string | null, resourceId: string | null, resourceType: string | null, attribute: string | null, orgId: string | null) => {
     return this.dispatch('/v1/grants/unflattened', HttpMethods.GET, {
-      org_id: orgId,
+      usersetId: usersetId || '',
+      relation: relation || '',
+      relationType: relationType || '',
+      resourceId: resourceId || '',
+      resourceType: resourceType || '',
+      attribute: attribute || '',
+      orgId: orgId || '',
       branch: this.branch,
     });
   }

@@ -4,6 +4,6 @@ declare class Grants extends ApiResource {
     expand: (userId: string) => Promise<any>;
     grant: (userId: string, subjectType: string, relation: string, relationType: string, resourceId: string, resourceType: string, attribute: string) => Promise<any>;
     revoke: (userId: string, subjectType: string, relation: string, relationType: string, resourceId: string, resourceType: string, attribute: string) => Promise<any>;
-    listUnflattened: (orgId: string) => Promise<any>;
+    listUnflattened: (usersetId: string | null, relation: string | null, relationType: string | null, resourceId: string | null, resourceType: string | null, attribute: string | null, orgId: string | null) => Promise<any>;
 }
 export default Grants;

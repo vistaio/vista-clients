@@ -106,4 +106,4 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `list(user_id: str \| None, action: str \| None, resource_id: str \| None, resource_type: str \| None, attribute: str \| None, org_id: str \| None, start_time: str \| None, end_time: str \| None)`| List & filter grants by arguments, `start_time` is inclusive (>=) and `end_time` is exclusive (<)  |
-| `list_unflattened(org_id: str)`| Lists User or Userset grants  |
+| `list_unflattened(userset_id: str \| None, relation: str \| None, relation_type: str \| None, resource_id: str \| None, resource_type: str \| None, attribute: str \| None, org_id: str \| None)`| Filters User or Userset grants  |

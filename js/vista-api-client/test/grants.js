@@ -37,10 +37,10 @@ describe('Grants', () => {
     });
 
     it('should should filter by dates', async () => {
-      const rt = `${uid_base}_rt_0`;
+      const rt = `${uid_base}_rt_1`;
       await client.resourceTypes.upsert(rt, ['read', 'write'], []);
 
-      const role = `${uid_base}_role_0`;
+      const role = `${uid_base}_role_1`;
       await client.roles.upsert(role, rtDictToPerms({
         [rt]: {
           '*': ['read'],
@@ -58,6 +58,35 @@ describe('Grants', () => {
 
       expect(r).to.be.an('array');
       expect(r).to.be.empty();
+    });
+  });
+
+  describe('list_unflattened', () => {
+    it('should return proper response', async () => {
+      const rt = `${uid_base}_rt_2`;
+      await client.resourceTypes.upsert(rt, ['read', 'write'], []);
+
+      const role = `${uid_base}_role_2`;
+      await client.roles.upsert(role, rtDictToPerms({
+        [rt]: {
+          '*': ['read'],
+        },
+      }));
+
+      const uid = `${uid_base}_user_2`;
+      await client.users.create(uid, orgId);
+      await client.users.grantAction(uid, 'write', 'rid_2', rt);
+      const r = await client.grants.listUnflattened(uid, null, null, null, null, null, null, null);
+
+
+      expect(r).to.be.an('array');
+      expect(r).to.not.be.empty();
+      expect(r[0]).to.have.key('userset_id');
+      expect(r[0]).to.have.key('relation');
+      expect(r[0]).to.have.key('relation_type');
+      expect(r[0]).to.have.key('resource_id');
+      expect(r[0]).to.have.key('resource_type');
+      expect(r[0]).to.have.key('attribute');
     });
   });
 });
