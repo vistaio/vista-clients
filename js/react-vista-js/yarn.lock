@@ -425,10 +425,10 @@
     "@typescript-eslint/types" "5.23.0"
     eslint-visitor-keys "^3.0.0"
 
-"@vista.io/vista-api-client@^0.5.2":
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/@vista.io/vista-api-client/-/vista-api-client-0.5.2.tgz#2867ebb748d0fc1cd16f5b9fb6b5f775e62f2186"
-  integrity sha512-lgguPSbTW3F5H90AcFzKxZZyEbR23ExJu1iJXne9bKOT9gqgrxYp54WAAya1Lkge9L2wzXQ+yaM1f08wFhC85g==
+"@vista.io/vista-api-client@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@vista.io/vista-api-client/-/vista-api-client-0.6.0.tgz#2ad54144e2ade9be4936a7fd8abc6a91aa5df01d"
+  integrity sha512-TQ5dcBW33rxK+9ZtguTSpc2qN/4fks94zgpEVm1ZxtFLnGKwo1vOud09dyNCHRdNKgoUuexhJBxhUsolmOeSeA==
   dependencies:
     axios "^0.21.3"
     rollup-plugin-dts "^4.2.0"
