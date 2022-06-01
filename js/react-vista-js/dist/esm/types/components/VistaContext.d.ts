@@ -11,4 +11,4 @@ declare type VistaProviderProps = {
 declare class VistaProvider extends React.Component<VistaProviderProps> {
     render(): JSX.Element;
 }
-export { VistaContext, VistaProvider };
+export { VistaContext, VistaProvider, VistaClient };

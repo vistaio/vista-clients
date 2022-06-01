@@ -1,5 +1,6 @@
 import * as VistaClient from '@vista.io/vista-api-client';
 import VistaClient__default from '@vista.io/vista-api-client';
+export { default as VistaClient } from '@vista.io/vista-api-client';
 import React from 'react';
 
 declare const VistaContext: React.Context<{

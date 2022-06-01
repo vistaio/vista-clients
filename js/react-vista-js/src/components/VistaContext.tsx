@@ -27,4 +27,4 @@ class VistaProvider extends React.Component<VistaProviderProps> {
     }
 }
 
-export { VistaContext, VistaProvider };
+export { VistaContext, VistaProvider, VistaClient };
