@@ -204,11 +204,12 @@ class Roles extends ApiResource {
                 branch: this.branch,
             });
         });
-        this.upsert = (roleId, permissions, parentRoles = [], orgId = '*') => __awaiter(this, void 0, void 0, function* () {
+        this.upsert = (roleId, permissions, owners, parentRoles = [], orgId = '*') => __awaiter(this, void 0, void 0, function* () {
             return this.dispatch('/v1/roles', HttpMethods.POST, {
                 id: roleId,
                 permissions,
                 parent_roles: parentRoles,
+                owners: owners,
                 org_id: orgId,
                 branch: this.branch,
             });

@@ -67,7 +67,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `client.roles.list(orgId?: string)`       | Lists all Roles         |
-| `client.roles.upsert(roleId: string, permissions: { resourceType: str, attribute: str, action: str }[], parentRoles: string[], orgId: string)`      | Upserts a Role        |
+| `client.roles.upsert(roleId: string, permissions: { resourceType: string, attribute: string, action: string, ownerId: string }[] owners: { key: string }, arentRoles: string[], orgId: string)`      | Upserts a Role        |
 
 
 ### [Users](https://docs.govista.io/Concepts/Terminology#user)

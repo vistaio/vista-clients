@@ -90,7 +90,8 @@ disable=raw-checker-failed,
         missing-module-docstring,
         missing-class-docstring,
         too-few-public-methods,
-	too-many-arguments
+	too-many-arguments,
+	dangerous-default-value
 
 
 # Enable the message, report, category or checker with the given id(s). You can
