@@ -1,6 +1,6 @@
 {
   "name": "@vista.io/react-vista-js",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "homepage": "https://www.app.govista.io/",
   "type": "module",
   "main": "dist/cjs/index.js",
@@ -10,7 +10,7 @@
     "@mui/material": "^5.6.4",
     "@mui/styles": "^5.6.2",
     "@types/react": "^18.0.9",
-    "@vista.io/vista-api-client": "^0.6.0",
+    "@vista.io/vista-api-client": "^0.7.2",
     "react-data-table-component": "^7.4.7"
   },
   "devDependencies": {
