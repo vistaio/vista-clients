@@ -227,7 +227,7 @@ class _VistaRoles extends React.Component<VistaRolesProps, VistaRolesState> {
     super(props);
 
     this.state = {
-      client: new context.vistaClient(context.secret, props.branch, props.hostname || ''),
+      client: context.defaultClient,
       rolesById: {},
       selectedRoleId: '',
     };

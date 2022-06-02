@@ -33,7 +33,7 @@ class VistaCheck extends React.Component<VistaCheckProps, VistaCheckState> {
 
     componentDidMount = async () => {
         if (!this.state.hasChecked) {
-            const vistaClient = new this.context.vistaClient(this.context.secret, this.props.branch, this.props.hostname);
+            const vistaClient = this.context.defaultClient;
             const grants = await vistaClient.users.check(this.props.userId,
                 this.props.action,
                 this.props.resourceId,

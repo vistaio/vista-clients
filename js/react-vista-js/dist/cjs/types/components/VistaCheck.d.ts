@@ -19,7 +19,7 @@ interface VistaCheckState {
 declare class VistaCheck extends React.Component<VistaCheckProps, VistaCheckState> {
     static contextType: React.Context<{
         secret: string;
-        vistaClient: typeof import("@vista.io/vista-api-client").default;
+        defaultClient: import("@vista.io/vista-api-client").default;
     }>;
     context: React.ContextType<typeof VistaContext>;
     state: {

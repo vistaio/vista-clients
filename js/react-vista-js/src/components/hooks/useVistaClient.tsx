@@ -1,10 +1,8 @@
 
 import { useContext } from 'react';
-import { VistaContext } from '../VistaContext';
+import { VistaClient, VistaContext } from '../VistaContext';
 
 
-const useVistaClient = () => {
-  useContext(VistaContext).vistaClient;
-}
-
-export default useVistaClient;
+export const useVistaClient = (): VistaClient => {
+  return useContext(VistaContext).defaultClient;
+};

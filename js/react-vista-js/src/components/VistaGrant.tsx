@@ -144,7 +144,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
     super(props);
 
     this.state = {
-      client: new context.vistaClient(context.secret, props.branch, props.hostname),
+      client: context.defaultClient,
       selectedUserId: '',
       selectedRoleId: '',
       roles: [],

@@ -5,10 +5,12 @@ import React from 'react';
 
 declare const VistaContext: React.Context<{
     secret: string;
-    vistaClient: typeof VistaClient__default;
+    defaultClient: VistaClient__default;
 }>;
 declare type VistaProviderProps = {
     secret: string;
+    branch: string;
+    hostname: string;
     children: React.ReactNode;
 };
 declare class VistaProvider extends React.Component<VistaProviderProps> {
@@ -34,7 +36,7 @@ interface VistaCheckState {
 declare class VistaCheck extends React.Component<VistaCheckProps, VistaCheckState> {
     static contextType: React.Context<{
         secret: string;
-        vistaClient: typeof VistaClient.default;
+        defaultClient: VistaClient.default;
     }>;
     context: React.ContextType<typeof VistaContext>;
     state: {
@@ -50,4 +52,6 @@ declare const VistaGrant: React.JSXElementConstructor<any>;
 
 declare const VistaRoles: React.JSXElementConstructor<any>;
 
-export { VistaCheck, VistaContext, VistaGrant, VistaProvider, VistaRoles };
+declare const useVistaClient: () => VistaClient__default;
+
+export { VistaCheck, VistaContext, VistaGrant, VistaProvider, VistaRoles, useVistaClient };
