@@ -84,6 +84,7 @@ declare class VistaClient {
     users: Users;
     usersets: Usersets;
     constructor(secret: string, branch: string, hostname: string);
+    withBranch(branch: string): VistaClient;
 }
 
 export { VistaClient as default };

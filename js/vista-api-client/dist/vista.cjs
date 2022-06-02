@@ -322,6 +322,9 @@ class VistaClient {
         this.users = new Users(this.axios, branch, this.hostname);
         this.usersets = new Usersets(this.axios, branch, this.hostname);
     }
+    withBranch(branch) {
+        return new VistaClient(this.secret, branch, this.hostname);
+    }
 }
 VistaClient.ALL = '*';
 

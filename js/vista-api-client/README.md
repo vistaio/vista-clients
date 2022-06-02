@@ -36,6 +36,9 @@ Please see the [Vista API Documentation](https://docs.govista.io/api/) for the A
 ## All Operator
 You can use `VistaClient.ALL` in place where `resource_id` or `resource_type` is accepted to indicate all.
 
+## Changing Branches for Operation
+Although `branch` is required as a part of the constructor, one may use `client.withBranch(branch: string)` to use supply a different branch using the same client.
+
 ## Usage
 The following describes methods namespaced by Vista [resources](https://docs.govista.io/Concepts/Terminology).
 

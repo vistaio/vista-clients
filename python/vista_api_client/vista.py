@@ -14,6 +14,7 @@ class VistaClient():
 
     def __init__(self, secret, branch, hostname=None):
         self.hostname = hostname or config['VistaAPIHostname']
+        self.secret = secret
 
         self.admin = Admin(secret, branch, self.hostname)
         self.grants = Grants(secret, branch, self.hostname)
@@ -21,3 +22,6 @@ class VistaClient():
         self.roles = Roles(secret, branch, self.hostname)
         self.users = Users(secret, branch, self.hostname)
         self.usersets = Usersets(secret, branch, self.hostname)
+
+    def with_branch(self, branch):
+        return VistaClient(self.secret, branch, self.hostname)
