@@ -19,7 +19,7 @@ Vista has React components that streamline adding permissions to your platform:
 2. Install the package:
 
 ```
-npm install @vista.io/react-vista-js;
+npm install @vista.io/react-vista-js @emotion/react @emotion/styled
 ```
 
 ## VistaCheck Component

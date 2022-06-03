@@ -74,29 +74,51 @@ interface Role {
 }
 
 interface UserRoleGrantSelectProps extends WithStyles<typeof styles> {
-  roles: Role[],
+  allRoles: Role[],
   label?: string,
-  value: string,
-  onChange: (value: string) => void,
+  userRoles: string[],
+  grantRole: (grantRoleId: string) => void,
+  revokeRole: (revokeRoleId: string) => void,
   className?: string,
   style?: React.CSSProperties,
 }
 
 function UserRoleGrantSelect(props: UserRoleGrantSelectProps) {
-  const { label, value, roles, onChange, className, style } = props;
+  const { label, userRoles, allRoles, className, style, grantRole, revokeRole } = props;
+
   return (
     <FormControl
       sx={{ minWidth: '200px' }}
     >
       <InputLabel>{label || ''}</InputLabel>
       <Select
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
+        multiple
+        value={userRoles}
+        onChange={(event) => {
+          const updatedRoleIds = event.target.value as string[];
+
+          // role revoked
+          if (updatedRoleIds.length < userRoles.length) {
+            const updatedSet = new Set(updatedRoleIds);
+            const revokedRoleId = userRoles.find((r) => !updatedSet.has(r));
+
+            if (revokedRoleId) {
+              revokeRole(revokedRoleId);
+            }
+          } else { // role granted
+            const userRolesSet = new Set(userRoles);
+            const grantedRoleId = updatedRoleIds.find((r) => !userRolesSet.has(r));
+
+            if (grantedRoleId) {
+              grantRole(grantedRoleId);
+            }
+          }
+        }}
         label={label || ''}
         className={className}
         style={style || {}}>
         {
-          roles.map((role) => {
+          allRoles.map((role) => {
             return <MenuItem key={role.id} value={role.id}> {role.id} </MenuItem>;
           })
         }
@@ -105,13 +127,16 @@ function UserRoleGrantSelect(props: UserRoleGrantSelectProps) {
   );
 }
 
+type GrantChangeFn = (userId: string, roleId: string, orgId: string, branch: string) => Promise<unknown>;
+
 interface VistaGrantProps extends WithStyles<typeof styles> {
   resourceId: string,
   resourceType: string,
   hostname: string,
   branch: string,
   orgId: string,
-  onGrant: (body: unknown) => Promise<unknown>,
+  onGrant: GrantChangeFn,
+  onRevoke: GrantChangeFn,
   onGrantError: (err: Error) => void,
   styles: GrantStyles,
   userIdMap: { [userId: string]: string },
@@ -126,10 +151,11 @@ interface Grant {
 
 interface VistaGrantState {
   client: VistaClient,
-  grants: Grant[],
+  usersetIdToGrants: { [id: string]: Grant[] },
   roles: Role[],
   selectedUserId: string,
-  selectedRoleId: string,
+  selectedRoleIds: string[],
+  userIds: string[],
 }
 
 class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
@@ -138,75 +164,84 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
 
   static defaultProps = {
     styles: {},
+    title: "Add Teammates",
   }
 
   constructor(props: VistaGrantProps, context?: any) { // eslint-disable-line
     super(props);
 
     this.state = {
-      client: context.defaultClient,
+      client: context.defaultClient as VistaClient,
       selectedUserId: '',
-      selectedRoleId: '',
+      selectedRoleIds: [],
       roles: [],
-      grants: [],
+      usersetIdToGrants: {},
+      userIds: [],
     };
   }
 
   async componentDidMount() {
+    const users = await this.state.client.withBranch(this.props.branch).users.list(this.props.orgId);
+    const userIds = users.map((u: { id: string }) => u.id);
     const roles = await this.state.client.roles.list(this.props.orgId);
-    const allGrants = await this.state.client.grants.listUnflattened(this.props.orgId);
-    const grants = allGrants.filter((g: Grant) => g.relation_type === 'ROLE');
+    const allGrants: Grant[] = await this.state.client.grants.listUnflattened(null, null, null, null, null, null, this.props.orgId);
+    const usersetIdToGrants: { [id: string]: Grant[] } = {};
+    allGrants.forEach((grant) => {
+      if (!usersetIdToGrants[grant.userset_id]) {
+        usersetIdToGrants[grant.userset_id] = [];
+      }
+
+      if (grant.relation_type === 'ROLE') {
+        usersetIdToGrants[grant.userset_id].push(grant);
+      }
+    });
 
     this.setState({
+      userIds,
       roles,
-      grants,
+      usersetIdToGrants,
     });
   }
 
-  grant = async (userId: string, roleId: string) => {
-    const { resourceId, resourceType, branch, orgId, onGrant, onGrantError } = this.props;
+  onGrantChange = async (userId: string, roleId: string, changeFn: GrantChangeFn) => {
+    const { branch, orgId, onGrant } = this.props;
     if (!onGrant) {
       return;
     }
 
-    // grant
-    const grantRequest = {
-      id: userId,
-      relation: roleId,
-      resource_id: resourceId,
-      resource_type: resourceType,
-      branch: branch,
-    };
-
-    const success = await onGrant(grantRequest).catch((err: Error) => {
-      if (onGrantError) {
-        return onGrantError(err);
-      }
-
-      console.log(err);
-    });
+    const success = await changeFn(userId, roleId, orgId, branch);
 
     if (success) {
-      const allGrants = await this.state.client.grants.listUnflattened(orgId);
-      const grants = allGrants.filter((g: Grant) => g.relation_type === 'ROLE');
+      const allGrants: Grant[] = await this.state.client.grants.listUnflattened(null, null, null, null, null, null, orgId);
+      const usersetIdToGrants: { [id: string]: Grant[] } = {};
+      allGrants.forEach((grant) => {
+        if (!usersetIdToGrants[grant.userset_id]) {
+          usersetIdToGrants[grant.userset_id] = [];
+        }
+
+        if (grant.relation_type === 'ROLE') {
+          usersetIdToGrants[grant.userset_id].push(grant);
+        }
+      });
+
       this.setState({
-        grants,
+        usersetIdToGrants,
       });
     }
     return success;
   }
 
   render() {
-    const { classes, styles, userIdMap } = this.props;
-    const { selectedUserId, selectedRoleId, roles, grants } = this.state;
+    const { classes, styles, userIdMap, title, onGrant, onRevoke } = this.props;
+    const { selectedUserId, selectedRoleIds, roles, usersetIdToGrants, userIds } = this.state;
 
     return (
       <div className={classes.container} style={styles.container}>
-        <h1 className={classes.title} style={styles.title}> Add Teammates </h1>
+        <h1 className={classes.title} style={styles.title}>{title}</h1>
         <div className={classes.newGrantRow} style={styles.newGrantRow}>
           <div className={classes.userSelect} style={styles.userSelect}>
             <FormControl sx={{ 'width': '100%' }}>
-              <InputLabel>Select User </InputLabel>
+              <InputLabel>Select User</InputLabel>
               <Select
                 value={selectedUserId}
                 onChange={(event) => {
@@ -218,9 +253,13 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
                 label="Select User"
               >
                 {
-                  Object.entries(userIdMap).map(([id, name]) => {
-                    return <MenuItem key={id} value={id}> {name} </MenuItem>;
-                  })
+                  userIdMap ?
+                    Object.entries(userIdMap).map(([id, name]) => {
+                      return <MenuItem key={id} value={id}> {name}</MenuItem>;
+                    }) :
+                    userIds.map((id: string) => {
+                      return <MenuItem key={id} value={id}>{id}</MenuItem>
+                    })
                 }
               </Select>
             </FormControl>
@@ -229,27 +268,29 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
           <div className={classes.roleSelect} style={styles.roleSelect}>
             <UserRoleGrantSelect
               label="Select Role"
-              value={selectedRoleId}
-              onChange={(rid) => {
+              userRoles={selectedRoleIds}
+              grantRole={(grantedRoleId) => {
+                selectedRoleIds.push(grantedRoleId);
                 this.setState({
-                  selectedRoleId: rid,
-                })
+                  selectedRoleIds,
+                });
               }}
-              roles={roles} />
+              revokeRole={(revokedRoleId) => {
+                this.setState({
+                  selectedRoleIds: selectedRoleIds.filter((id) => id !== revokedRoleId),
+                });
+              }}
+              allRoles={selectedUserId.length ? roles.filter((role) => !usersetIdToGrants[selectedUserId].map((g) => g.relation).includes(role.id)) : roles} />
           </div>
 
           <Button
             className={classes.grantButton}
             style={styles.grantButton}
             variant="contained"
-            disabled={!(selectedUserId.length && selectedRoleId.length)}
+            disabled={!(selectedUserId.length && selectedRoleIds.length)}
             onClick={async () => {
-              const success = await this.grant(selectedUserId, selectedRoleId);
-              if (success) {
-                this.setState({
-                  selectedUserId: '',
-                  selectedRoleId: '',
-                });
+              for (const roleId of selectedRoleIds) {
+                await this.onGrantChange(selectedUserId, roleId, onGrant);
               }
             }}>
             Grant
@@ -258,31 +299,53 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
         <div className={classes.grantList} style={styles.grantList}>
           <List>
             {
-              grants.map((grant) => {
+              Object.keys(usersetIdToGrants).map((usersetId: string) => {
+                const grants = usersetIdToGrants[usersetId];
+                const roleIds = grants.map((g) => g.relation);
                 return (
                   <ListItem
-                    key={`${grant.userset_id}_${grant.relation}`
-                    }
+                    key={usersetId}
                     className={classes.grantRow}
                     style={styles.grantRow}
                     secondaryAction={
                       <UserRoleGrantSelect
-                        value={grant.relation}
-                        onChange={async (rid) => {
-                          await this.grant(grant.userset_id, rid);
+                        userRoles={roleIds}
+                        grantRole={(grantedRoleId) => {
+                          grants.push({
+                            userId: usersetId,
+                            relation: grantedRoleId,
+                            userset_id: usersetId,
+                            relation_type: 'ROLE',
+                          })
+
+                          usersetIdToGrants[usersetId] = grants;
+
+                          this.onGrantChange(usersetId, grantedRoleId, onGrant);
+                          this.setState({
+                            usersetIdToGrants,
+                          })
+                        }}
+                        revokeRole={(revokedRoleId) => {
+                          const newGrants = grants.filter((g) => g.relation !== revokedRoleId);
+                          usersetIdToGrants[usersetId] = newGrants;
+
+                          this.onGrantChange(usersetId, revokedRoleId, onRevoke);
+                          this.setState({
+                            usersetIdToGrants,
+                          })
                         }}
                         className={classes.grantRoleSelect}
                         style={styles.grantRoleSelect}
-                        roles={roles} />
+                        allRoles={roles} />
                     }>
-                    <ListItemText primary={grant.userset_id} />
+                    <ListItemText primary={usersetId} />
                   </ListItem>
                 );
               })
             }
           </List>
         </div>
-      </div>
+      </div >
     );
   }
 }
