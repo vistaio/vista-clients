@@ -221,10 +221,14 @@ class Users extends ApiResource {
                 branch: this.branch,
             });
         });
-        this.list = (userId, orgId = '') => __awaiter(this, void 0, void 0, function* () {
+        this.list = (orgId = '') => __awaiter(this, void 0, void 0, function* () {
             return this.dispatch('/v1/users', HttpMethods.GET, {
-                id: userId,
                 org_id: orgId,
+                branch: this.branch,
+            });
+        });
+        this.listOrgs = () => __awaiter(this, void 0, void 0, function* () {
+            return this.dispatch('/v1/users/orgs', HttpMethods.GET, {
                 branch: this.branch,
             });
         });

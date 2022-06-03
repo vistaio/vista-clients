@@ -81,6 +81,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 |--------|-------------|
 | `create(user_id: str, org_id: str)`| Creates new User  |
 | `list(org_id?: str)`| Lists Users in `org_id`  |
+| `list_orgs()`| Lists all orgs for set branch  |
 | `assign_to_userset(user_id: str, userset_id: str)`| Adds User to a Userset  |
 | `remove_from_userset(user_id: str, userset_id: str)`| Removes User from Userset  |
 | `check(user_id: str, action: str, resource_type: str, resource_id: str, attribute?: str)`| Checks User access  |

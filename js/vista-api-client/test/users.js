@@ -187,4 +187,19 @@ describe('Users', () => {
       expect(r).to.have.key('resource_type');
     });
   });
+
+  describe('listOrgs', () => {
+    it('should return proper response', async () => {
+
+      const uid = `${uid_base}_user_10`;
+      await client.users.create(uid, orgId);
+      const uid2 = `${uid_base}_user_10_2`;
+      const org2 = `${uid_base}_org_10_2`
+      await client.users.create(uid2, org2);
+      const orgs = await client.users.listOrgs();
+
+      expect(orgs).to.be.an('array');
+      expect(orgs).to.contain(org2);
+    });
+  });
 });

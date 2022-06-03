@@ -19,10 +19,15 @@ class Users extends ApiResource {
         });
     }
 
-    list = async (userId: string, orgId = '') => {
+    list = async (orgId = '') => {
         return this.dispatch('/v1/users', HttpMethods.GET, {
-            id: userId,
             org_id: orgId,
+            branch: this.branch,
+        });
+    }
+
+    listOrgs = async () => {
+        return this.dispatch('/v1/users/orgs', HttpMethods.GET, {
             branch: this.branch,
         });
     }

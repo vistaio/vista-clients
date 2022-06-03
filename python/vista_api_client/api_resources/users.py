@@ -21,6 +21,11 @@ class Users(ApiResource):
             'branch': self.branch,
         })
 
+    def list_orgs(self):
+        return self.dispatch('/v1/users/orgs', HttpMethods.GET, {
+            'branch': self.branch,
+        })
+
     def assign_to_userset(self, user_id, userset_id):
         return self.dispatch('/v1/users/assign', HttpMethods.POST, {
             'id': user_id,

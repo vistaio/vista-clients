@@ -80,6 +80,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 |--------|-------------|
 | `create(userId: string, orgId: string)`       | Creates new User         |
 | `list(orgId?: string)`| Lists Users in `orgId`  |
+| `listOrgs()`| Lists all orgs for set branch  |
 | `assignToUserset(userId: string, usersetId: string)`       | Adds User to a Userset         |
 | `removeFromUserset(userId: string, usersetId: string)`       | Removes User from Userset         |
 | `check(userId: string, action: string, resourceType: string, resourceId: string, attribute?: string)`       | Checks User access         |

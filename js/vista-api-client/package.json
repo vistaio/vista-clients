@@ -1,6 +1,6 @@
 {
   "name": "@vista.io/vista-api-client",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "NodeJS implementation of the Vista API.",
   "type": "module",
   "homepage": "https://www.app.govista.io/",

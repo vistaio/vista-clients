@@ -50,7 +50,8 @@ declare class Users extends ApiResource {
     grants: Grants;
     constructor(axiosClient: AxiosInstance, branch: string, hostname: string);
     create: (userId: string, orgId: string) => Promise<any>;
-    list: (userId: string, orgId?: string) => Promise<any>;
+    list: (orgId?: string) => Promise<any>;
+    listOrgs: () => Promise<any>;
     assignToUserset: (userId: string, usersetId: string) => Promise<any>;
     removeFromUserset: (userId: string, usersetId: string) => Promise<any>;
     check: (userId: string, action: string, resourceId: string, resourceType: string, attribute?: string) => Promise<any>;
