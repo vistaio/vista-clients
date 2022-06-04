@@ -4,11 +4,15 @@ import { withStyles, Styles, WithStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import Chip from '@mui/material/Chip';
+
 import VistaClient from '@vista.io/vista-api-client';
 
 import { VistaContext } from './VistaContext';
@@ -18,15 +22,17 @@ interface GrantStyles {
   container: React.CSSProperties,
   title: React.CSSProperties
   newGrantRow: React.CSSProperties,
+  userSelectContainer: React.CSSProperties,
   userSelect: React.CSSProperties,
   roleSelect: React.CSSProperties,
   grantButton: React.CSSProperties,
   grantRow: React.CSSProperties,
   grantList: React.CSSProperties,
   grantRoleSelect: React.CSSProperties,
+  grantRoleSelectChip: React.CSSProperties,
 }
 
-const styles: Styles<any, any> = { // eslint-disable-line
+const classes: Styles<any, any> = { // eslint-disable-line
   container: {
     height: '500px',
     width: '600px',
@@ -45,9 +51,13 @@ const styles: Styles<any, any> = { // eslint-disable-line
     display: 'flex',
     marginBottom: '20px',
   },
-  userSelect: {
+  userSelectContainer: {
     flexGrow: '1',
+    height: '64px !important',
     marginRight: '10px',
+  },
+  userSelect: {
+    height: '64px !important',
   },
   roleSelect: {
     marginRight: '10px',
@@ -66,34 +76,49 @@ const styles: Styles<any, any> = { // eslint-disable-line
     overflow: 'scroll',
     margin: '0',
   },
-  grantRoleSelect: {},
+  grantRoleSelect: {
+    height: '64px',
+  },
+  grantRoleSelectChip: {
+    backgroundColor: 'black !important',
+    color: 'white !important',
+  }
 };
 
 interface Role {
   id: string,
 }
 
-interface UserRoleGrantSelectProps extends WithStyles<typeof styles> {
+interface UserRoleGrantSelectProps {
   allRoles: Role[],
   label?: string,
   userRoles: string[],
+  selectClassName: string,
+  chipsClassName: string,
+  selectStyles: React.CSSProperties,
+  chipsStyles: React.CSSProperties,
   grantRole: (grantRoleId: string) => void,
   revokeRole: (revokeRoleId: string) => void,
-  className?: string,
-  style?: React.CSSProperties,
 }
 
 function UserRoleGrantSelect(props: UserRoleGrantSelectProps) {
-  const { label, userRoles, allRoles, className, style, grantRole, revokeRole } = props;
+  const { label, userRoles, allRoles, selectClassName, chipsClassName, selectStyles, chipsStyles, grantRole, revokeRole } = props;
 
   return (
     <FormControl
       sx={{ minWidth: '200px' }}
     >
-      <InputLabel>{label || ''}</InputLabel>
+      <InputLabel key={label || ''} shrink={userRoles.length > 0}>{label || ''}</InputLabel>
       <Select
         multiple
-        value={userRoles}
+        value={[...userRoles]}
+        renderValue={(selected) => (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+            {selected.sort().map((value) => (
+              <Chip key={value} label={value} className={chipsClassName} style={chipsStyles || {}} />
+            ))}
+          </Box>
+        )}
         onChange={(event) => {
           const updatedRoleIds = event.target.value as string[];
 
@@ -115,11 +140,16 @@ function UserRoleGrantSelect(props: UserRoleGrantSelectProps) {
           }
         }}
         label={label || ''}
-        className={className}
-        style={style || {}}>
+        className={selectClassName}
+        style={selectStyles || {}}>
         {
-          allRoles.map((role) => {
-            return <MenuItem key={role.id} value={role.id}> {role.id} </MenuItem>;
+          allRoles.map((r) => r.id).sort().map((role) => {
+            return (
+              <MenuItem key={role} value={role}>
+                <Checkbox checked={userRoles.includes(role)} />
+                <ListItemText primary={role} />
+              </MenuItem>)
+              ;
           })
         }
       </Select>
@@ -129,7 +159,7 @@ function UserRoleGrantSelect(props: UserRoleGrantSelectProps) {
 
 type GrantChangeFn = (userId: string, roleId: string, orgId: string, branch: string) => Promise<unknown>;
 
-interface VistaGrantProps extends WithStyles<typeof styles> {
+interface VistaGrantProps extends WithStyles<typeof classes> {
   resourceId: string,
   resourceType: string,
   hostname: string,
@@ -140,6 +170,7 @@ interface VistaGrantProps extends WithStyles<typeof styles> {
   onGrantError: (err: Error) => void,
   styles: GrantStyles,
   userIdMap: { [userId: string]: string },
+  disabled: boolean,
 }
 
 interface Grant {
@@ -156,6 +187,8 @@ interface VistaGrantState {
   selectedUserId: string,
   selectedRoleIds: string[],
   userIds: string[],
+  orgId: string,
+  branch: string,
 }
 
 class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
@@ -177,14 +210,37 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
       roles: [],
       usersetIdToGrants: {},
       userIds: [],
+      orgId: props.orgId,
+      branch: props.branch,
     };
   }
 
   async componentDidMount() {
-    const users = await this.state.client.withBranch(this.props.branch).users.list(this.props.orgId);
+    if (this.props.disabled) {
+      return
+    }
+
+    await this.refresh(this.props.orgId, this.props.branch);
+  }
+
+  async componentDidUpdate() {
+    console.log(this.props.branch)
+    if (this.state.orgId === this.props.orgId && this.state.orgId !== '' && this.state.branch !== '' && this.state.branch === this.props.branch) {
+      return
+    }
+
+    await this.refresh(this.props.orgId, this.props.branch);
+    this.setState({
+      orgId: this.props.orgId,
+      branch: this.props.branch,
+    });
+  }
+
+  async refresh(orgId: string, branch: string) {
+    const users = await this.state.client.withBranch(branch).users.list(orgId);
     const userIds = users.map((u: { id: string }) => u.id);
-    const roles = await this.state.client.roles.list(this.props.orgId);
-    const allGrants: Grant[] = await this.state.client.grants.listUnflattened(null, null, null, null, null, null, this.props.orgId);
+    const roles = await this.state.client.withBranch(branch).roles.list(orgId);
+    const allGrants: Grant[] = await this.state.client.withBranch(branch).grants.listUnflattened(null, null, null, null, null, null, orgId);
     const usersetIdToGrants: { [id: string]: Grant[] } = {};
     allGrants.forEach((grant) => {
       if (!usersetIdToGrants[grant.userset_id]) {
@@ -212,21 +268,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
     const success = await changeFn(userId, roleId, orgId, branch);
 
     if (success) {
-      const allGrants: Grant[] = await this.state.client.grants.listUnflattened(null, null, null, null, null, null, orgId);
-      const usersetIdToGrants: { [id: string]: Grant[] } = {};
-      allGrants.forEach((grant) => {
-        if (!usersetIdToGrants[grant.userset_id]) {
-          usersetIdToGrants[grant.userset_id] = [];
-        }
-
-        if (grant.relation_type === 'ROLE') {
-          usersetIdToGrants[grant.userset_id].push(grant);
-        }
-      });
-
-      this.setState({
-        usersetIdToGrants,
-      });
+      await this.refresh(orgId, branch);
     }
     return success;
   }
@@ -239,17 +281,19 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
       <div className={classes.container} style={styles.container}>
         <h1 className={classes.title} style={styles.title}>{title}</h1>
         <div className={classes.newGrantRow} style={styles.newGrantRow}>
-          <div className={classes.userSelect} style={styles.userSelect}>
+          <div className={classes.userSelectContainer} style={styles.userSelectContainer}>
             <FormControl sx={{ 'width': '100%' }}>
-              <InputLabel>Select User</InputLabel>
+              <InputLabel margin="dense">Select User</InputLabel>
               <Select
                 value={selectedUserId}
                 onChange={(event) => {
                   this.setState({
                     selectedUserId: event.target.value,
+                    selectedRoleIds: [],
                   })
-                }
-                }
+                }}
+                className={classes.userSelect}
+                style={styles.userSelect}
                 label="Select User"
               >
                 {
@@ -264,7 +308,6 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
               </Select>
             </FormControl>
           </div>
-
           <div className={classes.roleSelect} style={styles.roleSelect}>
             <UserRoleGrantSelect
               label="Select Role"
@@ -280,7 +323,11 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
                   selectedRoleIds: selectedRoleIds.filter((id) => id !== revokedRoleId),
                 });
               }}
-              allRoles={selectedUserId.length ? roles.filter((role) => !usersetIdToGrants[selectedUserId].map((g) => g.relation).includes(role.id)) : roles} />
+              selectClassName={classes.grantRoleSelect}
+              chipsClassName={classes.grantRoleSelectChip}
+              selectStyles={styles.grantRoleSelect}
+              chipsStyles={styles.grantRoleSelectChip}
+              allRoles={(selectedUserId.length && usersetIdToGrants[selectedUserId]) ? roles.filter((role) => !usersetIdToGrants[selectedUserId].map((g) => g.relation).includes(role.id)) : roles} />
           </div>
 
           <Button
@@ -292,6 +339,11 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
               for (const roleId of selectedRoleIds) {
                 await this.onGrantChange(selectedUserId, roleId, onGrant);
               }
+
+              this.setState({
+                selectedUserId: '',
+                selectedRoleIds: [],
+              })
             }}>
             Grant
           </Button>
@@ -299,7 +351,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
         <div className={classes.grantList} style={styles.grantList}>
           <List>
             {
-              Object.keys(usersetIdToGrants).map((usersetId: string) => {
+              Object.keys(usersetIdToGrants).sort().map((usersetId: string) => {
                 const grants = usersetIdToGrants[usersetId];
                 const roleIds = grants.map((g) => g.relation);
                 return (
@@ -334,8 +386,10 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
                             usersetIdToGrants,
                           })
                         }}
-                        className={classes.grantRoleSelect}
-                        style={styles.grantRoleSelect}
+                        selectClassName={classes.grantRoleSelect}
+                        chipsClassName={classes.grantRoleSelectChip}
+                        selectStyles={styles.grantRoleSelect}
+                        chipsStyles={styles.grantRoleSelectChip}
                         allRoles={roles} />
                     }>
                     <ListItemText primary={usersetId} />
@@ -350,5 +404,5 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
   }
 }
 
-const VistaGrant = withStyles(styles)(_VistaGrant);
+const VistaGrant = withStyles(classes)(_VistaGrant);
 export { VistaGrant };

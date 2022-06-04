@@ -69,9 +69,13 @@ import { VistaProvider, VistaGrant } from '@vista.io/react-vista-js';
         resourceId="*"
 
         // called when a role is granted or changed for a teammate
-        onGrant={async(data) => {
+        onGrant={async (userId: string, roleId: string, orgId: string, branch: string) => {
             const success = await sendToGrantRoute(data);
             return true;
+        }}
+
+        onRevoke={async (userId: string, roleId: string, orgId: string, branch: string) => {
+
         }}
 
         // optional
