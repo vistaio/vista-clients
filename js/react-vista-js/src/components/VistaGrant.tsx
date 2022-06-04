@@ -23,6 +23,7 @@ interface GrantStyles {
   title: React.CSSProperties
   newGrantRow: React.CSSProperties,
   userSelectContainer: React.CSSProperties,
+  grantSelectLabel: React.CSSProperties,
   userSelect: React.CSSProperties,
   roleSelect: React.CSSProperties,
   grantButton: React.CSSProperties,
@@ -58,6 +59,9 @@ const classes: Styles<any, any> = { // eslint-disable-line
   },
   userSelect: {
     height: '64px !important',
+  },
+  grantSelectLabel: {
+    top: '4px',
   },
   roleSelect: {
     marginRight: '10px',
@@ -97,18 +101,20 @@ interface UserRoleGrantSelectProps {
   chipsClassName: string,
   selectStyles: React.CSSProperties,
   chipsStyles: React.CSSProperties,
+  grantSelectLabel: string,
+  grantSelectLabelStyles: React.CSSProperties,
   grantRole: (grantRoleId: string) => void,
   revokeRole: (revokeRoleId: string) => void,
 }
 
 function UserRoleGrantSelect(props: UserRoleGrantSelectProps) {
-  const { label, userRoles, allRoles, selectClassName, chipsClassName, selectStyles, chipsStyles, grantRole, revokeRole } = props;
+  const { label, userRoles, grantSelectLabel, grantSelectLabelStyles, allRoles, selectClassName, chipsClassName, selectStyles, chipsStyles, grantRole, revokeRole } = props;
 
   return (
     <FormControl
       sx={{ minWidth: '200px' }}
     >
-      <InputLabel key={label || ''} shrink={userRoles.length > 0}>{label || ''}</InputLabel>
+      <InputLabel className={grantSelectLabel} style={grantSelectLabelStyles} shrink={userRoles.length > 0}>{label || ''}</InputLabel>
       <Select
         multiple
         value={[...userRoles]}
@@ -215,17 +221,14 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
     };
   }
 
-  async componentDidMount() {
-    if (this.props.disabled) {
+  async componentDidUpdate() {
+    const { orgId, branch, } = this.props;
+
+    if (this.state.orgId === orgId && this.state.branch === branch) {
       return
     }
 
-    await this.refresh(this.props.orgId, this.props.branch);
-  }
-
-  async componentDidUpdate() {
-    console.log(this.props.branch)
-    if (this.state.orgId === this.props.orgId && this.state.orgId !== '' && this.state.branch !== '' && this.state.branch === this.props.branch) {
+    if (orgId === '' || branch === '') {
       return
     }
 
@@ -283,7 +286,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
         <div className={classes.newGrantRow} style={styles.newGrantRow}>
           <div className={classes.userSelectContainer} style={styles.userSelectContainer}>
             <FormControl sx={{ 'width': '100%' }}>
-              <InputLabel margin="dense">Select User</InputLabel>
+              <InputLabel className={classes.grantSelectLabel} style={styles.grantSelectLabel} margin="dense">Select User</InputLabel>
               <Select
                 value={selectedUserId}
                 onChange={(event) => {
@@ -327,6 +330,8 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
               chipsClassName={classes.grantRoleSelectChip}
               selectStyles={styles.grantRoleSelect}
               chipsStyles={styles.grantRoleSelectChip}
+              grantSelectLabel={classes.grantSelectLabel}
+              grantSelectLabelStyles={styles.grantSelectLabel}
               allRoles={(selectedUserId.length && usersetIdToGrants[selectedUserId]) ? roles.filter((role) => !usersetIdToGrants[selectedUserId].map((g) => g.relation).includes(role.id)) : roles} />
           </div>
 
@@ -390,6 +395,8 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
                         chipsClassName={classes.grantRoleSelectChip}
                         selectStyles={styles.grantRoleSelect}
                         chipsStyles={styles.grantRoleSelectChip}
+                        grantSelectLabel={classes.grantSelectLabel}
+                        grantSelectLabelStyles={styles.grantSelectLabel}
                         allRoles={roles} />
                     }>
                     <ListItemText primary={usersetId} />
