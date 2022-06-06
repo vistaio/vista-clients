@@ -12,6 +12,8 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 import VistaClient from '@vista.io/vista-api-client';
 
@@ -59,6 +61,9 @@ const classes: Styles<any, any> = { // eslint-disable-line
   },
   userSelect: {
     height: '64px !important',
+    '& 	.MuiAutocomplete-inputRoot': {
+      height: '64px',
+    },
   },
   grantSelectLabel: {
     top: '4px',
@@ -190,6 +195,7 @@ interface VistaGrantState {
   client: VistaClient,
   usersetIdToGrants: { [id: string]: Grant[] },
   roles: Role[],
+  userIdInput: string,
   selectedUserId: string,
   selectedRoleIds: string[],
   userIds: string[],
@@ -211,6 +217,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
 
     this.state = {
       client: context.defaultClient as VistaClient,
+      userIdInput: '',
       selectedUserId: '',
       selectedRoleIds: [],
       roles: [],
@@ -278,38 +285,33 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
 
   render() {
     const { classes, styles, userIdMap, title, onGrant, onRevoke } = this.props;
-    const { selectedUserId, selectedRoleIds, roles, usersetIdToGrants, userIds } = this.state;
+    const { selectedUserId, selectedRoleIds, roles, usersetIdToGrants, userIds, userIdInput } = this.state;
 
     return (
       <div className={classes.container} style={styles.container}>
         <h1 className={classes.title} style={styles.title}>{title}</h1>
         <div className={classes.newGrantRow} style={styles.newGrantRow}>
           <div className={classes.userSelectContainer} style={styles.userSelectContainer}>
-            <FormControl sx={{ 'width': '100%' }}>
-              <InputLabel className={classes.grantSelectLabel} style={styles.grantSelectLabel} margin="dense">Select User</InputLabel>
-              <Select
-                value={selectedUserId}
-                onChange={(event) => {
-                  this.setState({
-                    selectedUserId: event.target.value,
-                    selectedRoleIds: [],
-                  })
-                }}
-                className={classes.userSelect}
-                style={styles.userSelect}
-                label="Select User"
-              >
-                {
-                  userIdMap ?
-                    Object.entries(userIdMap).map(([id, name]) => {
-                      return <MenuItem key={id} value={id}> {name}</MenuItem>;
-                    }) :
-                    userIds.map((id: string) => {
-                      return <MenuItem key={id} value={id}>{id}</MenuItem>
-                    })
-                }
-              </Select>
-            </FormControl>
+            <Autocomplete
+              value={selectedUserId}
+              onChange={(_event: any, newValue: string | null) => {
+                this.setState({
+                  selectedUserId: newValue || '',
+                  selectedRoleIds: [],
+                })
+              }}
+              inputValue={userIdInput}
+              onInputChange={(_event, newInputValue) => {
+                this.setState({
+                  userIdInput: newInputValue,
+                })
+              }}
+              className={classes.userSelect}
+              style={styles.userSelect}
+              sx={{ width: '100% ' }}
+              options={(userIdMap ? Object.keys(userIdMap) : userIds)}
+              renderInput={(params) => <TextField {...params} InputLabelProps={{ className: classes.grantSelectLabel, style: styles.grantSelectLabel }} label="Select User" />}
+            />
           </div>
           <div className={classes.roleSelect} style={styles.roleSelect}>
             <UserRoleGrantSelect
