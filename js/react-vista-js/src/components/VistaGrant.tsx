@@ -309,7 +309,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
               className={classes.userSelect}
               style={styles.userSelect}
               sx={{ width: '100% ' }}
-              options={(userIdMap ? Object.keys(userIdMap) : userIds)}
+              options={(userIdMap ? ['*', ...Object.keys(userIdMap)] : ['*', ...userIds])}
               renderInput={(params) => <TextField {...params} InputLabelProps={{ className: classes.grantSelectLabel, style: styles.grantSelectLabel }} label="Select User" />}
             />
           </div>
