@@ -173,7 +173,6 @@ type GrantChangeFn = (userId: string, roleId: string, resourceId: string, resour
 interface VistaGrantProps extends WithStyles<typeof classes> {
   resourceId: string,
   resourceType: string,
-  hostname: string,
   branch: string,
   orgId: string,
   onGrant: GrantChangeFn,
@@ -181,7 +180,6 @@ interface VistaGrantProps extends WithStyles<typeof classes> {
   onGrantError: (err: Error) => void,
   styles: GrantStyles,
   userIdMap: { [userId: string]: string },
-  disabled: boolean,
 }
 
 interface Grant {
@@ -234,7 +232,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
       return
     }
 
-    await this.refresh(orgId, branch);
+    await this.refresh();
   }
 
   async componentDidUpdate() {
@@ -248,19 +246,21 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
       return
     }
 
-    await this.refresh(this.props.orgId, this.props.branch);
+    await this.refresh();
+
     this.setState({
-      orgId: this.props.orgId,
-      branch: this.props.branch,
+      orgId,
+      branch,
     });
   }
 
-  async refresh(orgId: string, branch: string) {
+  async refresh() {
+    const { resourceId, resourceType, orgId, branch } = this.props;
     const newClient = this.state.client.withBranch(branch);
     const users = await newClient.users.list(orgId);
     const userIds = users.map((u: { id: string }) => u.id);
     const roles = await newClient.roles.list(orgId);
-    const allGrants: Grant[] = await newClient.grants.listUnflattened(null, null, null, null, null, null, orgId);
+    const allGrants: Grant[] = await newClient.grants.listUnflattened(null, null, null, resourceId, resourceType, null, orgId);
     const usersetIdToGrants: { [id: string]: Grant[] } = {};
     allGrants.forEach((grant) => {
       if (!usersetIdToGrants[grant.userset_id]) {
@@ -285,7 +285,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
     const success = await changeFn(userId, roleId, resourceId, resourceType, orgId, branch);
 
     if (success) {
-      await this.refresh(orgId, branch);
+      await this.refresh();
     }
     return success;
   }

@@ -1,6 +1,6 @@
 {
   "name": "@vista.io/react-vista-js",
-  "version": "0.2.15",
+  "version": "0.2.16",
   "homepage": "https://www.app.govista.io/",
   "main": "./dist/esm/index.js",
   "exports": {
