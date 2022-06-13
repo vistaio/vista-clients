@@ -168,7 +168,7 @@ function UserRoleGrantSelect(props: UserRoleGrantSelectProps) {
   );
 }
 
-type GrantChangeFn = (userId: string, roleId: string, orgId: string, branch: string) => Promise<unknown>;
+type GrantChangeFn = (userId: string, roleId: string, resourceId: string, resourceType: string, orgId: string, branch: string) => Promise<unknown>;
 
 interface VistaGrantProps extends WithStyles<typeof classes> {
   resourceId: string,
@@ -228,8 +228,17 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
     };
   }
 
+  async componentDidMount() {
+    const { orgId, branch } = this.props;
+    if (!orgId || !orgId.length || !branch || !branch.length) {
+      return
+    }
+
+    await this.refresh(orgId, branch);
+  }
+
   async componentDidUpdate() {
-    const { orgId, branch, } = this.props;
+    const { orgId, branch } = this.props;
 
     if (this.state.orgId === orgId && this.state.branch === branch) {
       return
@@ -247,10 +256,11 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
   }
 
   async refresh(orgId: string, branch: string) {
-    const users = await this.state.client.withBranch(branch).users.list(orgId);
+    const newClient = this.state.client.withBranch(branch);
+    const users = await newClient.users.list(orgId);
     const userIds = users.map((u: { id: string }) => u.id);
-    const roles = await this.state.client.withBranch(branch).roles.list(orgId);
-    const allGrants: Grant[] = await this.state.client.withBranch(branch).grants.listUnflattened(null, null, null, null, null, null, orgId);
+    const roles = await newClient.roles.list(orgId);
+    const allGrants: Grant[] = await newClient.grants.listUnflattened(null, null, null, null, null, null, orgId);
     const usersetIdToGrants: { [id: string]: Grant[] } = {};
     allGrants.forEach((grant) => {
       if (!usersetIdToGrants[grant.userset_id]) {
@@ -270,12 +280,9 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
   }
 
   onGrantChange = async (userId: string, roleId: string, changeFn: GrantChangeFn) => {
-    const { branch, orgId, onGrant } = this.props;
-    if (!onGrant) {
-      return;
-    }
+    const { resourceId, resourceType, orgId, branch } = this.props;
 
-    const success = await changeFn(userId, roleId, orgId, branch);
+    const success = await changeFn(userId, roleId, resourceId, resourceType, orgId, branch);
 
     if (success) {
       await this.refresh(orgId, branch);
@@ -293,7 +300,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
         <div className={classes.newGrantRow} style={styles.newGrantRow}>
           <div className={classes.userSelectContainer} style={styles.userSelectContainer}>
             <Autocomplete
-              value={selectedUserId}
+              value={selectedUserId.length ? selectedUserId : null}
               onChange={(_event: any, newValue: string | null) => {
                 this.setState({
                   selectedUserId: newValue || '',
@@ -308,7 +315,7 @@ class _VistaGrant extends React.Component<VistaGrantProps, VistaGrantState> {
               }}
               className={classes.userSelect}
               style={styles.userSelect}
-              sx={{ width: '100% ' }}
+              sx={{ width: '100%' }}
               options={(userIdMap ? ['*', ...Object.keys(userIdMap)] : ['*', ...userIds])}
               renderInput={(params) => <TextField {...params} InputLabelProps={{ className: classes.grantSelectLabel, style: styles.grantSelectLabel }} label="Select User" />}
             />

@@ -1,22 +1,28 @@
 {
   "name": "@vista.io/react-vista-js",
-  "version": "0.2.13",
+  "version": "0.2.15",
   "homepage": "https://www.app.govista.io/",
-  "type": "module",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/esm/index.js",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "require": "./dist/cjs/index.js",
+    "import": "./dist/esm/index.js"
+  },
   "dependencies": {
-    "@mui/material": "^5.6.4",
-    "@mui/styles": "^5.6.2",
-    "@types/react": "^18.0.9",
-    "@vista.io/vista-api-client": "^0.7.3",
-    "react-data-table-component": "^7.4.7"
+    "react-data-table-component": "^7.4.7",
+    "styled-components": "^5.3.5",
+    "@vista.io/vista-api-client": "^0.7.4"
   },
   "devDependencies": {
+    "@emotion/react": "11.x",
+    "@emotion/styled": "11.x",
+    "@mui/material": "5.x",
+    "@mui/styles": "5.x",
+    "react": "17.x",
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-typescript": "^8.3.2",
+    "@types/react": "17.x",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "eslint": "^8.15.0",
@@ -31,11 +37,15 @@
     "typescript": "^4.6.4"
   },
   "peerDependencies": {
+    "@babel/core": "^7.0.0",
+    "react": "^17.0.0",
+    "react-dom": ">= 16.8.0",
+    "react-is": ">= 16.8.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.4.1",
     "@mui/styles": "^5.4.1",
-    "underscore": "^1.13.1"
+    "@vista.io/vista-api-client": "^0.7.3"
   },
   "scripts": {
     "build": "yarn clean && rollup -c",
@@ -46,7 +56,7 @@
   "description": "NodeJS implementation of the Vista API.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/siddhantdange/vista-clients.git"
+    "url": "git+https://github.com/vistaio/vista-clients.git"
   },
   "keywords": [
     "vista",
@@ -58,7 +68,7 @@
   "author": "Sid Dange",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/siddhantdange/vista-clients/issues"
+    "url": "https://github.com/vistaio/vista-clients/issues"
   },
   "browserslist": [
     ">0.2%",

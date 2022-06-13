@@ -11,23 +11,23 @@ import packageJson from './package.json';
 
 export default [{
     input: 'src/index.ts',
-    external: ['react-data-table-component', '@vista.io/vista-api-client'],
+    external: ['@vista.io/vista-api-client', '@mui/material', '@mui/styles', '@emotion/react', '@emotion/styled', 'react'],
     output: [
         {
-            file: packageJson.main,
+            file: packageJson.exports.require,
             format: 'cjs',
             sourcemap: true,
             name: 'react-lib'
         },
         {
-            file: packageJson.module,
+            file: packageJson.exports.import,
             format: 'esm',
             sourcemap: true
         }
     ],
     plugins: [
         external(),
-        resolve(),
+        resolve({ includeDependencies: true }),
         commonjs(),
         typescript({ tsconfig: './tsconfig.json' }),
         postcss(),
