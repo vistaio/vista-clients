@@ -6,7 +6,7 @@
   "type": "module",
   "dependencies": {
     "@vista.io/vista-api-client": "../js/vista-api-client",
-    "nodemon": "^2.0.15",
+    "nodemon": "^2.0.17",
     "socket.io-client": "^4.4.1"
   },
   "scripts": {
