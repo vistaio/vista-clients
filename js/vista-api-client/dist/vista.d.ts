@@ -86,6 +86,12 @@ declare class VistaClient {
     usersets: Usersets;
     constructor(secret: string, branch: string, hostname: string);
     withBranch(branch: string): VistaClient;
+    upsertBlueprint(blueprint: {
+        [branch: string]: {
+            resourceTypes: any;
+            roles: any;
+        };
+    }): Promise<void>;
 }
 
 export { VistaClient as default };

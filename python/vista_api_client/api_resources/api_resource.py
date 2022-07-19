@@ -38,7 +38,10 @@ class ApiResource():
         try:
             resp.raise_for_status()
         except Exception as exc:
-            raise Exception(resp.json()['message']) from exc
+            try:
+                raise Exception(resp.json()['message']) from exc
+            except ValueError:
+                raise Exception(resp.text) from exc
 
         if resp.status_code == 204:
             return {}

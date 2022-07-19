@@ -6,10 +6,6 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var Axios__default = /*#__PURE__*/_interopDefaultLegacy(Axios);
 
-var config = {
-    VistaAPIHostname: 'https://api.govista.io',
-};
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -35,6 +31,10 @@ function __awaiter(thisArg, _arguments, P, generator) {
     });
 }
 
+var config = {
+    VistaAPIHostname: 'https://api.govista.io',
+};
+
 var HttpMethods;
 (function (HttpMethods) {
     HttpMethods["GET"] = "GET";
@@ -59,7 +59,7 @@ class ApiResource {
             }
             const resp = yield this.axiosClient.request(config).catch((error) => {
                 if (error.response) {
-                    throw Error(error.response.data.message);
+                    throw Error(error.response.data.message || error.response.data);
                 }
                 else if (error.request) {
                     throw Error('There was a problem with the request');
@@ -328,6 +328,23 @@ class VistaClient {
     }
     withBranch(branch) {
         return new VistaClient(this.secret, branch, this.hostname);
+    }
+    upsertBlueprint(blueprint) {
+        return __awaiter(this, void 0, void 0, function* () {
+            for (const branch in blueprint) {
+                if (blueprint[branch]) {
+                    const branchBp = blueprint[branch];
+                    for (const rt of branchBp.resourceTypes) {
+                        yield this.withBranch(branch).resourceTypes.upsert(rt.name, rt.actions, rt.attributes);
+                    }
+                    for (const role of branchBp.roles) {
+                        yield this
+                            .withBranch(branch)
+                            .roles.upsert(role.id, role.permissions, role.owners, role.parentRoles, role.orgId);
+                    }
+                }
+            }
+        });
     }
 }
 VistaClient.ALL = '*';

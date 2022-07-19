@@ -19,7 +19,7 @@ export class ApiResource {
     }
 
     dispatch = async (url: string, method: HttpMethods, data = {}): Promise<any> => { // eslint-disable-line
-        const config = {
+        const config: { url: string, method: HttpMethods, data?: any } = { // eslint-disable-line
             url: new URL(url, this.hostname).href,
             method: method,
             data: {},
@@ -35,7 +35,7 @@ export class ApiResource {
 
         const resp = await this.axiosClient.request(config).catch((error) => {
             if (error.response) {
-                throw Error(error.response.data.message);
+                throw Error(error.response.data.message || error.response.data);
             } else if (error.request) {
                 throw Error('There was a problem with the request');
             } else {
