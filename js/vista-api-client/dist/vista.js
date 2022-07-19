@@ -41,7 +41,6 @@ class ApiResource {
             const config = {
                 url: new URL(url, this.hostname).href,
                 method: method,
-                data: {},
             };
             if (data) {
                 if (method === HttpMethods.GET) {

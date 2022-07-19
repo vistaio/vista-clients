@@ -22,7 +22,6 @@ export class ApiResource {
         const config: { url: string, method: HttpMethods, data?: any } = { // eslint-disable-line
             url: new URL(url, this.hostname).href,
             method: method,
-            data: {},
         }
 
         if (data) {
