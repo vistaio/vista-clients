@@ -1,10 +1,14 @@
 'use strict';
 
 var Axios = require('axios');
+var fs = require('fs');
+var yaml = require('js-yaml');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var Axios__default = /*#__PURE__*/_interopDefaultLegacy(Axios);
+var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
+var yaml__default = /*#__PURE__*/_interopDefaultLegacy(yaml);
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -319,6 +323,7 @@ class VistaClient {
         });
         this.hostname = hostname || config.VistaAPIHostname;
         this.admin = new Admin(this.axios, branch, this.hostname);
+        this.blueprint = new Blueprints(this);
         this.grants = new Grants(this.axios, branch, this.hostname);
         this.resourceTypes = new ResourceTypes(this.axios, branch, this.hostname);
         this.roles = new Roles(this.axios, branch, this.hostname);
@@ -328,25 +333,31 @@ class VistaClient {
     withBranch(branch) {
         return new VistaClient(this.secret, branch, this.hostname);
     }
-    upsertBlueprint(blueprint) {
-        return __awaiter(this, void 0, void 0, function* () {
+}
+VistaClient.ALL = '*';
+class Blueprints {
+    constructor(client) {
+        this.upsert = (fname) => __awaiter(this, void 0, void 0, function* () {
+            const contents = fs__default["default"].readFileSync(fname, 'utf-8');
+            const blueprint = yaml__default["default"].load(contents);
             for (const branch in blueprint) {
                 if (blueprint[branch]) {
                     const branchBp = blueprint[branch];
                     for (const rt of branchBp.resourceTypes) {
-                        yield this.withBranch(branch).resourceTypes.upsert(rt.name, rt.actions, rt.attributes);
+                        yield this.client.withBranch(branch).resourceTypes.upsert(rt.name, rt.actions, rt.attributes);
                     }
                     for (const role of branchBp.roles) {
                         yield this
+                            .client
                             .withBranch(branch)
                             .roles.upsert(role.id, role.permissions, role.owners, role.parentRoles, role.orgId);
                     }
                 }
             }
         });
+        this.client = client;
     }
 }
-VistaClient.ALL = '*';
 
 module.exports = VistaClient;
 //# sourceMappingURL=vista.cjs.map

@@ -3,16 +3,15 @@ import datetime
 
 from vista_api_client import VistaClient
 
-v = VistaClient('Z6Q2KfVk6T5NJ65uskrfOxRCkcrSMhxQRmbAereoxUQ2YA7J', 'test')
+v = VistaClient('IZtgnWFVLMdpJ/4FL4JRDDjsNTmqN+7llhEEH8Vlh3I=', 'test', 'http://localhost:8080')
 
 # DEMO
 # create user
-v.users.create('kevin')
 
-# grant successive roles
-v.users.grantRole('kevin', 'employee', 'demobutton', 'button')
-v.users.grantRole('kevin', 'employer', 'demobutton', 'button')
-v.users.grantRole('kevin', 'admin', 'demobutton', 'button')
+v.blueprint.upsert('./data/blueprint.yaml')
+rts = v.with_branch('testBranch').resource_types.list()
+print(rts)
 
-# grant bespoke action
-v.users.grantAction('kevin', 'push', 'demobutton', 'button')
+roles = v.with_branch('testBranchs').roles.list()
+print(roles)
+

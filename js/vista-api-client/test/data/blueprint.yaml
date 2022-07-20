@@ -1,0 +1,51 @@
+
+testBranch:
+  resourceTypes:
+    -
+      name: issue
+      actions:
+        - view
+        - create
+        - delete
+      attributes: []
+    -
+      name: project
+      actions:
+        - view
+        - edit
+      attributes: []
+
+  roles:
+    -
+      id: contractor
+      permissions:
+        -
+          resourceType: issue
+          action: view
+          attribute: ''
+          ownerId: '*'
+        -
+          resourceType: project
+          action: view
+          attribute: ''
+          ownerId: '*'
+      owners: {}
+      parentRoles: []
+      orgId: '*'
+    -
+      id: engineer
+      permissions:
+        -
+          resourceType: issue
+          action: view
+          attribute: ''
+          ownerId: projectOwned
+        -
+          resourceType: issue
+          action: create
+          attribute: ''
+          ownerId: '*'
+      owners:
+        projectOwned: select issue.id as id from issue inner join project_user on issue."projectId" = project_user."projectId" and project_user."userId" = '$USERID'
+      parentRoles: []
+      orgId: '*'

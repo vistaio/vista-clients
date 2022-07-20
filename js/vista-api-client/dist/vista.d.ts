@@ -79,6 +79,7 @@ declare class VistaClient {
     axios: AxiosInstance;
     hostname: string;
     admin: Admin;
+    blueprint: Blueprints;
     grants: Grants;
     resourceTypes: ResourceTypes;
     roles: Roles;
@@ -86,12 +87,11 @@ declare class VistaClient {
     usersets: Usersets;
     constructor(secret: string, branch: string, hostname: string);
     withBranch(branch: string): VistaClient;
-    upsertBlueprint(blueprint: {
-        [branch: string]: {
-            resourceTypes: any;
-            roles: any;
-        };
-    }): Promise<void>;
+}
+declare class Blueprints {
+    client: VistaClient;
+    constructor(client: VistaClient);
+    upsert: (fname: string) => Promise<void>;
 }
 
 export { VistaClient as default };
