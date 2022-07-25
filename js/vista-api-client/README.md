@@ -111,3 +111,11 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 |--------|-------------|
 | `list(userId: string \| null, action: string \| null, resourceId: string \| null, resourceType: string \| null, attribute: string \| null, orgId: string \| null, startTime: string \| null, endTime: string \| null)`| List & filter grants by arguments, `startTime` is inclusive (>=) and `endTime` is exclusive (<)  |
 | `listUnflattened(usersetId: string \| None, relation: string \| None, relationType: string \| None, resourceId: string \| None, resourceType: string \| None, attribute: string \| None, orgId: string \| None)`| Filters User or Userset grants  |
+
+
+### Blueprint
+`client.blueprint`
+
+| method | description |
+|--------|-------------|
+| `upsert(fpath: string)`| Upserts branches, resource types, and roles defined in blueprint file (yaml or json). `fpath` is the relative path to the vista config file.|
