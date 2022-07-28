@@ -71,7 +71,7 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 | method | description |
 |--------|-------------|
 | `list(org_id: str)`| Lists all Roles  |
-| `upsert(role_id: str, permissions: { resourceType: str, attribute: str, action: str, ownerId: str }[], owners: { key: str }, parentRoles: string[], orgId: string)`      | Upserts a Role |
+| `upsert(role_id: str, permissions: { resourceType: str, attribute: str, action: str, ownerId: str }[], owners: : { key: { query: str, dbId: str } }, parentRoles: str[], orgId: str)`      | Upserts a Role |
 
 
 ### [Users](https://docs.govista.io/Concepts/Terminology#user)
@@ -118,4 +118,4 @@ The following describes methods namespaced by Vista [resources](https://docs.gov
 
 | method | description |
 |--------|-------------|
-| `upsert(fpath: string)`| Upserts branches, resource types, and roles defined in blueprint file (yaml or json). `fpath` is the relative path to the vista config file.|
+| `upsert(fpath: str)`| Upserts branches, resource types, and roles defined in blueprint file (yaml or json). `fpath` is the relative path to the vista config file.|

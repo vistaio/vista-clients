@@ -15,7 +15,7 @@ class Roles extends ApiResource {
         });
     }
 
-    upsert = async (roleId: string, permissions: Permission[], owners: { [key: string]: string }, parentRoles: string[] = [], orgId = '*') => {
+    upsert = async (roleId: string, permissions: Permission[], owners: { [key: string]: { query: string, dbId: string, } }, parentRoles: string[] = [], orgId = '*') => {
         return this.dispatch('/v1/roles', HttpMethods.POST, {
             id: roleId,
             permissions,

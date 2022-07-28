@@ -49,3 +49,41 @@ testBranch:
         projectOwned: select issue.id as id from issue inner join project_user on issue."projectId" = project_user."projectId" and project_user."userId" = '$USERID'
       parentRoles: []
       orgId: '*'
+
+
+branchName:
+  resourceTypes:
+    -
+      name: rt_name1
+      actions:
+        - action1
+        - action2
+      attributes: # if empty, then use []
+        - attr1 # optional
+        - attr2
+    -
+      name: rt_name2
+      actions:
+        - action3
+        - action4
+      attributes:
+        - attr5
+        - attr6
+  roles:
+    -
+      id: role_name1
+      permissions:
+        -
+          resourceType: rt_name1
+          action: action1
+          attribute: '' # optional
+          ownerId: queryName1 # resource_id generated from ownership query defined under 'owners'
+        -
+          resourceType: rt_name2
+          action: action3
+          attribute: attr5
+          ownerId: '*' # must specify resource_id for resource_type when granting role: c.users.grantRole('user1', 'role_name', 'resource_id', 'resource_type')
+      owners:
+        queryName1: query # sql/mongo query. You can use '$USER' and '$ORGID' as templates variables
+      parentRoles: [] # optional, if empty use []
+      orgId: '*'
