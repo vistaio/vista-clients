@@ -23,7 +23,7 @@
     "fetch": "^1.1.0",
     "fs": "^0.0.1-security",
     "js-yaml": "^4.1.0",
-    "node-fetch": "^3.2.9",
+    "node-fetch": "^3.2.10",
     "rollup-plugin-dts": "^4.2.0",
     "underscore": "^1.13.1"
   },
