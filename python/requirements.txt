@@ -35,3 +35,4 @@ urllib3==1.26.6
 webencodings==0.5.1
 wrapt==1.13.3
 zipp==3.6.0
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
