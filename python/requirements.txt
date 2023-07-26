@@ -2,7 +2,7 @@ astroid==2.9.3
 autoflake==1.4
 autopep8==1.6.0
 bleach==4.1.0
-certifi==2021.5.30
+certifi==2023.7.22
 charset-normalizer==2.0.4
 colorama==0.4.4
 docformatter==1.4
