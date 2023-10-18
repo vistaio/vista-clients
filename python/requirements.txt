@@ -31,7 +31,7 @@ tqdm==4.62.3
 twine==3.4.2
 unify==0.5
 untokenize==0.1.1
-urllib3==1.26.6
+urllib3==1.26.18
 webencodings==0.5.1
 wrapt==1.13.3
 zipp==3.6.0
