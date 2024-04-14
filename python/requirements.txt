@@ -7,7 +7,7 @@ charset-normalizer==2.0.4
 colorama==0.4.4
 docformatter==1.4
 docutils==0.17.1
-idna==3.2
+idna==3.7
 importlib-metadata==4.8.1
 isort==5.10.1
 keyring==23.2.1
