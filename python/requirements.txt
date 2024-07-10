@@ -34,4 +34,4 @@ untokenize==0.1.1
 urllib3==1.26.6
 webencodings==0.5.1
 wrapt==1.13.3
-zipp==3.6.0
+zipp==3.19.1
