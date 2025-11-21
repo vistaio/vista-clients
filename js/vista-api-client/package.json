@@ -22,7 +22,7 @@
     "axios": "^0.21.3",
     "fetch": "^1.1.0",
     "fs": "^0.0.1-security",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "node-fetch": "^3.2.9",
     "rollup-plugin-dts": "^4.2.0",
     "underscore": "^1.13.1"
